@@ -43,16 +43,14 @@
 
 <!-- Summernote CSS -->
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
-	integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg="
-	crossorigin="anonymous">
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css">
 	<!-- Include Summernote -->
 <%--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" integrity="sha384-GLhlTQ8iZS+9Ld5LKa7a5z3kzEpTluc6s/v5Z8DxN9JK6U7IE5MW5VsDUZt4Qvq" crossorigin="anonymous">--%>
 <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js" integrity="sha384-SvYEXq8aS02lWqZoCc8y9vtqz6dUQDLIH9/2ScNvEbrCwfoUdMw8jC+U3+I2eE1T" crossorigin="anonymous"></script>--%>
 
 <!-- Your Custom CSS -->
 <link rel="stylesheet" href="/css/style.css">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,6 +71,9 @@
 /*	z-index: 1001; !* 로고 위에 나타나도록 설정 *!*/
 /*}*/
 </style>
+	<script>
+		console.log("헤더 나왔다");
+	</script>
 </head>
 
 <body>
