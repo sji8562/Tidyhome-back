@@ -17,7 +17,7 @@
 <meta name="description"
 	content="Nice Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
 <meta name="robots" content="noindex,nofollow">
-<title>Kinder-Lend</title>
+<title>TidyHome</title>
 <!-- Custom CSS -->
 <link rel="canonical"
 	href="https://www.wrappixel.com/templates/niceadmin-lite/" />
