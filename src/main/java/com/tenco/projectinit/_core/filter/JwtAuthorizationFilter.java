@@ -26,28 +26,29 @@ public class JwtAuthorizationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        String jwt = request.getHeader("Authorization");
-        if (jwt == null || jwt.isEmpty()) {
-            onError(response, "토큰이 없습니다");
-            return;
+        if (!request.getRequestURI().toString().equals("/api/users/login")) {
+            String jwt = request.getHeader("Authorization");
+            if (jwt == null || jwt.isEmpty()) {
+                onError(response, "토큰이 없습니다");
+                return;
+            }
+
+            try {
+                DecodedJWT decodedJWT = JwtTokenUtils.verify(jwt);
+                int id = decodedJWT.getClaim("id").asInt();
+                String userId = decodedJWT.getClaim("loginId").asString();
+
+                User sessionUser = User.builder().id(id).tel(userId).build();
+
+                HttpSession session = request.getSession();
+                session.setAttribute("sessionUser", sessionUser);
+            } catch (SignatureVerificationException | JWTDecodeException e1) {
+                onError(response, "토큰 검증 실패");
+            } catch (TokenExpiredException e2) {
+                onError(response, "토큰 시간 만료");
+            }
         }
-
-        try {
-            DecodedJWT decodedJWT = JwtTokenUtils.verify(jwt);
-            int id = decodedJWT.getClaim("id").asInt();
-            String userId = decodedJWT.getClaim("loginId").asString();
-
-            User sessionUser = User.builder().id(id).loginId(userId).build();
-
-            HttpSession session = request.getSession();
-            session.setAttribute("sessionUser", sessionUser);
-
-            chain.doFilter(request, response);
-        } catch (SignatureVerificationException | JWTDecodeException e1) {
-            onError(response, "토큰 검증 실패");
-        } catch (TokenExpiredException e2) {
-            onError(response, "토큰 시간 만료");
-        }
+        chain.doFilter(request, response);
     }
 
     // ExceptionHandler를 호출할 수 없다. 왜? Filter니까!! DS전에 작동하니까!!

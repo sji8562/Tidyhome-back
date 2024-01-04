@@ -24,15 +24,18 @@ spring:
       encoding: utf-8
 #      schema-locations:
 #        classpath:db/table.sql
-#      data-locations:
-#        classpath:db/data.sql
+      data-locations:
+        classpath:db/data.sql
+      mode: always
+  jpa:
+    defer-datasource-initialization: true
 
-mybatis:
-  mapper-locations:
-    - classpath:mapper/**.xml
-  configuration:
-    map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis:
+#  mapper-locations:
+#    - classpath:mapper/**.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 logging:
   level:
