@@ -7,6 +7,5 @@ import lombok.Data;
 @Builder
 public class User {
     private int id;
-    private String loginId;
-    private String password;
+    private String tel;
 }
