@@ -1,1 +1,1 @@
-insert into user_tb(tel) values ('01093971773');
+insert into user_tb(tel, level) values ('01093971773', 0);

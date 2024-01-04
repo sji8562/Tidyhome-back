@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserRestController {
 
     @Autowired
-    private  UserService userService;
+    private UserService userService;
 
     // 로그인
     @PostMapping("/api/users/login")
@@ -23,4 +23,10 @@ public class UserRestController {
                 .body(ApiUtils.success((tokenDTO.getUser())));
     }
 
+    // 회원탈퇴
+    @PostMapping("/api/users/delete")
+    public ResponseEntity<?> delete(@RequestBody UserResponseDTO.LoginDTO loginDTO){
+        userService.delete(loginDTO);
+        return ResponseEntity.ok().body(ApiUtils.success(null));
+    }
 }

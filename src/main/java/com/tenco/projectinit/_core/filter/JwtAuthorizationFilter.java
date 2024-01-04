@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.MediaType;
+import org.springframework.util.AntPathMatcher;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +27,12 @@ public class JwtAuthorizationFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        if (!request.getRequestURI().toString().equals("/api/users/login")) {
+
+        AntPathMatcher antPathMatcher = new AntPathMatcher();
+        if (
+                !(request.getRequestURI().toString().equals("/api/users/login")
+                        || antPathMatcher.match("/h2-console/**",request.getRequestURI().toString()))
+        ) {
             String jwt = request.getHeader("Authorization");
             if (jwt == null || jwt.isEmpty()) {
                 onError(response, "토큰이 없습니다");
