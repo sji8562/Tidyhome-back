@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 public class UserResponseDTO {
+
+
+
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
