@@ -17,9 +17,11 @@ public class User {
 
     private String tel;
 
-    public User(int id, String tel) {
+    private int level;
+
+    public User(int id, String tel, int level) {
         this.id = id;
         this.tel = tel;
+        this.level = level;
     }
-
 }
