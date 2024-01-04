@@ -31,7 +31,7 @@ public class JwtAuthorizationFilter implements Filter {
         AntPathMatcher antPathMatcher = new AntPathMatcher();
         if (
                 !(request.getRequestURI().toString().equals("/api/users/login")
-                        || antPathMatcher.match("/h2-console/**",request.getRequestURI().toString()))
+                        || antPathMatcher.match("/h2-console/**",request.getRequestURI().toString()) ||antPathMatcher.match("/mng/**",request.getRequestURI().toString()))
         ) {
             String jwt = request.getHeader("Authorization");
             if (jwt == null || jwt.isEmpty()) {
