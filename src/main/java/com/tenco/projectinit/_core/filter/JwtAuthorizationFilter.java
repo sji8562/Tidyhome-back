@@ -33,10 +33,12 @@ public class JwtAuthorizationFilter implements Filter {
                 return;
             }
 
+
             try {
                 DecodedJWT decodedJWT = JwtTokenUtils.verify(jwt);
                 int id = decodedJWT.getClaim("id").asInt();
                 String userId = decodedJWT.getClaim("loginId").asString();
+
 
                 User sessionUser = User.builder().id(id).tel(userId).build();
 

@@ -14,7 +14,7 @@ public class FirebaseConfig {
     @PostConstruct
     public void init() {
         try {
-            FileInputStream serviceAccount = new FileInputStream("com/tenco/projectinit/_core/config/key/serviceAccountKey.jsonz");
+            FileInputStream serviceAccount = new FileInputStream("src/main/resources/static/serviceAccountKey.json");
             FirebaseOptions.Builder optionBuilder = FirebaseOptions.builder();
             FirebaseOptions options = optionBuilder
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
