@@ -18,5 +18,4 @@ public class User {
     private Integer id;
     private String tel; // 유저아이디
     private int level; // 0: 사용자 1: 워커 9: 관리자
-
 }
