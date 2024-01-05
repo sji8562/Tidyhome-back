@@ -4,8 +4,17 @@ import com.tenco.projectinit._core.errors.exception.*;
 import com.tenco.projectinit._core.utils.ApiUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.ErrorResponse;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -39,5 +48,25 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> unknownServerError(Exception e) {
         ApiUtils.ApiResult<?> apiResult = ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(apiResult, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    private ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        List<String> errors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(this::parseFieldErrorMessage)
+                .collect(Collectors.toList());
+
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("success", false);
+        responseBody.put("response", null);
+        responseBody.put("error", errors);
+
+        return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
+    }
+    private String parseFieldErrorMessage(FieldError fieldError) {
+        String field = fieldError.getField();
+        String fieldErrorDefaultMessage = fieldError.getDefaultMessage();
+        return field + ":" + fieldErrorDefaultMessage;
     }
 }

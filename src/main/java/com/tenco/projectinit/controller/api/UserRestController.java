@@ -1,9 +1,10 @@
 package com.tenco.projectinit.controller.api;
 
 import com.tenco.projectinit._core.utils.ApiUtils;
-import com.tenco.projectinit.dto.UserResponseDTO;
+import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class UserRestController {
     private String uri = "https://api.coolsms.co.kr";
     // 로그인
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UserResponseDTO.LoginDTO loginDTO){
+    public ResponseEntity<?> login(@Valid @RequestBody UserResponseDTO.LoginDTO loginDTO){
          UserResponseDTO.TokenDTO tokenDTO =  userService.login(loginDTO);
         return ResponseEntity.ok().header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success((tokenDTO.getUser())));
@@ -42,7 +43,7 @@ public class UserRestController {
     }
     // 회원가입
     @PostMapping("/join")
-    public ResponseEntity<?> join(@RequestBody UserResponseDTO.JoinDTO joinDTO){
+    public ResponseEntity<?> join(@Valid @RequestBody UserResponseDTO.JoinDTO joinDTO){
         userService.join(joinDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(null));
     }

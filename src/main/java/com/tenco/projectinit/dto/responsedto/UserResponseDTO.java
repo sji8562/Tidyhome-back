@@ -1,4 +1,4 @@
-package com.tenco.projectinit.dto;
+package com.tenco.projectinit.dto.responsedto;
 
 import com.tenco.projectinit.repository.entity.User;
 import jakarta.validation.Valid;
@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-@Valid
 public class UserResponseDTO {
 
     @Getter
@@ -22,12 +21,6 @@ public class UserResponseDTO {
     public static class JoinDTO {
         @NotBlank(message = "아이디는 필수 입력값입니다.")
         private String tel;
-        private String msg;
-
-        public JoinDTO(String tel, String msg) {
-            this.tel = tel;
-            this.msg = msg;
-        }
     }
 
     @Getter
