@@ -1,6 +1,7 @@
 package com.tenco.projectinit.repository.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @Table(name = "housekeeper_register_tb")
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class HouseKeeperRegister {
     @Id
@@ -21,16 +24,4 @@ public class HouseKeeperRegister {
     private boolean hasPet; // 애완동물 유무
     private boolean isMove; // 이사 유무
     private String address; // 주소
-    @Builder
-    public HouseKeeperRegister(Integer id, String cleanCycle, String serviceTimePrice, boolean isRegularity, String cleanDate, String cleanStartTime, boolean hasPet, boolean isMove, String address) {
-        this.id = id;
-        this.cleanCycle = cleanCycle;
-        this.serviceTimePrice = serviceTimePrice;
-        this.isRegularity = isRegularity;
-        this.cleanDate = cleanDate;
-        this.cleanStartTime = cleanStartTime;
-        this.hasPet = hasPet;
-        this.isMove = isMove;
-        this.address = address;
-    }
 }
