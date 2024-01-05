@@ -6,17 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@Table(name = "address_tb")
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Address {
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "first_category_tb")
+public class FirstCategory {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String address;
+
+    private String name;
 
 
 }
