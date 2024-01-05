@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_tb")
-public class User {
+@Builder
+@NoArgsConstructor
+@Table(name = "other_request_tb")
+public class OtherRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String tel; // 유저아이디
-    private int level; // 0: 사용자 1: 워커 9: 관리자
-
+    private String especially; // 특히 신경 쓸 곳
+    private String etcMessage; // 기타 요청사항
 
 }

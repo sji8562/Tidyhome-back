@@ -11,5 +11,6 @@ public class MngController {
     public String index(){
         System.out.println("여기 오냐 ?");
         return "/mng/index";
+
     }
 }
