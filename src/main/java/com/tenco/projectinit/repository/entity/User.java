@@ -1,6 +1,7 @@
 package com.tenco.projectinit.repository.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user_tb")
 public class User {
     @Id
@@ -19,9 +21,4 @@ public class User {
 
     private int level;
 
-    public User(int id, String tel, int level) {
-        this.id = id;
-        this.tel = tel;
-        this.level = level;
-    }
 }
