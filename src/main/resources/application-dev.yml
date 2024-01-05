@@ -43,3 +43,9 @@ logging:
 
 file:
   path: ./images/
+
+
+sms:
+  api:
+    key: NCSQUDERFWWWSQ32
+    secret: QMEK2AQLFF4IT4WPWULFFOKPGVKQUANS

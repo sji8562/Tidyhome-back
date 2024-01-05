@@ -8,17 +8,15 @@ import lombok.NoArgsConstructor;
 
 public class UserResponseDTO {
 
-
-
     @Getter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class LoginDTO{
+    public static class LoginDTO {
         private String tel;
     }
 
     @Data
-    public static class JoinDTO{
+    public static class JoinDTO {
         private String tel;
         private String msg;
 

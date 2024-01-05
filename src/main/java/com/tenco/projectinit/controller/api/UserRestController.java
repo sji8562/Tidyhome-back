@@ -2,6 +2,7 @@ package com.tenco.projectinit.controller.api;
 
 import com.tenco.projectinit._core.utils.ApiUtils;
 import com.tenco.projectinit.dto.UserResponseDTO;
+import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,12 +27,26 @@ public class UserRestController {
                 .body(ApiUtils.success((tokenDTO.getUser())));
     }
 
+    // 인증번호 발송
+    @PostMapping("/sms-send")
+    public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
+        userService.sendSms(smsSendDTO.getTel());
+        return ResponseEntity.ok().body(ApiUtils.success(null));
+    }
+
+    //인증번호 확인
+    @PostMapping("/sms-check")
+    public ResponseEntity<?> smsCheck(@RequestBody UserRequestDTO.SmsCheckDTO smsCheckDTO){
+        userService.smsCheck(smsCheckDTO.getTel(), smsCheckDTO.getCode());
+        return ResponseEntity.ok().body(ApiUtils.success(null));
+    }
     // 회원가입
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody UserResponseDTO.JoinDTO joinDTO){
         userService.join(joinDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(null));
     }
+
     // 회원탈퇴
     @PostMapping("/delete")
     public ResponseEntity<?> delete(@RequestBody UserResponseDTO.LoginDTO loginDTO){
