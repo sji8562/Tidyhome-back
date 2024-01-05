@@ -3,7 +3,7 @@ package com.tenco.projectinit.service;
 import com.tenco.projectinit._core.errors.exception.Exception400;
 import com.tenco.projectinit._core.errors.exception.Exception500;
 import com.tenco.projectinit._core.utils.JwtTokenUtils;
-import com.tenco.projectinit.dto.UserResponseDTO;
+import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.repository.entity.SmsCode;
 import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.repository.inteface.SmsCodeJPARepository;
@@ -96,6 +96,7 @@ public class UserService {
 
     @Transactional
     public void join(UserResponseDTO.JoinDTO joinDTO) {
+
         // 1. 회원가입시 아이디 중복 체크
         Optional<User> existingUser = userJPARepository.findByTel(joinDTO.getTel());
         if (existingUser.isPresent()) {
@@ -109,7 +110,7 @@ public class UserService {
         }
 
         //3. sms인증코드 인증확인
-        SmsCode smsCode = smsCodeJPARepository.findByTel(joinDTO.getTel()).orElseThrow(() -> new Exception400("인증코드 없음"));
+        SmsCode smsCode = smsCodeJPARepository.findByTel(joinDTO.getTel()).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
         if (!smsCode.isChecked()) {
             throw new Exception400("인증되지 않았습니다");
         }
@@ -144,7 +145,7 @@ public class UserService {
     public void smsCheck(String tel, String code) {
         Optional<SmsCode> optCode = smsCodeJPARepository.findByTel(tel);
         if (optCode.isEmpty()) {
-            throw new Exception400("인증코드 없음");
+            throw new Exception400("인증코드를 입력하여주세요");
         }
 
         SmsCode smsCode = optCode.get();
