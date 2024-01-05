@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 
 import java.sql.Timestamp;
 
@@ -15,8 +17,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "card_tb")
-public class Card {
+@Table(name = "cancel_tb")
+public class Cancel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,24 +26,16 @@ public class Card {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-
-    private String provider;
-
-
-    private String cardNumber;
-
-
-    private String exDate;
-
-
-    private String cardPassword;
-
-    private String birth;
+    private Sale sale;
 
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
 
-    // Getters and setters (omitted for brevity)
+    @Column(length = 256)
+    @UpdateTimestamp
+    private Timestamp updateAt;
+
+    private Integer price;
 }
+

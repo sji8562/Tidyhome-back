@@ -1,6 +1,7 @@
 package com.tenco.projectinit.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tenco.projectinit.repository.entity.sub_entity.Option;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data
@@ -15,8 +19,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "card_tb")
-public class Card {
+@Table(name = "info_tb")
+public class Info {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,24 +28,18 @@ public class Card {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-
-    private String provider;
+    private Option option;
 
 
-    private String cardNumber;
+    private Date reservationDate;
 
 
-    private String exDate;
+    private Time reservationTime;
 
-
-    private String cardPassword;
-
-    private String birth;
+    private Boolean pet;
 
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
-
-    // Getters and setters (omitted for brevity)
 }
+

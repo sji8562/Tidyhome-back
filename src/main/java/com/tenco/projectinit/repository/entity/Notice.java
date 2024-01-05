@@ -1,22 +1,31 @@
 package com.tenco.projectinit.repository.entity;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+
+import java.sql.Timestamp;
 
 @Data
-@Entity
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@NoArgsConstructor
-@Table(name = "other_request_tb")
-public class OtherRequest {
+@Entity
+@Table(name = "notice_tb")
+public class Notice {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String especially; // 특히 신경 쓸 곳
-    private String etcMessage; // 기타 요청사항
 
+    private String title;
+
+    private String content;
+
+    @Column(length = 256)
+    @CreationTimestamp
+    private Timestamp createdAt;
 }

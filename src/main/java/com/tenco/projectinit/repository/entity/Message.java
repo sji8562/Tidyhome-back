@@ -1,6 +1,8 @@
 package com.tenco.projectinit.repository.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tenco.projectinit.repository.entity.sub_entity.Question;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +17,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "card_tb")
-public class Card {
+@Table(name = "message")
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,20 +26,15 @@ public class Card {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-
-    private String provider;
+    private Question questionId;
 
 
-    private String cardNumber;
+    private Integer isFromSender;
+
+    private String content;
 
 
-    private String exDate;
-
-
-    private String cardPassword;
-
-    private String birth;
+    private Integer readStatus;
 
     @Column(length = 256)
     @CreationTimestamp
