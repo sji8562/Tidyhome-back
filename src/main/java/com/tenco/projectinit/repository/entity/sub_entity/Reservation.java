@@ -1,5 +1,8 @@
-package com.tenco.projectinit.repository.entity;
+package com.tenco.projectinit.repository.entity.sub_entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tenco.projectinit.repository.entity.AddressInfo;
+import com.tenco.projectinit.repository.entity.Info;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,14 +18,20 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "user_tb")
-public class User {
+@Table(name = "reservation_tb")
+public class Reservation{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String tel;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private AddressInfo addressInfo;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Info info;
 
     @Column(length = 256)
     @CreationTimestamp

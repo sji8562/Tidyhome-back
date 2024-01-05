@@ -1,23 +1,32 @@
 package com.tenco.projectinit.repository.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
-@Entity
+import java.sql.Timestamp;
+
 @Data
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-@Table(name = "clean_category_tb")
-public class CleanCategory {
+@Builder
+@Entity
+@Table(name = "service_tb")
+public class Service {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String cleanCategories;
 
+    private Integer code;
 
+    @Column(length = 256)
+    @CreationTimestamp
+    private Timestamp createdAt;
 
+    // Getters and setters (omitted for brevity)
 }

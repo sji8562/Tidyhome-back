@@ -6,26 +6,39 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 
 @Data
-@Builder
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "addressInfo_tb")
+@Builder
+@Entity
+@Table(name = "address_info_tb")
 public class AddressInfo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String address;
-    private String addressDetail;
-    private boolean choice;
-    private Timestamp createdAt;
+    private Integer id;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+
+    private String postNumber;
+
+    private String address;
+
+
+    private String addressDetail;
+
+    private Boolean choice;
+
+    @Column(length = 256)
+    @CreationTimestamp
+    private Timestamp createdAt;
 }
+

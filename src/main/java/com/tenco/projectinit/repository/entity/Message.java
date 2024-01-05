@@ -1,12 +1,14 @@
 package com.tenco.projectinit.repository.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tenco.projectinit.repository.entity.sub_entity.Question;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
 
 import java.sql.Timestamp;
 
@@ -15,16 +17,28 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "user_tb")
-public class User {
+@Table(name = "message")
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String tel;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Question questionId;
+
+
+    private Integer isFromSender;
+
+    private String content;
+
+
+    private Integer readStatus;
 
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
+
+    // Getters and setters (omitted for brevity)
 }

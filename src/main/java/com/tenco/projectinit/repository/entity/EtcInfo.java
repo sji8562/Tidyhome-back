@@ -1,30 +1,33 @@
 package com.tenco.projectinit.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-
-import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "user_tb")
-public class User {
+@Table(name = "etc_info_tb")
+public class EtcInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String tel;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Info info;
 
-    @Column(length = 256)
-    @CreationTimestamp
-    private Timestamp createdAt;
+    private String enter;
+
+    private String special;
+
+
+    private String otherRequest;
 }

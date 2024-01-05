@@ -1,5 +1,7 @@
 package com.tenco.projectinit.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tenco.projectinit.repository.entity.sub_entity.Option;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +10,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data
@@ -15,16 +19,27 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "user_tb")
-public class User {
+@Table(name = "info_tb")
+public class Info {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String tel;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Option option;
+
+
+    private Date reservationDate;
+
+
+    private Time reservationTime;
+
+    private Boolean pet;
 
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
 }
+
