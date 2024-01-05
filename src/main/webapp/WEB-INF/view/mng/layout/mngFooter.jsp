@@ -37,8 +37,7 @@
 
 
 <!-- Summernote JS -->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"
-        integrity="sha256-5slxYrL5Ct3mhMAp/dgnb5JSnTYMtkr4dHby34N10qw=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
 <%-- CK editor --%>
 <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
 <%--카카오 맵--%>
@@ -47,7 +46,9 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=85a9fbeacd6dee03b7157c7360812509&libraries=services"></script>
 <script src="/dist/js/mng.js"></script>
 
-
+<script>
+    console.log("푸터 나왔다");
+</script>
 </body>
 
 </html>
