@@ -225,40 +225,48 @@
 										class="mdi mdi-format-list-numbers"></i> <span
 										class="hide-menu">판매용 카테고리 관리</span>
 								</a></li>
-							</ul> <%-- 유저 관리 --%>
-						<li class="sidebar-item"><a
-							class="sidebar-link waves-effect waves-dark sidebar-link"
-							href="/mng/user/list" aria-expanded="false"> <i
-								class="mdi mdi-account"></i> <span class="hide-menu">유저
-									관리</span>
-						</a></li>
-						<%-- 신청 관리 --%>
-						<li class="sidebar-item" id="applyManagement"><a
-							class="sidebar-link waves-effect waves-dark sidebar-link"
-							href="/mng/apply/list" aria-expanded="false"> <i
-								class="mdi mdi-tooltip-text"></i> <span class="hide-menu">신청
-									관리</span>
-						</a>
-							<ul aria-expanded="false" class="collapse first-level">
-								<!-- 대여신청 -->
-								<li class="sidebar-item"><a
+							</ul>
+							<%-- 유저 관리 --%>
+							<li class="sidebar-item" id="applyManagement"><a
 									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/apply/rental-list"> <i class="mdi mdi-timer"></i>
-										<span class="hide-menu">대여신청</span>
-								</a></li>
-								<!-- 판매신청 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/apply/sale-list"> <i
-										class="mdi mdi-cash-multiple"></i> <span class="hide-menu">판매신청</span>
-								</a></li>
-								<!-- 구매신청 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/apply/purchase-list"> <i
-										class="mdi mdi-barcode-scan"></i> <span class="hide-menu">구매신청</span>
-								</a></li>
-							</ul></li>
+									href="/mng/user/list" aria-expanded="false"> <i
+									class="mdi mdi-account"></i> <span class="hide-menu">유저 관리</span>
+							</a>
+								<ul aria-expanded="false" class="collapse first-level">
+									<!-- 유저 관리 -->
+									<li class="sidebar-item"><a
+											class="sidebar-link waves-effect waves-dark sidebar-link"
+											href="/mng/user/user-list"> <i class="mdi mdi-account"></i>
+										<span class="hide-menu">고객 관리</span>
+									</a></li>
+									<!-- 파트너 관리 -->
+									<li class="sidebar-item"><a
+											class="sidebar-link waves-effect waves-dark sidebar-link"
+											href="/mng/user/partner-list"> <i
+											class="mdi mdi-account"></i> <span class="hide-menu">파트너 관리</span>
+									</a></li>
+
+								</ul></li>
+						<%-- 유저관리 관리 --%>
+<%--							<li class="sidebar-item" id="applyManagement"><a--%>
+<%--									class="sidebar-link waves-effect waves-dark sidebar-link"--%>
+<%--									href="/mng/user/list" aria-expanded="false"> <i--%>
+<%--									class="mdi mdi-tooltip-text"></i> <span class="hide-menu">유저 관리</span>--%>
+<%--							</a>--%>
+<%--								<ul aria-expanded="false" class="collapse first-level">--%>
+<%--									<!-- 유저 관리 -->--%>
+<%--									<li class="sidebar-item"><a--%>
+<%--											class="sidebar-link waves-effect waves-dark sidebar-link"--%>
+<%--											href="/mng/user/user-list"> <i class="mdi mdi-timer"></i>--%>
+<%--										<span class="hide-menu">고객 관리</span>--%>
+<%--									</a></li>--%>
+<%--									<!-- 파트너 관리 -->--%>
+<%--									<li class="sidebar-item"><a--%>
+<%--											class="sidebar-link waves-effect waves-dark sidebar-link"--%>
+<%--											href="/mng/user/partner-list"> <i--%>
+<%--											class="mdi mdi-cash-multiple"></i> <span class="hide-menu">파트너 관리</span>--%>
+<%--									</a></li>--%>
+<%--								</ul></li>--%>
 
 
 						<%-- 회사 소개 게시판 --%>

@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/mng")
-public class MngController {
+public class MngIndexController {
     @GetMapping({"/","index"})
     public String index(){
         System.out.println("여기 오냐 ?");
         return "/mng/index";
-
     }
 }
