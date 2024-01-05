@@ -6,15 +6,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
-@Table(name = "user_tb")
-public class User {
+@Table(name = "clean_category_tb")
+public class CleanCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String tel; // 유저아이디
-    private int level; // 0: 사용자 1: 워커 9: 관리자
+    private String cleanCategories;
+
+
+
 }

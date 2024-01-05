@@ -2,7 +2,6 @@ package com.tenco.projectinit.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,11 +9,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user_tb")
-public class User {
+@Table(name = "card_tb")
+public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String tel; // 유저아이디
-    private int level; // 0: 사용자 1: 워커 9: 관리자
+    private String provider; // 카드사
+    private String cardNumber; // 카드번호
+    private String yearMonth; // YY-MM
+    private String cardPassword; // 카드 비밀번호
+    private String birth; // 생년월일
 }

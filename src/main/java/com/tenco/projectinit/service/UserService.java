@@ -21,6 +21,7 @@ public class UserService {
     private UserJPARepository userJPARepository;
     @Autowired
     private HttpSession session;
+    // 로그인
     public UserResponseDTO.TokenDTO login(UserResponseDTO.LoginDTO loginDTO) {
         log.info("tel = {}", loginDTO.getTel());
         Optional<User> optUser = userJPARepository.findByTel(loginDTO.getTel());
@@ -32,7 +33,7 @@ public class UserService {
         User user = optUser.get();
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
     }
-
+    // 회원탈퇴
     public void delete(UserResponseDTO.LoginDTO loginDTO) {
         String loginId = loginDTO.getTel();
         Optional<User> optionalUser = userJPARepository.findByTel(loginId);
