@@ -6,17 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "card_tb")
-public class Card {
+@Table(name = "etc_info_tb")
+public class EtcInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,24 +22,12 @@ public class Card {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private Info info;
 
-    private String provider;
+    private String enter;
 
-
-    private String cardNumber;
-
-
-    private String exDate;
+    private String special;
 
 
-    private String cardPassword;
-
-    private String birth;
-
-    @Column(length = 256)
-    @CreationTimestamp
-    private Timestamp createdAt;
-
-    // Getters and setters (omitted for brevity)
+    private String otherRequest;
 }
