@@ -7,7 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Data
 @Builder
@@ -18,7 +18,7 @@ import java.security.Timestamp;
 public class AddressInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String address;
     private String addressDetail;
     private boolean choice;
