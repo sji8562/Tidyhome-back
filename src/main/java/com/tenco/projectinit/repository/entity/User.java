@@ -23,7 +23,7 @@ public class User {
     private Integer id;
 
     private String tel;
-
+    private Integer level;
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
