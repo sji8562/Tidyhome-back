@@ -40,3 +40,8 @@ logging:
 
 file:
   path: ./images/
+
+coolsms:
+  api:
+    key: "NCSQUDERFWWWSQ32"
+    secret: "QMEK2AQLFF4IT4WPWULFFOKPGVKQUANS"

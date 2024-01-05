@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 import java.util.Random;
@@ -64,4 +65,23 @@ public class UserService {
         }
         return key;
     }
+    @Transactional
+    public void join(UserResponseDTO.JoinDTO joinDTO) {
+        // 1. 회원가입시 아이디 중복 체크
+        Optional<User> existingUser = userJPARepository.findByTel(joinDTO.getTel());
+        if (existingUser.isPresent()) {
+            throw new Exception400("중복된 아이디입니다.");
+        }
+        // 2. 전화번호 형식 유효성 검사 (11자리 여부 확인)
+        String tel = joinDTO.getTel();
+        if (tel == null || tel.length() != 11) {
+            throw new Exception400("전화번호는 11자리여야 합니다.");
+        }
+        // 3. 디비 저장
+        User newUser = User.builder()
+                .tel(joinDTO.getTel())
+                .build();
+        User savedUser = userJPARepository.save(newUser);
+    }
+
 }
