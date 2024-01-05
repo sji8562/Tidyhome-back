@@ -1,13 +1,12 @@
-package com.tenco.projectinit.repository.entity;
+package com.tenco.projectinit.repository.entity.sub_entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
 
 import java.sql.Timestamp;
 
@@ -16,22 +15,26 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "address_info_tb")
-public class AddressInfo {
+@Table(name = "question_tb")
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-    private String postNumber;
-    private String address;
-    private String addressDetail;
-    private Boolean choice;
+
+    @Column(name = "from_id")
+    private Integer fromId;
+
+    @Column(name = "to_id")
+    private Integer toId;
+
+    private String subject;
+
+    private String status;
+
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
+
+    // Getters and setters (omitted for brevity)
 }
-
-

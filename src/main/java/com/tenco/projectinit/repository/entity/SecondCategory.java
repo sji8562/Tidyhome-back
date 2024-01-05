@@ -6,32 +6,25 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
-
-import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "address_info_tb")
-public class AddressInfo {
+@Table(name = "second_category_tb")
+public class SecondCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-    private String postNumber;
-    private String address;
-    private String addressDetail;
-    private Boolean choice;
-    @Column(length = 256)
-    @CreationTimestamp
-    private Timestamp createdAt;
+    private FirstCategory firstCategory;
+
+    private String name;
+
+    // Getters and setters (omitted for brevity)
 }
-
-

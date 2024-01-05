@@ -1,9 +1,12 @@
 package com.tenco.projectinit.controller.api;
 
 import com.tenco.projectinit._core.utils.ApiUtils;
-import com.tenco.projectinit.dto.UserResponseDTO;
+import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
+import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +16,36 @@ public class UserRestController {
 
     @Autowired
     private UserService userService;
-
+    private String fromNumber = "";
+    private String APIKEY = "";
+    private String APISECRETKEY = "";
+    private String uri = "https://api.coolsms.co.kr";
     // 로그인
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UserResponseDTO.LoginDTO loginDTO){
+    public ResponseEntity<?> login(@Valid @RequestBody UserResponseDTO.LoginDTO loginDTO){
          UserResponseDTO.TokenDTO tokenDTO =  userService.login(loginDTO);
         return ResponseEntity.ok().header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success((tokenDTO.getUser())));
+    }
+
+    // 인증번호 발송
+    @PostMapping("/sms-send")
+    public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
+        userService.sendSms(smsSendDTO.getTel());
+        return ResponseEntity.ok().body(ApiUtils.success(null));
+    }
+
+    //인증번호 확인
+    @PostMapping("/sms-check")
+    public ResponseEntity<?> smsCheck(@RequestBody UserRequestDTO.SmsCheckDTO smsCheckDTO){
+        userService.smsCheck(smsCheckDTO.getTel(), smsCheckDTO.getCode());
+        return ResponseEntity.ok().body(ApiUtils.success(null));
+    }
+    // 회원가입
+    @PostMapping("/join")
+    public ResponseEntity<?> join(@Valid @RequestBody UserResponseDTO.JoinDTO joinDTO){
+        userService.join(joinDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(null));
     }
 
     // 회원탈퇴

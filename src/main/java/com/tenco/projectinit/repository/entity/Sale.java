@@ -16,22 +16,27 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "address_info_tb")
-public class AddressInfo {
+@Table(name = "sale_tb")
+public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-    private String postNumber;
-    private String address;
-    private String addressDetail;
-    private Boolean choice;
+
+    private Integer price;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Card card;
+
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
-}
 
+    private String tid;
+}
 

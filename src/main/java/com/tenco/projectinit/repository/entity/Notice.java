@@ -1,6 +1,4 @@
 package com.tenco.projectinit.repository.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,22 +14,18 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "address_info_tb")
-public class AddressInfo {
+@Table(name = "notice_tb")
+public class Notice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
-    private String postNumber;
-    private String address;
-    private String addressDetail;
-    private Boolean choice;
+
+    private String title;
+
+    private String content;
+
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
 }
-
-
