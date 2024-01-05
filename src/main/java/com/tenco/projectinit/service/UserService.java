@@ -3,6 +3,7 @@ package com.tenco.projectinit.service;
 import com.tenco.projectinit._core.errors.exception.Exception400;
 import com.tenco.projectinit._core.errors.exception.Exception500;
 import com.tenco.projectinit._core.utils.JwtTokenUtils;
+import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.repository.entity.SmsCode;
 import com.tenco.projectinit.repository.entity.User;
@@ -50,7 +51,7 @@ public class UserService {
     }
 
     // 로그인
-    public UserResponseDTO.TokenDTO login(UserResponseDTO.LoginDTO loginDTO) {
+    public UserResponseDTO.TokenDTO login(UserRequestDTO.LoginDTO loginDTO) {
         log.info("tel = {}", loginDTO.getTel());
         Optional<User> optUser = userJPARepository.findByTel(loginDTO.getTel());
         if (optUser.isEmpty()) {
@@ -63,7 +64,7 @@ public class UserService {
     }
 
     // 회원탈퇴
-    public void delete(UserResponseDTO.LoginDTO loginDTO) {
+    public void delete(UserRequestDTO.LoginDTO loginDTO) {
         String loginId = loginDTO.getTel();
         Optional<User> optionalUser = userJPARepository.findByTel(loginId);
 
@@ -95,7 +96,7 @@ public class UserService {
     }
 
     @Transactional
-    public void join(UserResponseDTO.JoinDTO joinDTO) {
+    public void join(UserRequestDTO.JoinDTO joinDTO) {
 
         // 1. 회원가입시 아이디 중복 체크
         Optional<User> existingUser = userJPARepository.findByTel(joinDTO.getTel());
