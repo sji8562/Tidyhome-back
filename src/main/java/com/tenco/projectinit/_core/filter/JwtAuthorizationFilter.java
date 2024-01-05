@@ -40,6 +40,9 @@ public class JwtAuthorizationFilter implements Filter {
                         ||antPathMatcher.match("/js/**",request.getRequestURI().toString())
                         ||antPathMatcher.match("/scss/**",request.getRequestURI().toString())
                         ||antPathMatcher.match("/plugins/**",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/users/sms-send",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/users/sms-check",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/users/join",request.getRequestURI().toString())
 
                 )
         ) {
