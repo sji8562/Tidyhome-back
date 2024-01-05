@@ -22,8 +22,6 @@ public class AddressInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
