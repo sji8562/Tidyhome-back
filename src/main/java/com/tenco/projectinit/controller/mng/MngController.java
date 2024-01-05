@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/mng")
 public class MngController {
-    @GetMapping("/index")
+    @GetMapping({"/","index"})
     public String index(){
-        return "mng/index";
+        System.out.println("여기 오냐 ?");
+        return "/mng/index";
     }
 }
