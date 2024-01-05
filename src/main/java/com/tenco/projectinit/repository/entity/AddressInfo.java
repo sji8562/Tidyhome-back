@@ -23,22 +23,17 @@ public class AddressInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
-
     private String postNumber;
-
     private String address;
-
-
     private String addressDetail;
-
     private Boolean choice;
-
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
 }
+
 
