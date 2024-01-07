@@ -22,7 +22,7 @@ public class UserRestController {
     private String uri = "https://api.coolsms.co.kr";
     // 로그인
     @PostMapping("/login")
-    public ResponseEntity<?> login(@Valid @RequestBody UserResponseDTO.LoginDTO loginDTO){
+    public ResponseEntity<?> login(@Valid @RequestBody UserRequestDTO.LoginDTO loginDTO){
          UserResponseDTO.TokenDTO tokenDTO =  userService.login(loginDTO);
         return ResponseEntity.ok().header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success((tokenDTO.getUser())));
@@ -43,14 +43,14 @@ public class UserRestController {
     }
     // 회원가입
     @PostMapping("/join")
-    public ResponseEntity<?> join(@Valid @RequestBody UserResponseDTO.JoinDTO joinDTO){
+    public ResponseEntity<?> join(@Valid @RequestBody UserRequestDTO.JoinDTO joinDTO){
         userService.join(joinDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(null));
     }
 
     // 회원탈퇴
     @PostMapping("/delete")
-    public ResponseEntity<?> delete(@RequestBody UserResponseDTO.LoginDTO loginDTO){
+    public ResponseEntity<?> delete(@RequestBody UserRequestDTO.LoginDTO loginDTO){
         userService.delete(loginDTO);
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
