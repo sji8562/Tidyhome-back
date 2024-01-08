@@ -6,6 +6,13 @@ insert into user_tb(tel,created_at) values ('01051519595',now());
 insert into user_tb(tel,created_at) values ('01095953535',now());
 insert into user_tb(tel,created_at) values ('01095959595',now());
 
+
+insert into partner_tb(tel,username,pic_url,category_id,gender,level,created_at) values ('01095951234','페이퍼컴퍼니',null,null,'m',9,now());
+insert into partner_tb(tel,username,pic_url,category_id,gender,level,created_at) values ('01095959595','쌀컴퍼니',null,'1,4',null,2,now());
+insert into partner_tb(tel,username,pic_url,category_id,gender,level,created_at) values ('01058288562','송재익',null,'1,4','f',2,now());
+
+
+
 insert into first_category_tb(name) values ( '가사도우미');
 insert into first_category_tb(name) values ( '사무실청소');
 insert into first_category_tb(name) values ( '가전/침대청소');

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/mng/layout/mngHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -48,7 +48,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-body m--search-inline">
-									<h4 class="card-title">유저 조회</h4>
+									<h4 class="card-title">파트너 조회</h4>
 									<form class="row g-3">
 										<div class="col-auto">
 											<input type="text" class="form-control" id="keyword" placeholder="이메일을 입력해주세요">
@@ -61,66 +61,73 @@
 								<div class="table-responsive">
 									<table class="table">
 										<thead class="table-light">
-											<tr>
-												<th scope="col">#</th>
-												<th scope="col">이메일</th>
-												<th scope="col">이름</th>
-												<th scope="col">전화번호</th>
-												<th scope="col">생성날짜</th>
-												<th scope="col">회원관리</th>
-											</tr>
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">전화번호</th>
+											<th scope="col">파트너이름</th>
+											<th scope="col">일 종류</th>
+											<th scope="col">성별</th>
+											<th scope="col">생성날짜</th>
+											<th scope="col">회원관리</th>
+										</tr>
+<%--										insert into partner_tb(tel,username,pic_url,category_id,gender,level,created_at) values ('01095951234','페이퍼컴퍼니',null,null,'m',9,now());--%>
 										</thead>
 										<tbody>
-											<c:choose>
-												<c:when test="${userList != null }">
-											
-													<c:forEach var="userList" items="${userList}">
-														<tr>
-															<th scope="row">${userList.id}</th>
-															<td>${userList.email }</td>
-															<td>${userList.userName}</td>
-															<td>${userList.phoneNumber }</td>
-															<td><fmt:formatDate value="${userList.createdAt }" pattern="yyyy. MM. dd" /></td>
-															<td>
-																<div>
-																	<button class="btn btn-success"
-																		style="border: 1px solid black"
-																		onclick="location.href='/mng/user/${userList.id}/update'">수정</button>
-																	&nbsp;&nbsp;
-																	<button class="btn-danger btn"
-																		onclick="location.href='/mng/user/${userList.id}/delete'">삭제</button>
-																</div>
-															</td>
+										<c:choose>
+										<c:when test="${not empty partnerPG.content }">
 
-														</tr>
-													</c:forEach>
-												</c:when>
-												<c:otherwise>
-													<p>아직 생성된 계정이 없습니다.
-												</c:otherwise>
+											<c:forEach var="partnerPG" items="${partnerPG.content}">
+												<tr>
+													<th scope="row"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.id}</a></th>
+													<td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.tel }</a></td>
+													<td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.username }</a></td>
+													<td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.categoryId }</a></td>
+<%--													<c:if test="${partnerPG.gender == null ||partnerPG.gender.isEmpty">--%>
+<%--														--%>
+<%--													</c:if>--%>
+													<td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.gender }</a></td>
+													<td><a href="/mng/user/partner/${partnerPG.id}/detail"><fmt:formatDate value="${partnerPG.createdAt}" pattern="yyyy. MM. dd" /></a></td>
+													<td>
+														<div>
+															<button class="btn btn-success"
+																	style="border: 1px solid black"
+																	onclick="location.href='/mng/user/${partnerPG.id}/update'">수정</button>
+															&nbsp;&nbsp;
+															<button class="btn-danger btn"
+																	onclick="location.href='/mng/user/${partnerPG.id}/delete'">삭제</button>
+														</div>
+													</td>
+
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+										<p>아직 생성된 계정이 없습니다.
+											</c:otherwise>
 											</c:choose>
 										</tbody>
 									</table>
 								</div>
 								<div style="display: block; text-align: center;">
-									<c:if test="${paging.startPage != 1 }">
-										<a
-											href="/mng/user/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+									<c:if test="${not empty keyword}">
+
+										<ul class="pagination d-flex justify-content-center">
+											<li class="page-item
+											<c:if test="${partnerPG.first}">disabled</c:if>"><a class="page-link" href="?keyword=${keyword}&page=${prevPage}">Previous</a>
+											</li>
+
+											<li class="page-item
+											<c:if test="${partnerPG.last}">disabled</c:if>"><a class="page-link" href="?keyword=${keyword}&page=${nextPage}">Next</a></li>
+										</ul>
 									</c:if>
-									<c:forEach begin="${paging.startPage }"
-										end="${paging.endPage }" var="p">
-										<c:choose>
-											<c:when test="${p == paging.nowPage }">
-												<b>${p }</b>
-											</c:when>
-											<c:when test="${p != paging.nowPage }">
-												<a href="/mng/user/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-											</c:when>
-										</c:choose>
-									</c:forEach>
-									<c:if test="${paging.endPage != paging.lastPage}">
-										<a
-											href="/mng/user/list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+									<c:if test="${empty keyword}">
+										<ul class="pagination d-flex justify-content-center">
+											<li class="page-item <c:if test="${partnerPG.first}">disabled</c:if>"><a class="page-link"
+																												  href="?page=${prevPage}">Previous</a>
+											</li>
+											<li class="page-item <c:if test="${partnerPG.last}">disabled</c:if>"><a class="page-link"
+																												 href="?page=${nextPage}">Next</a></li>
+										</ul>
 									</c:if>
 								</div>
 
@@ -142,4 +149,4 @@
 		<!-- End Right sidebar -->
 		<!-- ============================================================== -->
 	</div>
-	<%@ include file="/WEB-INF/view/mng/layout/mngFooter.jsp"%>
+<%@ include file="/WEB-INF/view/mng/layout/mngFooter.jsp"%>
