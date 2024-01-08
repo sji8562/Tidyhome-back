@@ -1,4 +1,4 @@
-package com.tenco.projectinit.dto;
+package com.tenco.projectinit.dto.responsedto;
 
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.User;
