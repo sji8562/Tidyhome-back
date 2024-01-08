@@ -19,6 +19,10 @@ import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -146,8 +150,14 @@ public class UserService {
         smsCode.check();
     }
 
-    public List<User> findAll() {
-        List<User> userList = userJPARepository.findAll();
-        return userList;
+
+    public Page<User> findByPageNation(Integer page) {
+        Pageable pageable = PageRequest.of(page, 5, Sort.Direction.DESC, "id");
+        return userJPARepository.findAll(pageable);
+    }
+    public Page<User> findByPageNation(Integer page,String keyword) {
+        Pageable pageable = PageRequest.of(page, 5, Sort.Direction.DESC, "id");
+
+        return userJPARepository.findByTelContaining(keyword,pageable);
     }
 }

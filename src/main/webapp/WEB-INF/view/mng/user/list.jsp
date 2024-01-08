@@ -70,21 +70,21 @@
 										</thead>
 										<tbody>
 											<c:choose>
-												<c:when test="${userList != null }">
-											
-													<c:forEach var="userList" items="${userList}">
+												<c:when test="${not empty userPG.content }">
+
+													<c:forEach var="userPG" items="${userPG.content}">
 														<tr>
-															<th scope="row">${userList.id}</th>
-															<td>${userList.tel }</td>
-															<td><fmt:formatDate value="${userList.createdAt }" pattern="yyyy. MM. dd" /></td>
+															<th scope="row">${userPG.id}</th>
+															<td>${userPG.tel }</td>
+															<td><fmt:formatDate value="${userPG.createdAt}" pattern="yyyy. MM. dd" /></td>
 															<td>
 																<div>
 																	<button class="btn btn-success"
 																		style="border: 1px solid black"
-																		onclick="location.href='/mng/user/${userList.id}/update'">수정</button>
+																		onclick="location.href='/mng/user/${userPG.id}/update'">수정</button>
 																	&nbsp;&nbsp;
 																	<button class="btn-danger btn"
-																		onclick="location.href='/mng/user/${userList.id}/delete'">삭제</button>
+																		onclick="location.href='/mng/user/${userPG.id}/delete'">삭제</button>
 																</div>
 															</td>
 
@@ -98,27 +98,29 @@
 										</tbody>
 									</table>
 								</div>
-<%--								<div style="display: block; text-align: center;">--%>
-<%--									<c:if test="${paging.startPage != 1 }">--%>
-<%--										<a--%>
-<%--											href="/mng/user/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>--%>
-<%--									</c:if>--%>
-<%--									<c:forEach begin="${paging.startPage }"--%>
-<%--										end="${paging.endPage }" var="p">--%>
-<%--										<c:choose>--%>
-<%--											<c:when test="${p == paging.nowPage }">--%>
-<%--												<b>${p }</b>--%>
-<%--											</c:when>--%>
-<%--											<c:when test="${p != paging.nowPage }">--%>
-<%--												<a href="/mng/user/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>--%>
-<%--											</c:when>--%>
-<%--										</c:choose>--%>
-<%--									</c:forEach>--%>
-<%--									<c:if test="${paging.endPage != paging.lastPage}">--%>
-<%--										<a--%>
-<%--											href="/mng/user/list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>--%>
-<%--									</c:if>--%>
-<%--								</div>--%>
+
+								<div style="display: block; text-align: center;">
+									<c:if test="${not empty keyword}">
+
+										<ul class="pagination d-flex justify-content-center">
+											<li class="page-item
+											<c:if test="${userPG.first}">disabled</c:if>"><a class="page-link" href="?keyword=${keyword}&page=${prevPage}">Previous</a>
+											</li>
+
+											<li class="page-item
+											<c:if test="${userPG.last}">disabled</c:if>"><a class="page-link" href="?keyword=${keyword}&page=${nextPage}">Next</a></li>
+										</ul>
+									</c:if>
+									<c:if test="${empty keyword}">
+										<ul class="pagination d-flex justify-content-center">
+											<li class="page-item <c:if test="${userPG.first}">disabled</c:if>"><a class="page-link"
+																												  href="?page=${prevPage}">Previous</a>
+											</li>
+											<li class="page-item <c:if test="${userPG.last}">disabled</c:if>"><a class="page-link"
+																												href="?page=${nextPage}">Next</a></li>
+										</ul>
+									</c:if>
+								</div>
 
 							</div>
 						</div>
@@ -138,4 +140,34 @@
 		<!-- End Right sidebar -->
 		<!-- ============================================================== -->
 	</div>
+<%--	<script>--%>
+<%--		async function searching() {--%>
+<%--			// 1. DOM으로 부터 값 가져오기--%>
+<%--			let keyword = document.querySelector("#keyword").value;--%>
+<%--			console.log("키워드", keyword);--%>
+<%--			// 2. 통신하기--%>
+<%--			let response = await fetch(`/user/list?keyword=${keyword}`, {--%>
+<%--				method: "get",--%>
+<%--				headers: {--%>
+<%--					"Content-Type": "application/json"--%>
+<%--				},--%>
+<%--			});--%>
+<%--			console.log(response);--%>
+<%--			// 3. 파싱하기--%>
+<%--			let responseBody = await response.json(); // response.json();--%>
+<%--			console.log(responseBody);--%>
+<%--			// 4. 상태코드 확인--%>
+<%--			// let btnJoin = document.querySelector("#btnJoin");--%>
+<%--			// if (responseBody.sucuess) {--%>
+<%--			//     console.log(responseBody);--%>
+<%--			// usernameSameCheck = true;--%>
+<%--			// btnJoin.removeAttribute("disabled");--%>
+
+<%--			// } else {--%>
+<%--			//     alert(responseBody.data);--%>
+<%--			// usernameSameCheck = false;--%>
+<%--			// btnJoin.setAttribute("disabled", "disabled");--%>
+<%--			// }--%>
+<%--		}--%>
+<%--	</script>--%>
 	<%@ include file="/WEB-INF/view/mng/layout/mngFooter.jsp"%>
