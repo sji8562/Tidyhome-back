@@ -1,6 +1,6 @@
 package com.tenco.projectinit.service;
 
-import com.tenco.projectinit.dto.AddressInfoResponseDTO;
+import com.tenco.projectinit.dto.responsedto.AddressInfoResponseDTO;
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.repository.inteface.AddressInfoJPARepository;
@@ -21,14 +21,14 @@ public class AddressInfoService {
     private UserJPARepository userJPARepository;
 
     // 주소 목록을 보여주는 메서드
-    public List<AddressInfo> get(int userId) {
+    public List<AddressInfo> getAddress(int userId) {
         Optional<User> userOptional = userJPARepository.findById(userId);
         return addressInfoJPARepository.findByUserId(userId);
     }
 
     // 주소를 추가하는 메서드
     @Transactional
-    public AddressInfo add(AddressInfoResponseDTO dto, int userId) {
+    public AddressInfo addAddress(AddressInfoResponseDTO dto, int userId) {
         // 이미 존재하는 유저 가져오기
         Optional<User> userOptional = userJPARepository.findById(userId);
 
