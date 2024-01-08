@@ -21,9 +21,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String tel;
-
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;

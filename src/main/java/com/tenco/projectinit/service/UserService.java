@@ -150,14 +150,27 @@ public class UserService {
         smsCode.check();
     }
 
-
+    public List<User> findAll() {
+        List<User> userList = userJPARepository.findAll();
+        if(userList == null || userList.isEmpty()) {
+            throw new Exception500("사용자가 없습니다.");
+        }
+        return userList;
+    }
     public Page<User> findByPageNation(Integer page) {
         Pageable pageable = PageRequest.of(page, 5, Sort.Direction.DESC, "id");
-        return userJPARepository.findAll(pageable);
+        Page<User> userPG =userJPARepository.findAll(pageable);
+        if(userPG.isEmpty() || userPG == null){
+            throw new Exception500("사용자가 없습니다.");
+        }
+        return userPG;
     }
     public Page<User> findByPageNation(Integer page,String keyword) {
         Pageable pageable = PageRequest.of(page, 5, Sort.Direction.DESC, "id");
-
-        return userJPARepository.findByTelContaining(keyword,pageable);
+        Page<User> userPG =userJPARepository.findByTelContaining(keyword,pageable);
+        if(userPG.isEmpty() || userPG == null){
+            throw new Exception500("사용자가 없습니다.");
+        }
+        return userPG;
     }
 }
