@@ -76,9 +76,9 @@
 
                                             <c:forEach var="userPG" items="${userPG.content}">
                                                 <tr>
-                                                    <th scope="row"><a href="/mng/user/user/${userPG.id}/detail">${userPG.id}</a></th>
-                                                    <td><a href="/mng/user/user/${userPG.id}/detail">${userPG.tel }</a></td>
-                                                    <td><a href="/mng/user/user/${userPG.id}/detail"><fmt:formatDate value="${userPG.createdAt}"
+                                                    <th class="applyDetail" scope="row"><a href="/mng/user/user/${userPG.id}/detail">${userPG.id}</a></th>
+                                                    <td class="applyDetail"><a href="/mng/user/user/${userPG.id}/detail">${userPG.tel }</a></td>
+                                                    <td class="applyDetail"><a href="/mng/user/user/${userPG.id}/detail"><fmt:formatDate value="${userPG.createdAt}"
                                                                                     pattern="yyyy. MM. dd"/></a></td>
                                                     <td>
                                                         <div>

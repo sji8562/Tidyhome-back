@@ -63,9 +63,9 @@
                                 <c:forEach var="userPG" items="${userPG}">
 
                                     <tr>
-                                        <th scope="row"><a href="/mng/user/user/${userPG.id}/detail">${userPG.id}</a></th>
-                                        <td><a href="/mng/user/user/${userPG.id}/detail">${userPG.tel }</a></td>
-                                        <td><a href="/mng/user/user/${userPG.id}/detail"><fmt:formatDate value="${userPG.createdAt}"
+                                        <th scope="row" class="applyDetail"><a href="/mng/user/user/${userPG.id}/detail">${userPG.id}</a></th>
+                                        <td class="applyDetail"><a href="/mng/user/user/${userPG.id}/detail">${userPG.tel }</a></td>
+                                        <td class="applyDetail"><a href="/mng/user/user/${userPG.id}/detail"><fmt:formatDate value="${userPG.createdAt}"
                                                                         pattern="yyyy. MM. dd"/></a></td>
                                     </tr>
                                     </a>
@@ -100,9 +100,9 @@
                                 <c:forEach var="partnerPG" items="${partnerPG}">
 
                                     <tr>
-                                        <th scope="row"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.id}</a></th>
-                                        <td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.tel }</a></td>
-                                        <td><a href="/mng/user/partner/${partnerPG.id}/detail"><fmt:formatDate value="${partnerPG.createdAt}"
+                                        <th scope="row" class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.id}</a></th>
+                                        <td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.tel }</a></td>
+                                        <td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail"><fmt:formatDate value="${partnerPG.createdAt}"
                                                                         pattern="yyyy. MM. dd"/></a></td>
                                     </tr>
 

@@ -78,15 +78,21 @@
 
 											<c:forEach var="partnerPG" items="${partnerPG.content}">
 												<tr>
-													<th scope="row"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.id}</a></th>
-													<td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.tel }</a></td>
-													<td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.username }</a></td>
-													<td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.categoryId }</a></td>
-<%--													<c:if test="${partnerPG.gender == null ||partnerPG.gender.isEmpty">--%>
-<%--														--%>
-<%--													</c:if>--%>
-													<td><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.gender }</a></td>
-													<td><a href="/mng/user/partner/${partnerPG.id}/detail"><fmt:formatDate value="${partnerPG.createdAt}" pattern="yyyy. MM. dd" /></a></td>
+													<th class="applyDetail" scope="row"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.id}</a></th>
+													<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.tel }</a></td>
+													<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.username }</a></td>
+													<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.categoryId }</a></td>
+													<c:if test="${partnerPG.gender == null ||empty partnerPG.gender}">
+														<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">업체</a></td>
+													</c:if>
+													<c:if test="${partnerPG.gender == 'f'}">
+														<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">여자</a></td>
+													</c:if>
+													<c:if test="${partnerPG.gender == 'm'}">
+														<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">남자</a></td>
+													</c:if>
+
+													<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail"><fmt:formatDate value="${partnerPG.createdAt}" pattern="yyyy. MM. dd" /></a></td>
 													<td>
 														<div>
 															<button class="btn btn-success"
