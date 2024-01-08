@@ -3,6 +3,7 @@ package com.tenco.projectinit.user.api;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tenco.projectinit.MyWithRestDoc;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
+import com.tenco.projectinit.repository.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -10,6 +11,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
 public class UserRestControllerTest extends MyWithRestDoc {

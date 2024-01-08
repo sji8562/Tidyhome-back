@@ -51,7 +51,7 @@
 									<h4 class="card-title">유저 조회</h4>
 									<form class="row g-3">
 										<div class="col-auto">
-											<input type="text" class="form-control" id="keyword" placeholder="이메일을 입력해주세요">
+											<input type="text" class="form-control" id="keyword" placeholder="전화번호를 입력해주세요">
 										</div>
 										<div class="col-auto">
 											<button type="submit" class="btn btn-primary mb-3">검색</button>
@@ -63,8 +63,6 @@
 										<thead class="table-light">
 											<tr>
 												<th scope="col">#</th>
-												<th scope="col">이메일</th>
-												<th scope="col">이름</th>
 												<th scope="col">전화번호</th>
 												<th scope="col">생성날짜</th>
 												<th scope="col">회원관리</th>
@@ -77,9 +75,7 @@
 													<c:forEach var="userList" items="${userList}">
 														<tr>
 															<th scope="row">${userList.id}</th>
-															<td>${userList.email }</td>
-															<td>${userList.userName}</td>
-															<td>${userList.phoneNumber }</td>
+															<td>${userList.tel }</td>
 															<td><fmt:formatDate value="${userList.createdAt }" pattern="yyyy. MM. dd" /></td>
 															<td>
 																<div>
@@ -102,27 +98,27 @@
 										</tbody>
 									</table>
 								</div>
-								<div style="display: block; text-align: center;">
-									<c:if test="${paging.startPage != 1 }">
-										<a
-											href="/mng/user/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-									</c:if>
-									<c:forEach begin="${paging.startPage }"
-										end="${paging.endPage }" var="p">
-										<c:choose>
-											<c:when test="${p == paging.nowPage }">
-												<b>${p }</b>
-											</c:when>
-											<c:when test="${p != paging.nowPage }">
-												<a href="/mng/user/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-											</c:when>
-										</c:choose>
-									</c:forEach>
-									<c:if test="${paging.endPage != paging.lastPage}">
-										<a
-											href="/mng/user/list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-									</c:if>
-								</div>
+<%--								<div style="display: block; text-align: center;">--%>
+<%--									<c:if test="${paging.startPage != 1 }">--%>
+<%--										<a--%>
+<%--											href="/mng/user/list?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>--%>
+<%--									</c:if>--%>
+<%--									<c:forEach begin="${paging.startPage }"--%>
+<%--										end="${paging.endPage }" var="p">--%>
+<%--										<c:choose>--%>
+<%--											<c:when test="${p == paging.nowPage }">--%>
+<%--												<b>${p }</b>--%>
+<%--											</c:when>--%>
+<%--											<c:when test="${p != paging.nowPage }">--%>
+<%--												<a href="/mng/user/list?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>--%>
+<%--											</c:when>--%>
+<%--										</c:choose>--%>
+<%--									</c:forEach>--%>
+<%--									<c:if test="${paging.endPage != paging.lastPage}">--%>
+<%--										<a--%>
+<%--											href="/mng/user/list?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>--%>
+<%--									</c:if>--%>
+<%--								</div>--%>
 
 							</div>
 						</div>

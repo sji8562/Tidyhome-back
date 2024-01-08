@@ -11,6 +11,7 @@ import com.tenco.projectinit.repository.inteface.SmsCodeJPARepository;
 import com.tenco.projectinit.repository.inteface.UserJPARepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.sdk.NurigoApp;
 import net.nurigo.sdk.message.model.Message;
@@ -22,10 +23,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
 @Slf4j
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
 @Service
 public class UserService {
     @Autowired
@@ -140,5 +144,10 @@ public class UserService {
             throw new Exception400("인증기한이 만료되었습니다");
         }
         smsCode.check();
+    }
+
+    public List<User> findAll() {
+        List<User> userList = userJPARepository.findAll();
+        return userList;
     }
 }
