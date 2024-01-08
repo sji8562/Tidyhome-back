@@ -1,6 +1,10 @@
-insert into user_tb(tel) values ('01093971773');
-insert into user_tb(tel) values ('01012345678');
-insert into user_tb(tel) values ('01058288562');
+insert into user_tb(tel,created_at) values ('01093971773',now());
+insert into user_tb(tel,created_at) values ('01012345678',now());
+insert into user_tb(tel,created_at) values ('01058288562',now());
+insert into user_tb(tel,created_at) values ('01051515151',now());
+insert into user_tb(tel,created_at) values ('01051519595',now());
+insert into user_tb(tel,created_at) values ('01095953535',now());
+insert into user_tb(tel,created_at) values ('01095959595',now());
 
 insert into first_category_tb(name) values ( '가사도우미');
 insert into first_category_tb(name) values ( '사무실청소');
