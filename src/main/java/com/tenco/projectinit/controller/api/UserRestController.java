@@ -54,12 +54,4 @@ public class UserRestController {
         userService.delete(loginDTO);
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
-    @GetMapping("/check/{tel}")
-    public ResponseEntity<?> check(@PathVariable String tel){
-        System.out.println("여기 들어오지 ?");
-        userService.check(tel);
-        System.out.println(userService.check(tel));
-//        return ResponseEntity.ok().body(ApiUtils.success());
-        return null;
-    }
 }
