@@ -2,6 +2,7 @@ package com.tenco.projectinit.service;
 
 import com.tenco.projectinit.dto.responsedto.CategoryResponseDTO;
 import com.tenco.projectinit.repository.entity.FirstCategory;
+import com.tenco.projectinit.repository.entity.SecondCategory;
 import com.tenco.projectinit.repository.inteface.FirstCategoryJPARepository;
 import com.tenco.projectinit.repository.inteface.OptionJPARepository;
 import com.tenco.projectinit.repository.inteface.SecondCategoryJPARepository;
@@ -30,5 +31,15 @@ public class CategoryService {
             firstCategoryDTOS.add(firstCategoryDTO);
         }
         return new CategoryResponseDTO.FirstCategoryListDTO(firstCategoryDTOS);
+    }
+
+    public CategoryResponseDTO.SecondCategoryListDTO getSecondCategoryList(Integer firstCategoryId) {
+        List<SecondCategory> secondCategories = secondCategoryJPARepository.findByFirstCategoryId(firstCategoryId);
+        List<CategoryResponseDTO.SecondCategoryDTO> secondCategoryDTOS = new ArrayList<>();
+        for (SecondCategory secondCategory :secondCategories){
+            CategoryResponseDTO.SecondCategoryDTO secondCategoryDTO = new CategoryResponseDTO.SecondCategoryDTO(secondCategory.getId(), secondCategory.getName());
+            secondCategoryDTOS.add(secondCategoryDTO);
+        }
+        return new CategoryResponseDTO.SecondCategoryListDTO(secondCategoryDTOS);
     }
 }
