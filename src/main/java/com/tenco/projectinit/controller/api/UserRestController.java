@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("/api/users")
 public class UserRestController {
 
     @Autowired
@@ -20,13 +20,6 @@ public class UserRestController {
     private String APIKEY = "";
     private String APISECRETKEY = "";
     private String uri = "https://api.coolsms.co.kr";
-    // 로그인
-//    @PostMapping("/login")
-//    public ResponseEntity<?> login(@Valid @RequestBody UserRequestDTO.LoginDTO loginDTO){
-//         UserResponseDTO.TokenDTO tokenDTO =  userService.login(loginDTO);
-//        return ResponseEntity.ok().header("Authorization", "Bearer " + tokenDTO.getJwt())
-//                .body(ApiUtils.success((tokenDTO.getUser())));
-//    }
 
     // 인증번호 발송
     @PostMapping("/sms-send")
