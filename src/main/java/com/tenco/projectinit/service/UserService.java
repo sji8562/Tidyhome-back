@@ -77,23 +77,6 @@ public class UserService {
         }
     }
 
-    public String check(String tel) {
-        System.out.println("여기 들어오지 ?");
-        Optional<User> user = userJPARepository.findByTel(tel);
-        System.out.println("여기 들어오지 ?");
-        if (user != null || !user.isEmpty()) {
-            throw new Exception500("이미 사용중인 번호입니다.");
-        }
-        System.out.println("여기 들어오지 ?");
-        Random random = new Random(9);
-        int rand = 0;
-        String key = null;
-        for (int i = 0; i < 6; i++) {
-            rand = random.nextInt();
-            key += rand;
-        }
-        return key;
-    }
 
     @Transactional
     public void join(UserRequestDTO.JoinDTO joinDTO) {
@@ -110,7 +93,7 @@ public class UserService {
             throw new Exception400("전화번호는 11자리여야 합니다.");
         }
 
-        //3. sms인증코드 인증확인
+//        3. sms인증코드 인증확인
         SmsCode smsCode = smsCodeJPARepository.findByTel(joinDTO.getTel()).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
         if (!smsCode.isChecked()) {
             throw new Exception400("인증되지 않았습니다");
@@ -121,7 +104,7 @@ public class UserService {
                 .tel(joinDTO.getTel())
                 .build();
         User savedUser = userJPARepository.save(newUser);
-        smsCodeJPARepository.delete(smsCode);
+//        smsCodeJPARepository.delete(smsCode);
     }
 
     @Transactional
