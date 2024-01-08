@@ -77,23 +77,6 @@ public class UserService {
         }
     }
 
-    public String check(String tel) {
-        System.out.println("여기 들어오지 ?");
-        Optional<User> user = userJPARepository.findByTel(tel);
-        System.out.println("여기 들어오지 ?");
-        if (user != null || !user.isEmpty()) {
-            throw new Exception500("이미 사용중인 번호입니다.");
-        }
-        System.out.println("여기 들어오지 ?");
-        Random random = new Random(9);
-        int rand = 0;
-        String key = null;
-        for (int i = 0; i < 6; i++) {
-            rand = random.nextInt();
-            key += rand;
-        }
-        return key;
-    }
 
     @Transactional
     public UserResponseDTO.TokenDTO join(UserRequestDTO.JoinDTO joinDTO) {

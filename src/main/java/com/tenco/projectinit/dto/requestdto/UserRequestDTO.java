@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 public class UserRequestDTO {
-    @Getter
+    @Data
     @AllArgsConstructor
     @NoArgsConstructor
     public static class LoginDTO {
