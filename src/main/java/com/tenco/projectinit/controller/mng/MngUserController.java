@@ -28,7 +28,7 @@ public class MngUserController {
     public String userList(Model model) {
         System.out.println("여기오지?");
         List<User> userPG = userService.findAll();
-        List<Partner> partnerPG = partnerService.findAll();
+        List<Partner> partnerPG = partnerService.findByLevel();
         System.out.println(userPG.stream().toList());
         model.addAttribute("userPG", userPG);
         model.addAttribute("partnerPG", partnerPG);
