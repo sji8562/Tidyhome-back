@@ -43,6 +43,9 @@ public class JwtAuthorizationFilter implements Filter {
                         ||antPathMatcher.match("/api/users/sms-send",request.getRequestURI().toString())
                         ||antPathMatcher.match("/api/users/sms-check",request.getRequestURI().toString())
                         ||antPathMatcher.match("/api/users/join",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/category/first",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/category/second",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/option",request.getRequestURI().toString())
 
                 )
         ) {

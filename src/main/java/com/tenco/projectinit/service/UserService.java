@@ -96,32 +96,31 @@ public class UserService {
     }
 
     @Transactional
-    public void join(UserRequestDTO.JoinDTO joinDTO) {
-
-        // 1. 회원가입시 아이디 중복 체크
-        Optional<User> existingUser = userJPARepository.findByTel(joinDTO.getTel());
-        if (existingUser.isPresent()) {
-            throw new Exception400("중복된 아이디입니다.");
-        }
-
-        // 2. 전화번호 형식 유효성 검사 (11자리 여부 확인)
+    public UserResponseDTO.TokenDTO join(UserRequestDTO.JoinDTO joinDTO) {
         String tel = joinDTO.getTel();
         if (tel == null || tel.length() != 11) {
             throw new Exception400("전화번호는 11자리여야 합니다.");
         }
 
-        //3. sms인증코드 인증확인
         SmsCode smsCode = smsCodeJPARepository.findByTel(joinDTO.getTel()).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
         if (!smsCode.isChecked()) {
             throw new Exception400("인증되지 않았습니다");
         }
 
-        // 3. 디비 저장
-        User newUser = User.builder()
-                .tel(joinDTO.getTel())
-                .build();
-        User savedUser = userJPARepository.save(newUser);
+        User user = userJPARepository.findByTel(joinDTO.getTel()).orElse(
+                User.builder()
+                        .tel(joinDTO.getTel())
+                        .build()
+        );
+
+        if (user.getId() == null) {
+            userJPARepository.save(user);
+            userJPARepository.flush();
+        }
         smsCodeJPARepository.delete(smsCode);
+
+        return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
+
     }
 
     @Transactional
