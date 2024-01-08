@@ -58,19 +58,6 @@ public class UserService {
         this.messageService = NurigoApp.INSTANCE.initialize(apiKey, apiSecret, "https://api.coolsms.co.kr");
     }
 
-    // 로그인
-    public UserResponseDTO.TokenDTO login(UserRequestDTO.LoginDTO loginDTO) {
-        log.info("tel = {}", loginDTO.getTel());
-        Optional<User> optUser = userJPARepository.findByTel(loginDTO.getTel());
-        if (optUser.isEmpty()) {
-            System.out.println("로그인 서비스 : 존재하지 않는 아이디 입니다");
-            throw new Exception400("존재하지 않는 아이디 입니다.");
-        }
-        System.out.println("로그인 서비스 : 성공");
-        User user = optUser.get();
-        return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
-    }
-
     // 회원탈퇴
     public void delete(UserRequestDTO.LoginDTO loginDTO) {
         String loginId = loginDTO.getTel();

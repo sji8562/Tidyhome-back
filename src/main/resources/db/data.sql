@@ -1,4 +1,4 @@
-insert into user_tb(tel,created_at) values ('01093971773',now());
+                                            insert into user_tb(tel,created_at) values ('01093971773',now());
 insert into user_tb(tel,created_at) values ('01012345678',now());
 insert into user_tb(tel,created_at) values ('01058288562',now());
 insert into user_tb(tel,created_at) values ('01051515151',now());
