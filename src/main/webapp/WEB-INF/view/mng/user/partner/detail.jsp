@@ -15,7 +15,7 @@
 	<div class="page-breadcrumb">
 		<div class="row">
 			<div class="col-5 align-self-center">
-				<h4 class="page-title">회원 정보</h4>
+				<h4 class="page-title">파트너 정보</h4>
 			</div>
 			<div class="col-7 align-self-center">
 				<div class="d-flex align-items-center justify-content-end">
@@ -46,63 +46,46 @@
 				<div class="card">
 					<div class="card-body">
 						<c:choose>
-							<c:when test="${user != null }">
+							<c:when test="${partner != null }">
 								<form class="form-horizontal form-material mx-2" method="post"
-									action="/mng/user/${user.id}/update">
+									action="/mng/user/${partner.id}/update">
 
-									<div class="form-group">
-										<label class="col-md-12">이메일</label>
-										<div class="col-md-12">
-											<input type="email" value="${user.email}" name="email"
-												id="email" class="form-control form-control-line">
-										</div>
-									</div>
 									<div class="form-group">
 										<label for="example-email" class="col-md-12">이름</label>
 										<div class="col-md-12">
-											<input type="text" value="${user.userName}"
+											<input type="text" value="${partner.username}"
 												class="form-control form-control-line" name="username"
-												id="userName" id="example-email">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-md-12">비밀번호</label>
-										<div class="col-md-12">
-											<input type="password" value="${user.password}"
-												name="password" id="password"
-												class="form-control form-control-line">
+												id="userName" id="example-email" disabled>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="col-md-12">전화번호</label>
 										<div class="col-md-12">
-											<input type="text" value="${user.phoneNumber}"
-												name="phoneNumber" id="phoneNumber"
-												class="form-control form-control-line">
+											<input type="text" value="${partner.tel}"
+												   name="phoneNumber" id="phoneNumber"
+												   class="form-control form-control-line" disabled>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-12">우편번호</label>
+										<label class="col-md-12">사진</label>
 										<div class="col-md-12">
-											<input type="text" value="${user.postNumber}"
-												name="postNumber" id="postNumber"
-												class="form-control form-control-line">
+<%--											<img src="${partner.picUrl()}" >--%>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-12">주소</label>
+										<label class="col-md-12">성별</label>
 										<div class="col-md-12">
-											<input type="text" value="${user.address}"
-												name="address" id="address"
-												class="form-control form-control-line">
+											<input type="text" value="${partner.gender}"
+												   name="phoneNumber" id="gender"
+												   class="form-control form-control-line" disabled>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-md-12">상세주소</label>
+										<label class="col-md-12">분야</label>
 										<div class="col-md-12">
-											<input type="text" value="${user.addressDetail}"
-												name="addressDetail" id="addressDetail"
-												class="form-control form-control-line">
+											<input type="text" value="${partner.categoryId}"
+												   name="phoneNumber" id="categoryId"
+												   class="form-control form-control-line" disabled>
 										</div>
 									</div>
 									<div class="form-group">
@@ -126,7 +109,7 @@
 		<!-- ============================================================== -->
 		<!-- End PAge Content -->
 		<!-- ============================================================== -->
-		<!-- ============================================================== -->
+<%--		<!-- ============================================================== -->--%>
 		<!-- Right sidebar -->
 		<!-- ============================================================== -->
 		<!-- .right-sidebar -->
