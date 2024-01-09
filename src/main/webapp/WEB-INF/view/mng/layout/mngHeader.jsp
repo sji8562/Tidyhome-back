@@ -206,26 +206,27 @@
 							</ul></li>
 						<li class="sidebar-item" id="categoryManagement"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
-							href="#" aria-expanded="false" style="cursor: default"> <i
+							href="/mng/category/categories" aria-expanded="false" style="cursor: default"> <i
 								class="mdi mdi-format-list-bulleted-type"></i> <span
 								class="hide-menu">카테고리 관리</span>
 						</a>
-							<ul aria-expanded="false" class="collapse first-level">
-								<%--									code = 1--%>
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/category/categories"> <i
-										class="mdi mdi-format-list-bulleted"></i> <span
-										class="hide-menu">대여용 카테고리 관리</span>
-								</a></li>
-								<%--									code = 2--%>
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/product/categoriesForSale"> <i
-										class="mdi mdi-format-list-numbers"></i> <span
-										class="hide-menu">판매용 카테고리 관리</span>
-								</a></li>
-							</ul>
+<%--							<ul aria-expanded="false" class="collapse first-level">--%>
+<%--								&lt;%&ndash;									code = 1&ndash;%&gt;--%>
+<%--								<li class="sidebar-item"><a--%>
+<%--									class="sidebar-link waves-effect waves-dark sidebar-link"--%>
+<%--									href=""> <i--%>
+<%--										class="mdi mdi-format-list-bulleted"></i> <span--%>
+<%--										class="hide-menu">대여용 카테고리 관리</span>--%>
+<%--								</a></li>--%>
+<%--								&lt;%&ndash;									code = 2&ndash;%&gt;--%>
+<%--								<li class="sidebar-item"><a--%>
+<%--									class="sidebar-link waves-effect waves-dark sidebar-link"--%>
+<%--									href="/mng/product/categoriesForSale"> <i--%>
+<%--										class="mdi mdi-format-list-numbers"></i> <span--%>
+<%--										class="hide-menu">판매용 카테고리 관리</span>--%>
+<%--								</a></li>--%>
+<%--							</ul>--%>
+						</li>
 							<%-- 유저 관리 --%>
 							<li class="sidebar-item" id="applyManagement"><a
 									class="sidebar-link waves-effect waves-dark sidebar-link"
