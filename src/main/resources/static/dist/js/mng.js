@@ -62,7 +62,7 @@ function displaySecondCategoryData(data) {
     data.forEach((secondCategory) => {
         var option = document.createElement('option');
         option.value = secondCategory.id;
-        option.text = secondCategory.secondCategoryName;
+        option.text = secondCategory.name;
 
         secondCategorySelect.add(option);
     });
@@ -72,7 +72,7 @@ function fCategoryChange() {
     // 선택된 값 가져오기
     var selectedValue = document.querySelector('select[id="firstCategory"]').value;
 
-    fetch('/mng/product/second-category-find-by-first-category/' + selectedValue)
+    fetch('/mng/category/second-category-find-by-first-category/' + selectedValue)
         .then(response => response.json())
         .then(data => {
             displaySecondCategoryData(data);
@@ -171,7 +171,7 @@ function addSecondCategory() {
 }
 
 function addSecondCategoryApi(selectedFirstCategory, categoryName) {
-    var url = '/mng/product/addSecondCategory';
+    var url = '/mng/category/addSecondCategory';
 
     fetch(url, {
         method: "POST",
@@ -202,7 +202,7 @@ function delSecondCategory() {
         return alert('삭제할 2차 카테고리를 선택해주세요');
     }
 
-    fetch('/mng/product/delete-second-category-by-id/' + selectedValue)
+    fetch('/mng/category/delete-second-category/' + selectedValue)
         .then(response => response.json())
         .then(data => {
 
