@@ -214,7 +214,7 @@
 								<%--									code = 1--%>
 								<li class="sidebar-item"><a
 									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/product/categories"> <i
+									href="/mng/category/categories"> <i
 										class="mdi mdi-format-list-bulleted"></i> <span
 										class="hide-menu">대여용 카테고리 관리</span>
 								</a></li>

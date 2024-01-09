@@ -84,6 +84,23 @@ public class UserRestControllerTest extends MyWithRestDoc {
                 .andDo(MockMvcResultHandlers.print())
                 .andDo(document);
     }
+    @Test
+    public void userList_test() throws Exception {
+        // Given
+
+        // When
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.get("/mng/user/user-list")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // Then
+
+        resultActions
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print())
+                .andDo(document);
+    }
 
 //    @Test
 //    public void login_test() throws Exception {

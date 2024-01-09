@@ -31,9 +31,13 @@
                         <select class="form-select" size="3" aria-label="Size 3 select example" style="height: 300px;" onchange="fCategoryChange()" id="firstCategory" name="firstCategory">
 
                             <option disabled>1차 카테고리</option>
-                            <c:forEach var="fCategory" items="${firstCategoryList}">
-                                <option value="${fCategory.id}">${fCategory.firstCategoryName}</option>
-                            </c:forEach>
+                            <c:choose>
+                                <c:when test="${firstCategoryList != null}">
+                                    <c:forEach var="fCategory" items="${firstCategoryList}">
+                                        <option value="${fCategory.id}">${fCategory.name}</option>
+                                    </c:forEach>
+                                </c:when>
+                            </c:choose>
                         </select>
                         <div>
                             <input type="text" hidden id="code" name="code" value="1">
@@ -47,9 +51,7 @@
                             <option disabled>2차 카테고리</option>
                         </select>
                         <div>
-
                             <input type="text" class="m--category-input" id="addSecondCategory" name="secondCategory">
-
                             <button class="btn btn-primary" onclick="addSecondCategory()">추가</button>
                             <button class="btn btn-danger" onclick="delSecondCategory()">삭제</button>
                         </div>

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface SecondCategoryJPARepository extends JpaRepository<SecondCategory, Integer> {
     List<SecondCategory> findByFirstCategoryId(Integer firstCategoryId);
+
+
 }
