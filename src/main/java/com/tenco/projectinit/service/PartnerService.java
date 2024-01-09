@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -100,6 +101,14 @@ public class PartnerService {
                     }
                 })
                 .collect(Collectors.toList());
+    }
+    @Transactional
+    public void deleteById(Integer id) {
+        partnerJPARepository.deleteById(id);
+    }
+
+    public Optional<Partner> findById(Integer id) {
+        return partnerJPARepository.findById(id);
     }
 }
 

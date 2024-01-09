@@ -76,14 +76,14 @@
 
                                             <c:forEach var="userPG" items="${userPG.content}">
                                                 <tr>
-                                                    <th class="applyDetail" scope="row"><a href="/mng/user/user/${userPG.id}/detail">${userPG.id}</a></th>
-                                                    <td class="applyDetail"><a href="/mng/user/user/${userPG.id}/detail">${userPG.tel }</a></td>
-                                                    <td class="applyDetail"><a href="/mng/user/user/${userPG.id}/detail"><fmt:formatDate value="${userPG.createdAt}"
-                                                                                    pattern="yyyy. MM. dd"/></a></td>
+                                                    <th class="applyDetail" scope="row">${userPG.id}</th>
+                                                    <td class="applyDetail">${userPG.tel }</td>
+                                                    <td class="applyDetail"><fmt:formatDate value="${userPG.createdAt}"
+                                                                                    pattern="yyyy. MM. dd"/></td>
                                                     <td>
                                                         <div>
                                                             <button class="btn-danger btn"
-                                                                    onclick="location.href='/mng/user/${userPG.id}/delete'">
+                                                                    onclick="location.href='/mng/user/${userPG.id}/user-delete'">
                                                                 삭제
                                                             </button>
                                                         </div>
