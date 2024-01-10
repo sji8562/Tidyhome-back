@@ -1,7 +1,9 @@
 package com.tenco.projectinit.controller.mng;
 
+import com.tenco.projectinit.repository.entity.FirstCategory;
 import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.repository.entity.User;
+import com.tenco.projectinit.service.CategoryService;
 import com.tenco.projectinit.service.PartnerService;
 import com.tenco.projectinit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class MngUserController {
     @Autowired
     PartnerService partnerService;
 
+    @Autowired
+    CategoryService categoryService;
     @GetMapping("list")
     public String userList(Model model) {
         System.out.println("여기오지?");
@@ -86,8 +90,11 @@ public class MngUserController {
     @GetMapping("{id}/partner-update")
     public String partnerUpdate(@PathVariable Integer id, Model model){
         Optional<Partner> partner = partnerService.findById(id);
+        List<FirstCategory> firstCategoryList = categoryService.findAll();
+        System.out.println("여기말하는거야 ?"+firstCategoryList.stream().toList());
         System.out.println(partner.get());
         model.addAttribute("partner",partner.get());
+        model.addAttribute("firstCategoryList",firstCategoryList);
         return "/mng/user/partner/update";
     }
     @GetMapping("{id}/partner-detail")
