@@ -78,29 +78,29 @@
 
 											<c:forEach var="partnerPG" items="${partnerPG.content}">
 												<tr>
-													<th class="applyDetail" scope="row"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.id}</a></th>
-													<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.tel }</a></td>
-													<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.username }</a></td>
-													<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">${partnerPG.categoryId }</a></td>
+													<th class="applyDetail" scope="row"><a href="/mng/user/${partnerPG.id}/partner-detail">${partnerPG.id}</a></th>
+													<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">${partnerPG.tel }</a></td>
+													<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">${partnerPG.username }</a></td>
+													<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">${partnerPG.categoryId }</a></td>
 													<c:if test="${partnerPG.gender == null ||empty partnerPG.gender}">
-														<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">업체</a></td>
+														<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">업체</a></td>
 													</c:if>
 													<c:if test="${partnerPG.gender == 'f'}">
-														<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">여자</a></td>
+														<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">여자</a></td>
 													</c:if>
 													<c:if test="${partnerPG.gender == 'm'}">
-														<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail">남자</a></td>
+														<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">남자</a></td>
 													</c:if>
 
-													<td class="applyDetail"><a href="/mng/user/partner/${partnerPG.id}/detail"><fmt:formatDate value="${partnerPG.createdAt}" pattern="yyyy. MM. dd" /></a></td>
+													<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail"><fmt:formatDate value="${partnerPG.createdAt}" pattern="yyyy. MM. dd" /></a></td>
 													<td>
 														<div>
 															<button class="btn btn-success"
 																	style="border: 1px solid black"
-																	onclick="location.href='/mng/user/${partnerPG.id}/update'">수정</button>
+																	onclick="location.href='/mng/user/${partnerPG.id}/partner-update'">수정</button>
 															&nbsp;&nbsp;
 															<button class="btn-danger btn"
-																	onclick="location.href='/mng/user/${partnerPG.id}/delete'">삭제</button>
+																	onclick="location.href='/mng/user/${partnerPG.id}/partner-delete'">삭제</button>
 														</div>
 													</td>
 

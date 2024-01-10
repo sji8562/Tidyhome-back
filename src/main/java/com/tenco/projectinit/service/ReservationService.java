@@ -2,21 +2,24 @@ package com.tenco.projectinit.service;
 
 import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
+
 import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.Info;
+
 import com.tenco.projectinit.repository.entity.sub_entity.Option;
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
-import com.tenco.projectinit.repository.inteface.AddressInfoJPARepository;
-import com.tenco.projectinit.repository.inteface.InfoJPARepository;
-import com.tenco.projectinit.repository.inteface.OptionJPARepository;
-import com.tenco.projectinit.repository.inteface.ReservationJPARepository;
+import com.tenco.projectinit.repository.entity.sub_entity.ReservationSuc;
+import com.tenco.projectinit.repository.inteface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.Time;
+
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -29,6 +32,14 @@ public class ReservationService {
     private InfoJPARepository infoJPARepository;
     @Autowired
     private AddressInfoJPARepository addressInfoJPARepository;
+    @Autowired
+    private UserJPARepository userJPARepository;
+    @Autowired
+    private KakaoPaymentJPARepository kakaoPaymentJPARepository;
+    @Autowired
+    private ReservationSucJPARepository reservationSucJPARepository;
+    @Autowired
+    private SaleJPARepository saleJPARepository;
 
 
 
@@ -88,5 +99,41 @@ public class ReservationService {
         // 레저베이션 아이디 리턴
         return reservation.getId();
 
+    }
+
+    public Integer reservationSuccess(ReservationRequestDTO.ReservationSuccessDTO successDTO, Integer userId) {
+        // 예약 아이디 가져오기
+        Integer reservationId = successDTO.getReservationId();
+        // 예약엔티티 가져오기
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new Exception404("예약이 없습니다"));
+        // 옵션 가져오기
+        Option option = reservation.getInfo().getOption();
+        // 옵션에서 price 가져오기
+        Integer price = option.getPrice();
+        // 유저 가져오기
+        User user = userJPARepository.findById(userId)
+                .orElseThrow(() -> new Exception404("사용자가 없습니다"));
+        // 카카오페이먼트 가져오기
+        Integer kakaoPaymentId = successDTO.getKakaoPaymentId();
+        KakaoPayment kakaoPayment = kakaoPaymentJPARepository.findById(kakaoPaymentId)
+                .orElseThrow(() -> new Exception404("카카오페이먼트가 없습니다"));
+        // tid 가져오기
+        String tid = successDTO.getTid();
+
+        // sale 만들기
+        Sale sale = Sale.builder()
+                .kakaoPayment(kakaoPayment)
+                .price(price)
+                .user(user)
+                .tid(tid)
+                .build();
+        saleJPARepository.save(sale);
+        ReservationSuc reservationSuc = ReservationSuc.builder()
+                .reservation(reservation)
+                .sale(sale)
+                .build();
+        reservationSucJPARepository.save(reservationSuc);
+        return reservationSuc.getId();
     }
 }

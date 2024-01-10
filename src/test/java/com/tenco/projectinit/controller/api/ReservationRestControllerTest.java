@@ -25,7 +25,7 @@ public class ReservationRestControllerTest {
     private ReservationService reservationService;
 
     @Test
-    public void testGetUserReservationInfo() throws Exception {
+    public void GetUserReservationInfo_test() throws Exception {
         // Given
         Integer userId = 1;
 

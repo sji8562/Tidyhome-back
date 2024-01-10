@@ -31,12 +31,13 @@ public class Sale {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    private Card card;
+    private KakaoPayment kakaoPayment;
 
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
 
+    // 카카오페이 결제번호?
     private String tid;
 }
 

@@ -17,6 +17,7 @@ import net.nurigo.sdk.NurigoApp;
 import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.service.DefaultMessageService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -160,4 +161,12 @@ public class UserService {
         }
         return userPG;
     }
+
+    @Transactional
+    public void deleteById(Integer id) {
+        System.out.println("오냐 ?123421");
+        userJPARepository.deleteById(id);
+        System.out.println("삭제 됬냐 ?");
+    }
+
 }

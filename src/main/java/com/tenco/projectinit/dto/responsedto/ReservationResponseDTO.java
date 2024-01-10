@@ -11,4 +11,13 @@ public class ReservationResponseDTO {
             this.reservationId = reservationId;
         }
     }
+
+    @Data
+    public static class ReservationSuccessDTO{
+        private Integer reservationSuccessId;
+
+        public ReservationSuccessDTO(Integer reservationSuccessId) {
+            this.reservationSuccessId = reservationSuccessId;
+        }
+    }
 }

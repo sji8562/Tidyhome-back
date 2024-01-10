@@ -3,9 +3,11 @@ package com.tenco.projectinit.service;
 import com.tenco.projectinit.dto.responsedto.CategoryResponseDTO;
 import com.tenco.projectinit.repository.entity.FirstCategory;
 import com.tenco.projectinit.repository.entity.SecondCategory;
+import com.tenco.projectinit.repository.entity.sub_entity.Option;
 import com.tenco.projectinit.repository.inteface.FirstCategoryJPARepository;
 import com.tenco.projectinit.repository.inteface.OptionJPARepository;
 import com.tenco.projectinit.repository.inteface.SecondCategoryJPARepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +43,54 @@ public class CategoryService {
             secondCategoryDTOS.add(secondCategoryDTO);
         }
         return new CategoryResponseDTO.SecondCategoryListDTO(secondCategoryDTOS);
+    }
+
+    public List<FirstCategory> findAll() {
+        return firstCategoryJPARepository.findAll();
+    }
+
+    public FirstCategory findFirstCategoryByName(String fCategoryName) {
+        return firstCategoryJPARepository.findByName(fCategoryName);
+    }
+
+    @Transactional
+    public int addFirstCategory(String fCategoryName) {
+        return firstCategoryJPARepository.saveByName(fCategoryName);
+    }
+
+    public List<SecondCategory> findByFirstCategoryId(int fId) {
+        return secondCategoryJPARepository.findByFirstCategoryId(fId);
+    }
+
+    @Transactional
+    public int deleteFirstCategoryById(int fId) {
+        if(firstCategoryJPARepository.existsById(fId)){
+            firstCategoryJPARepository.deleteById(fId);
+            return 1;
+        }
+         return 0;
+    }
+
+    public SecondCategory findByfirstCategoryNameWithSecondCategoryName(Integer fCategory, String sCategoryName) {
+        return secondCategoryJPARepository.findByFirstCategoryIdAndName(fCategory,sCategoryName);
+    }
+
+    public int addSecondCategory(Integer fCategoryId, String name) {
+        return secondCategoryJPARepository.saveByFirstCategoryIdWithName(fCategoryId,name);
+    }
+
+    public SecondCategory findBySecondCategoryId(int sId) {
+         return secondCategoryJPARepository.findById(sId);
+    }
+    public int findOptionBySecondCategoryId(Integer sId){
+        return optionJPARepository.findBySecondCategoryIdCounting(sId);
+    }
+
+    public int deleteSecondCategoryById(int sId) {
+        if(secondCategoryJPARepository.existsById(sId)){
+            secondCategoryJPARepository.deleteById(sId);
+            return 1;
+        }
+        return 0;
     }
 }

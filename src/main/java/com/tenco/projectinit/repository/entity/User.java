@@ -1,5 +1,7 @@
 package com.tenco.projectinit.repository.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.tenco.projectinit.repository.entity.sub_entity.Request;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +11,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,4 +29,10 @@ public class User {
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
+
+    @JsonIgnoreProperties({ "user" })
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<AddressInfo> addressInfos = new ArrayList<>();
+
+
 }

@@ -3,7 +3,7 @@ ifndef::snippets[]
 endif::[]
 
 :user: user-rest-controller-test
-// :promotion: promotion-rest-controller-test
+:reservation: reservation-rest-controller-test
 // :product: product-rest-controller-test
 = REST API
 :toc: left
@@ -29,3 +29,25 @@ include::{snippets}/{user}/delete_test/http-request.adoc[]
 ===== Response
 
 include::{snippets}/{user}/delete_test/http-response.adoc[]
+
+=== 3. 회원목록
+
+===== Request
+
+include::{snippets}/{user}/user-list_test/http-request.adoc[]
+
+===== Response
+
+include::{snippets}/{user}/user-list_test/http-response.adoc[]
+
+
+// === 3. 회원 예약내역
+//
+// ===== Request
+//
+// include::{snippets}/{reservation}//http-request.adoc[]
+//
+// ===== Response
+//
+// include::{snippets}/{user}/user-list_test/http-response.adoc[]
+

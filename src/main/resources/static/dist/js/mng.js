@@ -43,7 +43,7 @@ function displayFirstCategoryData(data) {
     data.forEach((firstCategory) => {
         var option = document.createElement('option');
         option.value = firstCategory.id;
-        option.text = firstCategory.firstCategoryName;
+        option.text = firstCategory.name;
 
         firstCategorySelect.add(option);
     });
@@ -62,7 +62,7 @@ function displaySecondCategoryData(data) {
     data.forEach((secondCategory) => {
         var option = document.createElement('option');
         option.value = secondCategory.id;
-        option.text = secondCategory.secondCategoryName;
+        option.text = secondCategory.name;
 
         secondCategorySelect.add(option);
     });
@@ -72,7 +72,7 @@ function fCategoryChange() {
     // 선택된 값 가져오기
     var selectedValue = document.querySelector('select[id="firstCategory"]').value;
 
-    fetch('/mng/product/second-category-find-by-first-category/' + selectedValue)
+    fetch('/mng/category/second-category-find-by-first-category/' + selectedValue)
         .then(response => response.json())
         .then(data => {
             displaySecondCategoryData(data);
@@ -93,18 +93,18 @@ function addFirstCategory() {
         return alert('카테고리명을 입력해주세요');
     }
 
-    addFirstCategoryApi(addFirstCategory, code);
+    addFirstCategoryApi(addFirstCategory);
 }
 
 function addFirstCategoryApi(categoryName, code) {
-    var url = '/mng/product/addFirstCategory';
+    var url = '/mng/category/addFirstCategory';
 
     fetch(url, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ "categoryName": categoryName, "code": code }),
+        body: JSON.stringify({ "categoryName": categoryName}),
     })
         .then(response => response.json())
         .then(data => {
@@ -127,7 +127,7 @@ function delFirstCategory() {
         return alert('삭제할 카테고리를 선택해주세요');
     }
 
-    fetch('/mng/product/delete-first-category-by-id/' + selectedValue)
+    fetch('/mng/category/delete-first-category/' + selectedValue)
         .then(response => {
             console.log(response.json());
 
@@ -171,7 +171,7 @@ function addSecondCategory() {
 }
 
 function addSecondCategoryApi(selectedFirstCategory, categoryName) {
-    var url = '/mng/product/addSecondCategory';
+    var url = '/mng/category/addSecondCategory';
 
     fetch(url, {
         method: "POST",
@@ -202,7 +202,7 @@ function delSecondCategory() {
         return alert('삭제할 2차 카테고리를 선택해주세요');
     }
 
-    fetch('/mng/product/delete-second-category-by-id/' + selectedValue)
+    fetch('/mng/category/delete-second-category/' + selectedValue)
         .then(response => response.json())
         .then(data => {
 
@@ -259,15 +259,7 @@ document.getElementById('productManagement').addEventListener('mouseleave', func
     // 마우스가 벗어날 때 이벤트 발생
     document.getElementById('productManagement').classList.remove('show');
 });
-document.getElementById('categoryManagement').addEventListener('mouseenter', function() {
-    // 마우스가 올라갈 때 이벤트 발생
-    document.getElementById('categoryManagement').classList.add('show');
-});
 
-document.getElementById('categoryManagement').addEventListener('mouseleave', function() {
-    // 마우스가 벗어날 때 이벤트 발생
-    document.getElementById('categoryManagement').classList.remove('show');
-});
 
 function DaumPostcode() {
     new daum.Postcode({

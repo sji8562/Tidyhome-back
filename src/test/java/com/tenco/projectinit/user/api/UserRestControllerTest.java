@@ -20,6 +20,8 @@ public class UserRestControllerTest extends MyWithRestDoc {
 
     @Test
     public void hello_test() {
+        String a = "1234";
+        System.out.println(a.chars());
     }
 
 
@@ -81,6 +83,23 @@ public class UserRestControllerTest extends MyWithRestDoc {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.error").isEmpty())
+                .andDo(MockMvcResultHandlers.print())
+                .andDo(document);
+    }
+    @Test
+    public void userList_test() throws Exception {
+        // Given
+
+        // When
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders.get("/mng/user/user-list")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // Then
+
+        resultActions
+                .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andDo(document);
     }
