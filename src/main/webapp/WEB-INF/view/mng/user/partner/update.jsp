@@ -48,14 +48,22 @@
                         <c:choose>
                             <c:when test="${partner != null }">
                                 <form class="form-horizontal form-material mx-2" method="post"
-                                      action="/mng/user/${partner.id}/update">
+                                      action="/mng/user/${partner.id}/partner-update">
 
                                     <div class="form-group">
-                                        <label for="example-email" class="col-md-12">이름</label>
+                                        <label class="col-md-12">이름</label>
                                         <div class="col-md-12">
                                             <input type="text" value="${partner.username}"
                                                    class="form-control form-control-line" name="username"
-                                                   id="userName" id="example-email">
+                                                   id="userName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">사업자번호</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="111-1111-111111-1111-1"
+                                                   class="form-control form-control-line" name="businessNumber"
+                                                   id="businessNumber">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -67,6 +75,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="file">썸네일</label>
+                                        <div style="width: 500px;">
+                                            <input type="file" id="file" name="file">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="col-md-12">사진</label>
                                         <div class="col-md-12">
                                                 <%--							<img src="${partner.picUrl()}" >--%>
@@ -75,25 +89,54 @@
                                     <div class="form-group">
                                         <label class="col-md-12">성별</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="${partner.gender}"
-                                                   name="phoneNumber" id="gender"
-                                                   class="form-control form-control-line" >
+                                            <select class="form-select" aria-label="Disabled select example" id="gender"
+                                                    name="gender">
+                                                <option value="f" ${partner.gender == 'f' ? 'selected' : ''}>여자</option>
+                                                <option value="m" ${partner.gender == 'm' ? 'selected' : ''}>남자</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">분야</label>
-                                        <div class="col-md-12">
-                                            <input type="text" value="${partner.categoryId}"
-                                                   name="phoneNumber" id="categoryId"
-                                                   class="form-control form-control-line" >
+                                        <div class="col-md-12 cate-div">
+                                            <c:choose>
+                                                <c:when test="${firstCategoryList != null}">
+                                                    <c:forEach var="firstCategoryList" items="${firstCategoryList}">
+                                                        <button onclick="cateButtonClick(this)"
+                                                                id="cate${firstCategoryList.id}"
+                                                                name="cate${firstCategoryList.id}" type="button"
+                                                                class="btn"
+                                                                value="${firstCategoryList.id}">${firstCategoryList.name}</button>
+                                                    </c:forEach>
+                                                </c:when>
+                                            </c:choose>
                                         </div>
                                     </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label class="col-md-12">선택됨</label>
+                                        <div class="col-md-12 selected-div">
+                                            <c:choose>
+                                                <c:when test="${firstCategoryList != null}">
+                                                    <c:forEach var="firstCategoryList" items="${firstCategoryList}">
+                                                        <button onclick="selectedButtonClick(this)"
+                                                                id="selectedCate${firstCategoryList.id}"
+                                                                name="cate${firstCategoryList.id}" type="button"
+                                                                class="btn hide"
+                                                                value="${firstCategoryList.id}">${firstCategoryList.name}</button>
+                                                    </c:forEach>
+                                                </c:when>
+                                            </c:choose>
+                                        </div>
+                                    </div>
+                                    <input type="text" id="category">
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                             <button type="submit" class="btn btn-success text-white">수정</button>
                                             <button class="btn btn-danger text-white">삭제</button>
                                         </div>
                                     </div>
+
                                 </form>
                             </c:when>
                             <c:otherwise>
@@ -103,24 +146,59 @@
                     </div>
                 </div>
             </div>
-            <!-- Column -->
         </div>
-        <!-- Row -->
-        <!-- ============================================================== -->
-        <!-- End PAge Content -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right sidebar -->
-        <!-- ============================================================== -->
-        <!-- .right-sidebar -->
-        <!-- ============================================================== -->
-        <!-- End Right sidebar -->
-        <!-- ============================================================== -->
+        <!-- Column -->
     </div>
+
+    <!-- Row -->
     <!-- ============================================================== -->
-    <!-- End Container fluid  -->
+    <!-- End PAge Content -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
-    <!-- footer -->
+    <!-- Right sidebar -->
     <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- footer -->
+<!-- ============================================================== -->
+<script>
+
+    function cateButtonClick(button) {
+        // 버튼을 숨깁니다.
+        button.style.display = 'none';
+
+        // 아래에 있는 동일한 ID를 가진 버튼을 찾아 표시합니다.
+        var categoryId = button.id.replace(/\D/g, '');
+        var categoryInput = document.getElementById("category");
+        var selectedButton = document.getElementById('selectedCate' + categoryId);
+
+        selectedButton.style.display = 'inline';
+        if (categoryInput.value === null || categoryInput.value === "") {
+            categoryInput.value = categoryId;
+        } else {
+            categoryInput.value += categoryId;
+        }
+    }
+
+    function selectedButtonClick(button) {
+        // 선택된 버튼을 숨깁니다.
+        button.style.display = 'none';
+
+        // 아래에 있는 동일한 ID를 가진 버튼을 찾아 표시합니다.
+        var categoryId = button.id.replace(/\D/g, '');
+        var cateButton = document.getElementById('cate' + categoryId);
+        var categoryInput = document.getElementById("category");
+        cateButton.style.display = 'inline';
+        categoryInput.value = categoryInput.value.replace(categoryId, '');
+    }
+
+</script>
+
 <%@ include file="/WEB-INF/view/mng/layout/mngFooter.jsp" %>

@@ -32,7 +32,6 @@ public class Sale {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private KakaoPayment kakaoPayment;
-//    private Card card;
 
     @Column(length = 256)
     @CreationTimestamp
