@@ -47,8 +47,8 @@
 					<div class="card-body">
 						<c:choose>
 							<c:when test="${partner != null }">
-								<form class="form-horizontal form-material mx-2" method="post"
-									action="/mng/user/${partner.id}/update">
+								<form class="form-horizontal form-material mx-2" method="get"
+									action="/mng/user/${partner.id}/partner-update">
 
 									<div class="form-group">
 										<label for="example-email" class="col-md-12">이름</label>
