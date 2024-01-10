@@ -2,16 +2,22 @@ package com.tenco.projectinit.service;
 
 import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
-import com.tenco.projectinit.repository.entity.*;
+
+import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
+import com.tenco.projectinit.repository.entity.AddressInfo;
+import com.tenco.projectinit.repository.entity.Info;
+
 import com.tenco.projectinit.repository.entity.sub_entity.Option;
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import com.tenco.projectinit.repository.entity.sub_entity.ReservationSuc;
 import com.tenco.projectinit.repository.inteface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.Time;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,10 +42,33 @@ public class ReservationService {
     private SaleJPARepository saleJPARepository;
 
 
-    // 예약 내역을 보여주는 메서드
-    public List<Map<String, Object>> getUserReservationInfo(Integer userId) {
-        return reservationRepository.findUserAddressInfo(userId);
+
+    // 예약 목록을 보여주는 메서드
+    public Optional<ReservationDetailResponseDTO.ReservationList> getReservationList(Integer userId) {
+        return reservationRepository.findReservationByUserId(userId);
     }
+
+    // 예약 상세 내역을 조회하는 메서드
+    public Optional<ReservationDetailResponseDTO.ReservationDetail> getReservationDetail(Integer reservationId) {
+        return reservationRepository.findReservationDetailById(reservationId);
+    }
+
+
+    // 예약 일정을 변경하는 메서드
+    @Transactional
+    public void updateReservationDateTime(Integer reservationId, Date newReservationDate, Time newReservationTime) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new RuntimeException("Reservation not found with id: " + reservationId));
+
+        Info info = reservation.getInfo();
+
+        info.setReservationDate(newReservationDate);
+        info.setReservationTime(newReservationTime);
+
+        infoJPARepository.save(info);
+    }
+
+
 
 
     public Integer reservationRegister(ReservationRequestDTO.ReservationRegister request) {
