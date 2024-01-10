@@ -16,6 +16,7 @@ public class AddressInfoRestController {
     @Autowired
     private AddressInfoService addressInfoService;
 
+    // 주소 api 사용
     @PostMapping("/add")
     public ResponseEntity<String> addAddressInfo(@RequestBody AddressInfoResponseDTO request, @RequestParam int userId) {
        addressInfoService.addAddress(request, userId);

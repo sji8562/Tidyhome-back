@@ -1,10 +1,22 @@
 package com.tenco.projectinit.dto.responsedto;
 
+import lombok.Data;
+
 import java.sql.Date;
 import java.sql.Time;
 
 public class ReservationDetailResponseDTO {
 
+    @Data
+    public static class ReservationList {
+        private Integer reservationId;
+        private Date reservationDate;
+        private Time reservationTime;
+        private String firstCategory;
+    }
+
+    @Data
+    public static class ReservationDetail {
     // addressInfo_tb
     private String address;
     private String addressDetail;
@@ -15,11 +27,36 @@ public class ReservationDetailResponseDTO {
     private Boolean pet;
 
     // sale_tb
-    private Integer userId;
     private Integer price;
-    private String tid;
 
-    // card_tb
-    private String provider;
+    private String firstCategory;
+    private String secondCategory;
+    private String option;
+
+        public ReservationDetail(String address, String addressDetail, Date reservationDate,
+                                 Time reservationTime, Boolean pet, Integer price, String firstCategory,
+                                 String secondCategory, String option) {
+            this.address = address;
+            this.addressDetail = addressDetail;
+            this.reservationDate = reservationDate;
+            this.reservationTime = reservationTime;
+            this.pet = pet;
+            this.price = price;
+            this.firstCategory = firstCategory;
+            this.secondCategory = secondCategory;
+            this.option = option;
+        }
+    }
+
+    @Data
+    public static class ReservationDateTime {
+        private Date reservationDate;
+        private Time reservationTime;
+
+        public ReservationDateTime(Date reservationDate, Time reservationTime) {
+            this.reservationDate = reservationDate;
+            this.reservationTime = reservationTime;
+        }
+    }
 
 }
