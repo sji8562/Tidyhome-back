@@ -49,7 +49,7 @@
                             <c:when test="${partner != null }">
                                 <form class="form-horizontal form-material mx-2" method="post"
                                       action="/mng/user/${partner.id}/partner-update">
-
+                                    <input type="hidden" name="id" value="${partner.id}" id="id">
                                     <div class="form-group">
                                         <label class="col-md-12">이름</label>
                                         <div class="col-md-12">
@@ -80,12 +80,7 @@
                                             <input type="file" id="file" name="file">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">사진</label>
-                                        <div class="col-md-12">
-                                                <%--							<img src="${partner.picUrl()}" >--%>
-                                        </div>
-                                    </div>
+
                                     <div class="form-group">
                                         <label class="col-md-12">성별</label>
                                         <div class="col-md-12">
@@ -129,7 +124,7 @@
                                             </c:choose>
                                         </div>
                                     </div>
-                                    <input type="text" id="category">
+                                    <input type="text" id="category" name="category" hidden="hidden">
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                             <button type="submit" class="btn btn-success text-white">수정</button>

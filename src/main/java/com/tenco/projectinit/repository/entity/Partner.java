@@ -30,6 +30,4 @@ public class Partner {
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
-
-
 }

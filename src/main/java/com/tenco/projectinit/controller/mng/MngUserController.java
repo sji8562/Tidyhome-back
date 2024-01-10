@@ -1,5 +1,8 @@
 package com.tenco.projectinit.controller.mng;
 
+import com.tenco.projectinit._core.errors.exception.CustomRestfullException;
+import com.tenco.projectinit._core.utils.Define;
+import com.tenco.projectinit.dto.mng.PartnerRequestDTO;
 import com.tenco.projectinit.repository.entity.FirstCategory;
 import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.repository.entity.User;
@@ -8,15 +11,20 @@ import com.tenco.projectinit.service.PartnerService;
 import com.tenco.projectinit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/mng/user")
@@ -30,6 +38,8 @@ public class MngUserController {
 
     @Autowired
     CategoryService categoryService;
+
+
     @GetMapping("list")
     public String userList(Model model) {
         System.out.println("여기오지?");
@@ -76,32 +86,45 @@ public class MngUserController {
     }
 
     @GetMapping("/{id}/user-delete")
-    public String userDelete(@PathVariable Integer id){
+    public String userDelete(@PathVariable Integer id) {
         userService.deleteById(id);
         return "redirect:/mng/user/user-list";
     }
 
     @GetMapping("/{id}/partner-delete")
-    public String partnerDelete(@PathVariable Integer id){
+    public String partnerDelete(@PathVariable Integer id) {
         partnerService.deleteById(id);
         return "redirect:/mng/user/partner-list";
     }
 
     @GetMapping("{id}/partner-update")
-    public String partnerUpdate(@PathVariable Integer id, Model model){
+    public String partnerUpdate(@PathVariable Integer id, Model model) {
         Optional<Partner> partner = partnerService.findById(id);
         List<FirstCategory> firstCategoryList = categoryService.findAll();
-        System.out.println("여기말하는거야 ?"+firstCategoryList.stream().toList());
+        System.out.println("여기말하는거야 ?" + firstCategoryList.stream().toList());
         System.out.println(partner.get());
-        model.addAttribute("partner",partner.get());
-        model.addAttribute("firstCategoryList",firstCategoryList);
+        model.addAttribute("partner", partner.get());
+        model.addAttribute("firstCategoryList", firstCategoryList);
+
+
         return "/mng/user/partner/update";
     }
+
+    @PostMapping("partner-update-proc")
+    public String partnerUpdateProc(PartnerRequestDTO.UpdateDTO dto) {
+
+
+
+        int result = partnerService.updateById(dto);
+
+        return "redirect:/mng/user/{id}/partner-list";
+    }
+
     @GetMapping("{id}/partner-detail")
-    public String partnerDetail(@PathVariable Integer id,Model model){
+    public String partnerDetail(@PathVariable Integer id, Model model) {
         Optional<Partner> partner = partnerService.findById(id);
         System.out.println(partner.get());
-        model.addAttribute("partner",partner.get());
+        model.addAttribute("partner", partner.get());
         return "/mng/user/partner/detail";
     }
 

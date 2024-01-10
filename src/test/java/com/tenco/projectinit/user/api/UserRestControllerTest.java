@@ -20,6 +20,8 @@ public class UserRestControllerTest extends MyWithRestDoc {
 
     @Test
     public void hello_test() {
+        String a = "1234";
+        System.out.println(a.chars());
     }
 
 
