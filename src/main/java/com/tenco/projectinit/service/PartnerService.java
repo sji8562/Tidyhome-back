@@ -29,15 +29,16 @@ public class PartnerService {
 
     public List<Partner> findByLevel() {
         List<Partner> partnerList = partnerJPARepository.findAll();
-        if(partnerList.isEmpty() || partnerList == null){
+        if (partnerList.isEmpty() || partnerList == null) {
             throw new Exception500("파트너가 없습니다.");
         }
         return partnerList;
     }
+
     public Page<Partner> findByPageNation(Integer page) {
         Pageable pageable = PageRequest.of(page, 5, Sort.Direction.DESC, "id");
         Page<Partner> partnerPG = partnerJPARepository.findAll(pageable);
-        if(partnerPG.isEmpty() || partnerPG == null){
+        if (partnerPG.isEmpty() || partnerPG == null) {
             throw new Exception500("파트너가 없습니다.");
         }
         List<Partner> modifiedList = parseCate(partnerPG);
@@ -45,10 +46,10 @@ public class PartnerService {
         return partnerPG;
     }
 
-    public Page<Partner> findByPageNation(Integer page,String keyword) {
+    public Page<Partner> findByPageNation(Integer page, String keyword) {
         Pageable pageable = PageRequest.of(page, 5, Sort.Direction.DESC, "id");
-        Page<Partner> partnerPG = partnerJPARepository.findByUsernameContaining(keyword,pageable);
-        if(partnerPG.isEmpty() || partnerPG == null){
+        Page<Partner> partnerPG = partnerJPARepository.findByUsernameContaining(keyword, pageable);
+        if (partnerPG.isEmpty() || partnerPG == null) {
             throw new Exception500("파트너가 없습니다.");
         }
         List<Partner> modifiedList = parseCate(partnerPG);
@@ -56,42 +57,43 @@ public class PartnerService {
     }
 
     /**
-     * 파트너 페이지 카테고리 아이디 파싱
+     * 파트너 리스트 페이지 카테고리 아이디 파싱
+     *
      * @param partnerPG
      * @return
      */
-    public List<Partner> parseCate(Page<Partner> partnerPG){
-       return partnerPG.getContent().stream()
+    public List<Partner> parseCate(Page<Partner> partnerPG) {
+        return partnerPG.getContent().stream()
                 .peek(partner -> {
                     if (partner.getCategoryId() != null) {
                         List<String> categories = Arrays.asList(partner.getCategoryId().split(","));
                         System.out.println(categories.stream().toList());
                         String category = "";
                         for (int i = 0; i < categories.size(); i++) {
-                            if(categories.get(i).equals("1")){
-                                if(i != 0){
+                            if (categories.get(i).equals("1")) {
+                                if (i != 0) {
                                     category += ",가사 도우미";
-                                }else{
+                                } else {
                                     category += " 가사 도우미";
                                 }
-                            }else if(categories.get(i).equals("2")){
-                                if(i != 0){
+                            } else if (categories.get(i).equals("2")) {
+                                if (i != 0) {
                                     category += ",사무실 청소";
-                                }else{
+                                } else {
                                     category += " 사무실 청소";
                                 }
 
-                            }else if(categories.get(i).equals("3")){
-                                if(i != 0){
+                            } else if (categories.get(i).equals("3")) {
+                                if (i != 0) {
                                     category += ",가전 / 침대 청소";
-                                }else{
+                                } else {
                                     category += " 가전 / 침대 청소";
                                 }
 
-                            }else if(categories.get(i).equals("4")){
-                                if(i != 0){
+                            } else if (categories.get(i).equals("4")) {
+                                if (i != 0) {
                                     category += ",이사 청소";
-                                }else{
+                                } else {
                                     category += " 이사 청소";
                                 }
                             }
@@ -102,13 +104,57 @@ public class PartnerService {
                 })
                 .collect(Collectors.toList());
     }
+
+    //파트너 카테고리 아이디 파싱
+    public Optional<Partner> parseCateparse(Optional<Partner> partner) {
+        if (partner.get().getCategoryId() != null) {
+            List<String> categories = Arrays.asList(partner.get().getCategoryId().split(","));
+            System.out.println(categories.stream().toList());
+            String category = "";
+            for (int i = 0; i < categories.size(); i++) {
+                if (categories.get(i).equals("1")) {
+                    if (i != 0) {
+                        category += ",가사 도우미";
+                    } else {
+                        category += " 가사 도우미";
+                    }
+                } else if (categories.get(i).equals("2")) {
+                    if (i != 0) {
+                        category += ",사무실 청소";
+                    } else {
+                        category += " 사무실 청소";
+                    }
+
+                } else if (categories.get(i).equals("3")) {
+                    if (i != 0) {
+                        category += ",가전 / 침대 청소";
+                    } else {
+                        category += " 가전 / 침대 청소";
+                    }
+
+                } else if (categories.get(i).equals("4")) {
+                    if (i != 0) {
+                        category += ",이사 청소";
+                    } else {
+                        category += " 이사 청소";
+                    }
+                }
+            }
+            category = category.trim();
+            partner.get().setCategoryId(category);
+        }
+        return partner;
+
+    }
+
     @Transactional
     public void deleteById(Integer id) {
         partnerJPARepository.deleteById(id);
     }
 
     public Optional<Partner> findById(Integer id) {
-        return partnerJPARepository.findById(id);
+        Optional<Partner> partner = partnerJPARepository.findById(id);
+        return parseCateparse(partner);
     }
 }
 

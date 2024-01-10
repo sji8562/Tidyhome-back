@@ -75,9 +75,18 @@
 									<div class="form-group">
 										<label class="col-md-12">성별</label>
 										<div class="col-md-12">
-											<input type="text" value="${partner.gender}"
-												   name="phoneNumber" id="gender"
-												   class="form-control form-control-line" disabled>
+											<c:choose>
+												<c:when test="${partner.gender == 'f'}">
+													<input type="text" value="여자"
+														   name="phoneNumber" id="gender"
+														   class="form-control form-control-line" disabled>
+												</c:when>
+												<c:otherwise>
+													<input type="text" value="남자"
+														   name="phoneNumber" id="gender"
+														   class="form-control form-control-line" disabled>
+												</c:otherwise>
+											</c:choose>
 										</div>
 									</div>
 									<div class="form-group">

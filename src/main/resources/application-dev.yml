@@ -24,7 +24,7 @@ spring:
       encoding: utf-8
       data-locations:
         classpath:db/data.sql
-  #      mode: always
+      mode: always
   jpa:
     defer-datasource-initialization: true
     hibernate:
@@ -51,8 +51,8 @@ spring:
 
 logging:
   level:
-    org.mybatis: DEBUG
-
+    "[com.tenco.projectinit]": DEBUG
+    "[org.hibernate.type]": TRACE
 file:
   path: ./images/
 
