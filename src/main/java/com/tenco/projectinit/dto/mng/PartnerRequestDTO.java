@@ -12,6 +12,5 @@ public class PartnerRequestDTO {
         private String tel;
         private String picUrl;
         private String category;
-        private MultipartFile file;
     }
 }

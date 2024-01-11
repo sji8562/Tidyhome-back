@@ -6,7 +6,9 @@ import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
 import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.Info;
-
+import com.tenco.projectinit.repository.entity.KakaoPayment;
+import com.tenco.projectinit.repository.entity.Sale;
+import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.repository.entity.sub_entity.Option;
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import com.tenco.projectinit.repository.entity.sub_entity.ReservationSuc;

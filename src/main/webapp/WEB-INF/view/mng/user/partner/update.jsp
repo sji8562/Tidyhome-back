@@ -48,7 +48,7 @@
                         <c:choose>
                             <c:when test="${partner != null }">
                                 <form class="form-horizontal form-material mx-2" method="post"
-                                      action="/mng/user/${partner.id}/partner-update">
+                                      action="/mng/user/partner-update-proc">
                                     <input type="hidden" name="id" value="${partner.id}" id="id">
                                     <div class="form-group">
                                         <label class="col-md-12">이름</label>
@@ -74,23 +74,13 @@
                                                    class="form-control form-control-line">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="file">썸네일</label>
-                                        <div style="width: 500px;">
-                                            <input type="file" id="file" name="file">
-                                        </div>
-                                    </div>
+<%--                                    <div class="form-group">--%>
+<%--                                        <label for="file">썸네일</label>--%>
+<%--                                        <div style="width: 500px;">--%>
+<%--                                            <input type="file" id="file" name="file">--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
 
-                                    <div class="form-group">
-                                        <label class="col-md-12">성별</label>
-                                        <div class="col-md-12">
-                                            <select class="form-select" aria-label="Disabled select example" id="gender"
-                                                    name="gender">
-                                                <option value="f" ${partner.gender == 'f' ? 'selected' : ''}>여자</option>
-                                                <option value="m" ${partner.gender == 'm' ? 'selected' : ''}>남자</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         <label class="col-md-12">분야</label>
                                         <div class="col-md-12 cate-div">

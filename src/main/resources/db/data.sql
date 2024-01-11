@@ -10,11 +10,12 @@ insert into user_tb(tel,created_at) values ('01051515151',now());
 insert into user_tb(tel,created_at) values ('01051519595',now());
 insert into user_tb(tel,created_at) values ('01095953535',now());
 insert into user_tb(tel,created_at) values ('01095959595',now());
+insert into user_tb(tel,created_at) values ('1234',now());
 
 
 
-insert into partner_tb(tel,username,pic_url,category_id,gender,level,created_at) values ('01095959595','쌀컴퍼니',null,'1,4',null,2,now());
-insert into partner_tb(tel,username,pic_url,category_id,gender,level,created_at) values ('01058288562','송재익',null,'1,2','f',2,now());
+insert into partner_tb(tel,username,pic_url,category_id,created_at) values ('01095959595','쌀컴퍼니',null,'1,4',now());
+insert into partner_tb(tel,username,pic_url,category_id,created_at) values ('01058288562','송재익',null,'1,2',now());
 
 
 

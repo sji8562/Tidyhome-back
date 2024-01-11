@@ -98,27 +98,24 @@ public class MngUserController {
     }
 
     @GetMapping("{id}/partner-update")
-    public String partnerUpdate(@PathVariable Integer id, Model model) {
+    public String partnerUpdate(@PathVariable Integer id,Model model) {
         Optional<Partner> partner = partnerService.findById(id);
         List<FirstCategory> firstCategoryList = categoryService.findAll();
         System.out.println("여기말하는거야 ?" + firstCategoryList.stream().toList());
         System.out.println(partner.get());
-        model.addAttribute("partner", partner.get());
-        model.addAttribute("firstCategoryList", firstCategoryList);
-
+         model.addAttribute("partner", partner.get());
+         model.addAttribute("firstCategoryList", firstCategoryList);
 
         return "/mng/user/partner/update";
     }
 
-    @PostMapping("partner-update-proc")
-    public String partnerUpdateProc(PartnerRequestDTO.UpdateDTO dto) {
-
-
-
-        int result = partnerService.updateById(dto);
-
-        return "redirect:/mng/user/{id}/partner-list";
-    }
+//    @PostMapping("partner-update-proc")
+//    public String partnerUpdateProc(PartnerRequestDTO.UpdateDTO dto) {
+//        System.out.println(dto.toString());
+//        partnerService.updateById(dto);
+//
+//        return "redirect:/mng/user/{id}/partner-list";
+//    }
 
     @GetMapping("{id}/partner-detail")
     public String partnerDetail(@PathVariable Integer id, Model model) {
