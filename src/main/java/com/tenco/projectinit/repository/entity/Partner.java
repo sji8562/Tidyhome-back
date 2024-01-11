@@ -25,8 +25,7 @@ public class Partner {
     private String username;
     private String picUrl;
     private String categoryId;
-    private String gender;
-    private Integer level;
+    private String location;
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
