@@ -83,3 +83,7 @@
     z-index: 1000;
     background: #233242;
 }
+
+th, td {
+    text-align: center;
+}

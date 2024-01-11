@@ -39,25 +39,38 @@
                                 <div class="card-body m--search-inline">
                                     <h4 class="card-title">결제 내역 조회</h4>
                                 </div>
+                                <div style="padding-bottom: 20px">
+                                    <select id="categoryDropdown">
+                                        <option value="">전체</option>
+                                        <option value="가사도우미">가사도우미</option>
+                                        <option value="사무실청소">사무실청소</option>
+                                        <option value="이사청소">이사청소</option>
+                                        <option value="가전/침대청소">가전/침대청소</option>
+                                        <!-- 여러 카테고리 옵션 추가 -->
+                                    </select>
+                                </div>
                                 <div class="table-responsive">
                                     <c:choose>
                                         <c:when test="${payList != null}">
                                             <table class="table">
                                                 <thead class="table-light">
                                                     <tr>
-                                                        <th scope="col">타입</th>
-                                                        <th scope="col">유저</th>
+                                                        <th scope="col" style="width: 80px;">번호</th>
+                                                        <th scope="col">구분</th>
+                                                        <th scope="col">사용자</th>
                                                         <%--<th scope="col">제품번호</th>--%>
                                                         <%--<th scope="col">제품이름</th>--%>
                                                         <th scope="col">금액</th>
                                                         <th scope="col">날짜</th>
-                                                        <th scope="col">기능</th>
+                                                        <th scope="col">상태</th>
+                                                        <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <c:forEach var="pay" items="${payList}" varStatus="loop">
                                                         <tr>
                                                             <%--<th>${pay.transactionType}</th>--%>
+                                                            <td>${pay.sale.id}</td>
                                                             <td>${pay.categoryName}</td>
                                                             <td>${pay.sale.user.tel}</td>
                                                             <%--<td>1</td>--%>
@@ -68,11 +81,15 @@
 
                                                             <td><fmt:formatDate value="${pay.sale.createdAt}" pattern="yyyy. MM. dd" /></td>
                                                             <%--<td>${pay.createdAt}</td>--%>
+                                                            <td>상태코드</td>
                                                             <td>
                                                                 <div>
-                                                                    <button id="cancelBtn" name="cancelBtn" class="btn-danger btn" type="button" onclick="openConfirm(event)">
-                                                                        결제 취소
-                                                                    </button>
+                                                                    <form id="cancelForm${pay.sale.id}" action="/mng/pay/cancel" method="post">
+                                                                        <input type="hidden" name="saleId" value="${pay.sale.id}">
+                                                                        <button class="btn-danger btn" type="button" onclick="openConfirm(event, ${pay.sale.id})">
+                                                                            결제 취소
+                                                                        </button>
+                                                                    </form>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -128,9 +145,10 @@
     </div>
 
     <script>
-        function openConfirm(event) {
+        function openConfirm(event, saleId) {
             var clickButton = event.target;
             if(confirm('결제를 취소하겠습니까?')) {
+                document.getElementById('cancelForm' + saleId).submit();
                 alert('취소되었습니다');
 
                 clickButton.innerText = '환불완료';
@@ -138,6 +156,30 @@
                 clickButton.style.cursor = 'default';
             }
         }
+    </script>
+
+    <script>
+        // 드롭다운이 변경될 때 실행되는 함수
+        function filterTableByCategory() {
+            // 선택된 드롭다운 값 가져오기
+            var selectedCategory = $("#categoryDropdown").val();
+
+            // 모든 행 숨기기
+            $(".table tbody tr").hide();
+
+            // 선택된 구분에 해당하는 행만 표시
+            if (selectedCategory !== "") {
+                $(".table tbody td:nth-child(2):contains('" + selectedCategory + "')").parent().show();
+            } else {
+                // 전체 구분이 선택된 경우 모든 행 표시
+                $(".table tbody tr").show();
+            }
+        }
+
+        // 드롭다운 변경 이벤트에 함수 연결
+        $(document).ready(function () {
+            $("#categoryDropdown").on("change", filterTableByCategory);
+        });
     </script>
 
 <%@ include file="/WEB-INF/view/mng/layout/mngFooter.jsp"%>
