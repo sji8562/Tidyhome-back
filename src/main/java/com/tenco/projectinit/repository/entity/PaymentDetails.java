@@ -1,5 +1,6 @@
 package com.tenco.projectinit.repository.entity;
 
+import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,4 +21,5 @@ public class PaymentDetails {
     private String tid;
     private String partnerOrderId;
     private String partnerUserId;
+    private Integer reservationId;
 }

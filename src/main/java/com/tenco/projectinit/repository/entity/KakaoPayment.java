@@ -13,11 +13,8 @@ public class KakaoPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
+    @OneToOne
     private User user;
-
-    private String cid;
-
 
 
     @Builder
