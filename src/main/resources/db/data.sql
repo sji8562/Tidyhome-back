@@ -105,3 +105,17 @@ insert into option_tb(second_category_id, name, price) values (15, '19평 이상
 insert into option_tb(second_category_id, name, price) values (15, '거주청소', 12900); -- 이것도 ㅋ
 
 
+
+insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (1, '2024-01-30', '14:00:00', true, now());
+
+insert into address_info_tb(user_id, address) values (1, 'test 주소1');
+
+insert into reservation_tb(address_info_id, info_id, created_at) values (1, 1, now());
+
+insert into sale_tb(user_id, price, created_at) values (1, 25000, now());
+
+insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (1, 1, now());
+
+insert into notice_tb(title, content, created_at) values ('공지1', '공지1 내용', now());
+
+insert into cancel_tb(sale_id, created_at, price) values (1, now(), 25000);
