@@ -27,6 +27,7 @@ public class ReservationRestController {
     @Autowired
     private ReservationService reservationService;
 
+    // 예약 성공
     @PostMapping("/success")
     public ResponseEntity<?> reservationSuccess(@RequestBody ReservationRequestDTO.ReservationSuccessDTO successDTO, HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
@@ -35,6 +36,7 @@ public class ReservationRestController {
         return ResponseEntity.ok().body(ApiUtils.success(new ReservationResponseDTO.ReservationSuccessDTO(reservationSuccesId)));
     }
 
+    // 예약 등록
     @PostMapping
     public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister request) {
         Integer reservationID = reservationService.reservationRegister(request);

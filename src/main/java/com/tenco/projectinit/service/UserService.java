@@ -77,7 +77,7 @@ public class UserService {
     @Transactional
     public UserResponseDTO.TokenDTO join(UserRequestDTO.JoinDTO joinDTO) {
         String tel = joinDTO.getTel();
-        if (tel == null || tel.length() != 11) {
+        if (tel == null || tel.length() != 13) {
             throw new Exception400("전화번호는 11자리여야 합니다.");
         }
 
