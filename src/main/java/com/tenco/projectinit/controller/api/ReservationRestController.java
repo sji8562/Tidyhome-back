@@ -27,6 +27,7 @@ public class ReservationRestController {
     @Autowired
     private ReservationService reservationService;
 
+    // 예약 성공
     @PostMapping("/success")
     public ResponseEntity<?> reservationSuccess(@RequestBody ReservationRequestDTO.ReservationSuccessDTO successDTO, HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
@@ -35,37 +36,40 @@ public class ReservationRestController {
         return ResponseEntity.ok().body(ApiUtils.success(new ReservationResponseDTO.ReservationSuccessDTO(reservationSuccesId)));
     }
 
+    // 예약 등록
     @PostMapping
     public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister request) {
         Integer reservationID = reservationService.reservationRegister(request);
         return ResponseEntity.ok().body(ApiUtils.success(new ReservationResponseDTO.ReservationDTO(reservationID)));
     }
 
+
     // 예약 내역 목록
-    @GetMapping("/{userId}")
-    public ResponseEntity<?> getUserReservationInfo(@PathVariable Integer userId) {
-        Optional<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getReservationList(userId);
-        return reservationList.map(detail -> new ResponseEntity<>(detail, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @GetMapping("/list")
+    public ResponseEntity<?> getUserReservationInfo(HttpServletRequest httpServletRequest) {
+        HttpSession session = httpServletRequest.getSession();
+        User user = (User) session.getAttribute("sessionUser");
+        Optional<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getReservationList(user.getId());
+        return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 
     // 예약 상세 내역 조회
-    @GetMapping("/detail/{reservationId}")
+    @GetMapping("/list/{reservationId}")
     public ResponseEntity<?> getReservationDetail(@PathVariable Integer reservationId) {
         Optional<ReservationDetailResponseDTO.ReservationDetail> reservationDetail = reservationService.getReservationDetail(reservationId);
-        return reservationDetail.map(detail -> new ResponseEntity<>(detail, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return ResponseEntity.ok().body(ApiUtils.success(reservationDetail));
     }
 
     // 일정 변경
-    @PostMapping("/detail/{reservationId}/update")
-    public ResponseEntity<String> updateDateTime(@PathVariable Integer reservationId, @RequestBody ReservationDetailResponseDTO.ReservationDateTime request,
+    @PostMapping("/list/{reservationId}/update")
+    public ResponseEntity<?> updateDateTime(@PathVariable Integer reservationId, @RequestBody ReservationDetailResponseDTO.ReservationDateTime request,
                                @RequestParam Date newReservationDate, @RequestParam Time newReservationTime) {
         try {
             reservationService.updateReservationDateTime(reservationId, newReservationDate, newReservationTime);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
         }
     }
 

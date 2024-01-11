@@ -1,9 +1,12 @@
 package com.tenco.projectinit.service;
 
+import com.tenco.projectinit.dto.requestdto.KakaoPaymentRequestDTO;
 import com.tenco.projectinit.dto.responsedto.KakaoPaymentResponseDTO;
-import com.tenco.projectinit.repository.entity.PaymentDetails;
-import com.tenco.projectinit.repository.inteface.KakaoPaymentJPARepository;
-import com.tenco.projectinit.repository.inteface.PaymentDetailsJPARepository;
+import com.tenco.projectinit.repository.entity.*;
+import com.tenco.projectinit.repository.entity.sub_entity.Option;
+import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
+import com.tenco.projectinit.repository.entity.sub_entity.ReservationSuc;
+import com.tenco.projectinit.repository.inteface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +15,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -22,18 +26,32 @@ public class KakaoPaymentServiece {
     private KakaoPaymentJPARepository kakaoPaymentJPARepository;
     @Autowired
     private PaymentDetailsJPARepository paymentDetailsJPARepository;
+    @Autowired
+    private ReservationJPARepository reservationJPARepository;
+    @Autowired
+    private SaleJPARepository saleJPARepository;
+    @Autowired
+    private UserJPARepository userJPARepository;
+    @Autowired
+    private ReservationSucJPARepository reservationSucJPARepository;
 
-    public KakaoPaymentResponseDTO.KakaoReadyDTO kakaoPayReady(Integer userId) {
+    public KakaoPaymentResponseDTO.KakaoReadyDTO kakaoPayReady(Integer userId, Integer reservationId) {
         // TODO : 예약 ID 받아서 옵션 상품명 금액 으로 변경해야함
         // 카카오페이 요청 양식
+        Optional<Reservation> optReservation = reservationJPARepository.findById(reservationId);
+        Reservation reservation = optReservation.get();
+        Info info = reservation.getInfo();
+        Option option = info.getOption();
+        String optionName = option.getName();
+        Integer price = option.getPrice();
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
         String orderNumber = UUID.randomUUID().toString();
         parameters.add("partner_order_id", orderNumber);
         parameters.add("partner_user_id", userId.toString());
-        parameters.add("item_name", "감자");
+        parameters.add("item_name", optionName);
         parameters.add("quantity", Integer.valueOf(1).toString());
-        parameters.add("total_amount", Integer.valueOf(19000).toString());
+        parameters.add("total_amount", price.toString()); // 가격
         parameters.add("tax_free_amount", Integer.valueOf(0).toString());
         parameters.add("approval_url", "http://localhost:80/payment/success"); // 성공 시 redirect url
         parameters.add("cancel_url", "http://localhost:80/payment/cancel"); // 취소 시 redirect url
@@ -54,6 +72,7 @@ public class KakaoPaymentServiece {
                 .tid(kakaoReady.getTid())
                 .partnerOrderId(orderNumber)
                 .partnerUserId(userId.toString())
+                .reservationId(reservationId)
                 .build();
 
         paymentDetailsJPARepository.save(paymentDetails);
@@ -78,14 +97,23 @@ public class KakaoPaymentServiece {
     /**
      * 결제 완료 승인
      */
-    public KakaoPaymentResponseDTO.KakaoApproveResponse ApproveResponse(String pgToken) {
 
+
+    public KakaoPaymentResponseDTO.KakaoApproveResponse kakaoPayApprove(KakaoPaymentRequestDTO.KakaoApproveDTO kakaoApproveDTO, Integer userId) {
+        String pgToken = kakaoApproveDTO.getPgToken();
+        String tid = kakaoApproveDTO.getTid();
+        // 페이먼트 디테일 찾기
+        Optional<PaymentDetails> optionalPaymentDetails = paymentDetailsJPARepository.findByTid(tid);
+        PaymentDetails paymentDetails = optionalPaymentDetails.get();
+        // 페이먼트 디테일에서 파트너오더 아이디 꺼내기
+        String partnerOrderId = paymentDetails.getPartnerOrderId();
+        String partnerUserId = paymentDetails.getPartnerUserId();
         // 카카오 요청
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.add("cid", cid);
-        parameters.add("tid", ApproveResponse(pgToken).getTid());
-        parameters.add("partner_order_id", ApproveResponse(pgToken).getPartnerOrderId());
-        parameters.add("partner_user_id", ApproveResponse(pgToken).getPartnerUserId());
+        parameters.add("tid", tid);
+        parameters.add("partner_order_id", partnerOrderId);
+        parameters.add("partner_user_id", partnerUserId);
         parameters.add("pg_token", pgToken);
 
         // 파라미터, 헤더
@@ -98,10 +126,52 @@ public class KakaoPaymentServiece {
                 "https://kapi.kakao.com/v1/payment/approve",
                 requestEntity,
                 KakaoPaymentResponseDTO.KakaoApproveResponse.class);
+        // 레저베이션 엔티티 가져오기
+        Optional<Reservation> optionalReservation = reservationJPARepository.findById(kakaoApproveDTO.getReservationId());
+        Reservation reservation = optionalReservation.get();
+        Optional<User> optionalUser = userJPARepository.findById(userId);
+        User user = optionalUser.get();
+        Info info = reservation.getInfo();
+        Option option = info.getOption();
+        Integer price = option.getPrice();
+        Optional<KakaoPayment> optionalKakaoPayment = kakaoPaymentJPARepository.findByUser(user);
+        KakaoPayment kakaoPayment = optionalKakaoPayment.get();
+        Sale sale = new Sale(null, user, price, kakaoPayment, null, tid);
+        saleJPARepository.save(sale);
+        ReservationSuc reservationSuc = new ReservationSuc(null, reservation, sale, null);
 
-
+        reservationSucJPARepository.save(reservationSuc);
 
         return approveResponse;
     }
 
+    public KakaoPaymentResponseDTO.KakaoApproveResponse kakaoPayCancle(KakaoPaymentRequestDTO.KakaoApproveDTO kakaoApproveDTO, Integer id) {
+        Optional<ReservationSuc> optionalReservationSuc = reservationSucJPARepository.findById(kakaoApproveDTO.getReservationId());
+        ReservationSuc reservationSuc = optionalReservationSuc.get();
+        Reservation reservation = reservationSuc.getReservation();
+
+        // 카카오페이 요청
+        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+        parameters.add("cid", cid);
+        parameters.add("tid", "환불할 결제 고유 번호");
+        parameters.add("cancel_amount", "환불 금액");
+        parameters.add("cancel_tax_free_amount", "환불 비과세 금액");
+        parameters.add("cancel_vat_amount", "환불 부가세");
+
+        // 파라미터, 헤더
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
+
+        // 외부에 보낼 url
+        RestTemplate restTemplate = new RestTemplate();
+
+        KakaoPaymentResponseDTO.KakaoApproveResponse cancelResponse = restTemplate.postForObject(
+                "https://kapi.kakao.com/v1/payment/cancel",
+                requestEntity,
+                KakaoPaymentResponseDTO.KakaoApproveResponse.class);
+
+        reservationSucJPARepository.delete(reservationSuc);
+
+        return cancelResponse;
+
+    }
 }

@@ -25,8 +25,8 @@ public class JwtTokenUtils {
         String jwt = JWT.create()
                 .withSubject("tok-key")
                 .withClaim("id", 1)
-                .withClaim("email", "ssar@nate.com")
-                .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L))
+                .withClaim("tel", "1234")
+                .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L*31))
                 .sign(Algorithm.HMAC512("meta"));
         return jwt;
     }

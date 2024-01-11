@@ -242,7 +242,7 @@ caption {
   caption-side: bottom; }
 
 th {
-  text-align: inherit; }
+  text-align: center; }
 
 label {
   display: inline-block;
@@ -1090,14 +1090,19 @@ pre {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
+  text-align: center;
   background-color: transparent; }
-  .table th,
+  .table th{
+    text-align: center;
+  }
   .table td {
     padding: 1rem;
     vertical-align: top;
+    text-align: center;
     border-top: 1px solid #dee2e6; }
   .table thead th {
     vertical-align: bottom;
+    align-content: center;
     border-bottom: 2px solid #dee2e6; }
   .table tbody + tbody {
     border-top: 2px solid #dee2e6; }
