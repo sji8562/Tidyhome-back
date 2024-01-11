@@ -55,17 +55,18 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach var="pay" items="${payList}">
+                                                    <c:forEach var="pay" items="${payList}" varStatus="loop">
                                                         <tr>
-                                                            <th>${pay.transactionType}</th>
-                                                            <td>${pay.userName}</td>
+                                                            <%--<th>${pay.transactionType}</th>--%>
+                                                            <td>${pay.categoryName}</td>
+                                                            <td>${pay.sale.user.tel}</td>
                                                             <%--<td>1</td>--%>
                                                             <%--<td>${pay.}</td>--%>
 
-                                                            <td><fmt:formatNumber value="${pay.price}" pattern="###,###"/></td>
+                                                            <td><fmt:formatNumber value="${pay.sale.price}" pattern="###,###"/></td>
                                                             <%--<td>${pay.price}</td>--%>
 
-                                                            <td><fmt:formatDate value="${pay.createdAt}" pattern="yyyy. MM. dd" /></td>
+                                                            <td><fmt:formatDate value="${pay.sale.createdAt}" pattern="yyyy. MM. dd" /></td>
                                                             <%--<td>${pay.createdAt}</td>--%>
                                                             <td>
                                                                 <div>

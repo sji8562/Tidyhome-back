@@ -82,6 +82,7 @@ public class UserService {
             return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user);
         }
         if (tel == null || tel.length() != 11) {
+
             throw new Exception400("전화번호는 11자리여야 합니다.");
         }
 
