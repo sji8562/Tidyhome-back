@@ -138,10 +138,40 @@ public class KakaoPaymentServiece {
         KakaoPayment kakaoPayment = optionalKakaoPayment.get();
         Sale sale = new Sale(null, user, price, kakaoPayment, null, tid);
         saleJPARepository.save(sale);
-        ReservationSuc reservationSuc = new ReservationSuc(null, reservation , sale, null);
+        ReservationSuc reservationSuc = new ReservationSuc(null, reservation, sale, null);
 
         reservationSucJPARepository.save(reservationSuc);
 
         return approveResponse;
+    }
+
+    public KakaoPaymentResponseDTO.KakaoApproveResponse kakaoPayCancle(KakaoPaymentRequestDTO.KakaoApproveDTO kakaoApproveDTO, Integer id) {
+        Optional<ReservationSuc> optionalReservationSuc = reservationSucJPARepository.findById(kakaoApproveDTO.getReservationId());
+        ReservationSuc reservationSuc = optionalReservationSuc.get();
+        Reservation reservation = reservationSuc.getReservation();
+
+        // 카카오페이 요청
+        MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
+        parameters.add("cid", cid);
+        parameters.add("tid", "환불할 결제 고유 번호");
+        parameters.add("cancel_amount", "환불 금액");
+        parameters.add("cancel_tax_free_amount", "환불 비과세 금액");
+        parameters.add("cancel_vat_amount", "환불 부가세");
+
+        // 파라미터, 헤더
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(parameters, this.getHeaders());
+
+        // 외부에 보낼 url
+        RestTemplate restTemplate = new RestTemplate();
+
+        KakaoPaymentResponseDTO.KakaoApproveResponse cancelResponse = restTemplate.postForObject(
+                "https://kapi.kakao.com/v1/payment/cancel",
+                requestEntity,
+                KakaoPaymentResponseDTO.KakaoApproveResponse.class);
+
+        reservationSucJPARepository.delete(reservationSuc);
+
+        return cancelResponse;
+
     }
 }
