@@ -104,11 +104,11 @@
 							class="logo-icon"> <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
 								<img src="/assets/images/logo-icon.png" alt="homepage"
 								class="dark-logo" /> <!-- Light Logo icon --> <img
-								src="/images/Logo.png" style="width: 40px;" alt="homepage"
+								src="/images/tidyhomeLogo.png" style="width: 230px;" alt="homepage"
 								class="light-logo" />
 						</b> <!--End Logo icon --> <!-- Logo text --> <span class="logo-text">
 								<!-- dark Logo text --> <!-- Light Logo text --> <span
-								style="color: white">Kinder Lend Admin</span>
+								style="color: white">Admin</span>
 						</span>
 
 
