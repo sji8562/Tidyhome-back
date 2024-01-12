@@ -21,9 +21,9 @@ public class AddressInfoRestController {
 
     // 주소 추가
     @PostMapping("/add")
-    public ResponseEntity<?> addAddressInfo(@RequestBody AddressInfoResponseDTO request, @RequestParam int userId) {
-       addressInfoService.addAddress(request, userId);
-       return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(null));
+    public ResponseEntity<?> addAddressInfo(@RequestBody AddressInfoResponseDTO request) {
+      AddressInfo addressInfo = addressInfoService.addAddress(request, request.getUserId());
+       return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(addressInfo));
     }
 
     // 주소 목록
