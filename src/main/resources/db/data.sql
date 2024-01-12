@@ -2,7 +2,7 @@
 insert into admin_tb(admin_name,admin_password, created_at) values ('admin','1234',now());
 
 
-
+insert into user_tb(tel,created_at) values ('1234',now());
 insert into user_tb(tel,created_at) values ('01093971773',now());
 insert into user_tb(tel,created_at) values ('01012345678',now());
 insert into user_tb(tel,created_at) values ('01058288562',now());
@@ -10,7 +10,6 @@ insert into user_tb(tel,created_at) values ('01051515151',now());
 insert into user_tb(tel,created_at) values ('01051519595',now());
 insert into user_tb(tel,created_at) values ('01095953535',now());
 insert into user_tb(tel,created_at) values ('01095959595',now());
-insert into user_tb(tel,created_at) values ('1234',now());
 
 
 
