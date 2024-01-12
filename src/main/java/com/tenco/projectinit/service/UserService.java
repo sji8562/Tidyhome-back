@@ -169,9 +169,7 @@ public class UserService {
 
     @Transactional
     public void deleteById(Integer id) {
-        System.out.println("오냐 ?123421");
         userJPARepository.deleteById(id);
-        System.out.println("삭제 됬냐 ?");
     }
 
 }
