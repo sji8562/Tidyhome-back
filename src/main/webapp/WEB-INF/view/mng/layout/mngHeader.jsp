@@ -290,7 +290,7 @@
 								<!-- 대여신청 -->
 								<li class="sidebar-item"><a
 									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/board/noticeList"> <i
+									href="/mng/notice/list"> <i
 										class="mdi mdi-information-outline"></i> <span
 										class="hide-menu">공지사항</span>
 								</a></li>

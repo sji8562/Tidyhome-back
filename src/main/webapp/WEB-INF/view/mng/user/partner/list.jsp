@@ -129,10 +129,10 @@
 									<c:if test="${empty keyword}">
 										<ul class="pagination d-flex justify-content-center">
 											<li class="page-item <c:if test="${partnerPG.first}">disabled</c:if>"><a class="page-link"
-																												  href="?page=${prevPage}">Previous</a>
+																													 href="?page=${prevPage}">Previous</a>
 											</li>
 											<li class="page-item <c:if test="${partnerPG.last}">disabled</c:if>"><a class="page-link"
-																												 href="?page=${nextPage}">Next</a></li>
+																													href="?page=${nextPage}">Next</a></li>
 										</ul>
 									</c:if>
 								</div>

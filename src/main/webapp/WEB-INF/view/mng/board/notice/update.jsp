@@ -51,7 +51,7 @@
 
                         <c:choose>
                             <c:when test="${notice != null}">
-                    <form class="form-horizontal mt-4" method="post" action="/mng/board/notice-update-proc">
+                    <form class="form-horizontal mt-4" method="post" action="/mng/notice/update-proc">
                         <input type="hidden" id="id" name="id" value="${notice.id}">
                                 <div class="form-group">
                                     <label><span class="help"> 제목</span></label>
@@ -62,7 +62,7 @@
                                 </div>
 
                         <button type="submit" class="btn btn-primary">수정하기</button>
-                        <button class="btn btn-secondary" onclick="location.href='/mng/board/${notice.id}/notice-delete'" type="button">삭제하기</button>
+                        <button class="btn btn-secondary" onclick="location.href='/mng/notice/${notice.id}/delete'" type="button">삭제하기</button>
                     </form>
                             </c:when>
                             <c:otherwise>
