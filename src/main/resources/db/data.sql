@@ -109,7 +109,12 @@ insert into option_tb(second_category_id, name, price) values (15, '거주청소
 
 insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (1, '2024-01-30', '14:00:00', true, now());
 
-insert into address_info_tb(user_id, address) values (1, 'test 주소1');
+insert into address_info_tb(user_id, address, address_detail, choice) values (1, 'test 주소1', 'test1동 test1호', true);
+insert into address_info_tb(user_id, address, address_detail) values (1, 'test 주소2', 'test2동 test2호');
+insert into address_info_tb(user_id, address, address_detail) values (1, 'test 주소3', 'test3동 test3호');
+insert into address_info_tb(user_id, address, address_detail) values (1, 'test 주소4', 'test4동 test4호');
+
+
 
 insert into reservation_tb(address_info_id, info_id, created_at) values (1, 1, now());
 
