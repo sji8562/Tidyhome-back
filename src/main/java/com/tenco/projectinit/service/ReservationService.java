@@ -3,6 +3,7 @@ package com.tenco.projectinit.service;
 import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
 
+import com.tenco.projectinit.dto.responsedto.EnterResponseDTO;
 import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
 
 
@@ -13,9 +14,7 @@ import com.tenco.projectinit.repository.entity.Sale;
 import com.tenco.projectinit.repository.entity.User;
 
 
-
-
-
+import com.tenco.projectinit.repository.entity.sub_entity.Enter;
 import com.tenco.projectinit.repository.entity.sub_entity.Option;
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import com.tenco.projectinit.repository.entity.sub_entity.ReservationSuc;
@@ -49,16 +48,23 @@ public class ReservationService {
     private ReservationSucJPARepository reservationSucJPARepository;
     @Autowired
     private SaleJPARepository saleJPARepository;
+    @Autowired
+    private EnterJPARepository enterJPARepository;
 
 
 
     // 예약 목록을 보여주는 메서드
-    public Optional<ReservationDetailResponseDTO.ReservationList> getReservationList(Integer userId) {
+    public List<ReservationDetailResponseDTO.ReservationList> getReservationList(Integer userId) {
         return reservationRepository.findReservationByUserId(userId);
     }
 
+    // 완료 목록을 보여주는 메서드
+    public List<ReservationDetailResponseDTO.ReservationList> getCompletedReservationList(Integer userId) {
+        return reservationRepository.findCompletedReservationByUserId(userId);
+    }
+
     // 예약 상세 내역을 조회하는 메서드
-    public Optional<ReservationDetailResponseDTO.ReservationDetail> getReservationDetail(Integer reservationId) {
+    public List<ReservationDetailResponseDTO.ReservationDetail> getReservationDetail(Integer reservationId) {
         return reservationRepository.findReservationDetailById(reservationId);
     }
 
@@ -77,6 +83,16 @@ public class ReservationService {
         infoJPARepository.save(info);
     }
 
+    // 출입 방법 입력하는 메서드
+    public void updateEnter(Integer reservationId, EnterResponseDTO request) {
+        Enter enter = enterJPARepository.findEnterById(reservationId)
+                .orElseThrow(() -> new RuntimeException("Enter not found with id: " + reservationId));
+
+        enter.setEnter(request.getEnter()); // 들어가는 방법
+        enter.setEnterPassword(request.getEnterPassword()); // 현관 비밀번호
+
+        enterJPARepository.save(enter);
+    }
 
 
 
