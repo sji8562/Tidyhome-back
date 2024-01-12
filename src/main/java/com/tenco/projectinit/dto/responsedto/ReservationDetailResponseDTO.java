@@ -13,6 +13,13 @@ public class ReservationDetailResponseDTO {
         private Date reservationDate;
         private Time reservationTime;
         private String firstCategory;
+
+        public ReservationList(Integer reservationId, Date reservationDate, Time reservationTime, String firstCategory) {
+            this.reservationId = reservationId;
+            this.reservationDate = reservationDate;
+            this.reservationTime = reservationTime;
+            this.firstCategory = firstCategory;
+        }
     }
 
     @Data

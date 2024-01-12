@@ -26,11 +26,9 @@ public class CancelService {
         if(cancel != null) {
             cancel.setUpdateAt(new Timestamp(System.currentTimeMillis()));
             cancel.setPrice(sale.getPrice());
-//            sale.setStatus("환불코드넣기");
+            sale.setStatus(4);
             cancelJPARepository.save(cancel);
             saleJPARepository.save(sale);
-            System.out.println("결제번호: " + saleId);
-            System.out.println("환불금액:" + cancel.getPrice());
         }
     }
 

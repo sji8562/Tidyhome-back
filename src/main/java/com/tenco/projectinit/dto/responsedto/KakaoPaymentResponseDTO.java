@@ -40,7 +40,7 @@ public class KakaoPaymentResponseDTO {
     }
 
     @Data
-    public static class KakaoCancleDTO{
+    public static class KakaoCancelDTO{
         private String aid; // 요청 고유 번호
         private String tid; // 결제 고유 번호
         private String cid; // 가맹점 코드

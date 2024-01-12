@@ -1,8 +1,10 @@
 package com.tenco.projectinit.controller.mng;
 
 import com.tenco.projectinit.dto.mng.payListRequestDTO;
+import com.tenco.projectinit.dto.responsedto.KakaoPaymentResponseDTO;
 import com.tenco.projectinit.repository.entity.Sale;
 import com.tenco.projectinit.service.CancelService;
+import com.tenco.projectinit.service.KakaoPaymentServiece;
 import com.tenco.projectinit.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ public class MngPayController {
     private SaleService saleService;
     @Autowired
     private CancelService cancelService;
+    @Autowired
+    private KakaoPaymentServiece kakaoPaymentServiece;
 
     // 결제 내역 목록 조회
     @GetMapping("list")
@@ -33,10 +37,11 @@ public class MngPayController {
         return "/mng/pay/list";
     }
 
-    // 환불 신청 승인
+    // 환불 신청 승인 - 카카오페이 환불 추가해야함
     @PostMapping("cancel")
     public String cancelApprove(@RequestParam Integer saleId) {
         cancelService.cancelApprove(saleId);
+//        kakaoPaymentServiece.kakaoPayCancel();
         return "redirect:/mng/pay/list";
     }
 

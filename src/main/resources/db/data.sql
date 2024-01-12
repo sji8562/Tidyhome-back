@@ -107,6 +107,9 @@ insert into option_tb(second_category_id, name, price) values (15, '거주청소
 
 
 insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (1, '2024-01-30', '14:00:00', true, now());
+insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (17, '2024-01-20', '09:00:00', true, now());
+insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (34, '2024-01-20', '18:00:00', true, now());
+
 
 insert into address_info_tb(user_id, address, address_detail, choice) values (1, 'test 주소1', 'test1동 test1호', true);
 insert into address_info_tb(user_id, address, address_detail) values (1, 'test 주소2', 'test2동 test2호');
@@ -116,13 +119,24 @@ insert into address_info_tb(user_id, address, address_detail) values (1, 'test �
 
 
 insert into reservation_tb(address_info_id, info_id, created_at) values (1, 1, now());
+insert into reservation_tb(address_info_id, info_id, created_at) values (2, 2, now());
+insert into reservation_tb(address_info_id, info_id, created_at) values (3, 3, now());
 
-insert into sale_tb(user_id, price, created_at) values (1, 25000, now());
+insert into sale_tb(user_id, price, created_at, status) values (1, 25000, now(), 1);
+insert into sale_tb(user_id, price, created_at, status) values (2, 37000, now(), 3);
+insert into sale_tb(user_id, price, created_at, status) values (1, 17000, now(), 4);
 
 insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (1, 1, now());
+insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (2, 2, now());
+insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (3, 3, now());
 
 insert into notice_tb(title, content, created_at) values ('공지1', '공지1 내용', now());
-insert into notice_tb(title, content, created_at) values ('공지1', '공지1 내용', now());
-insert into notice_tb(title, content, created_at) values ('공지1', '공지1 내용', now());
+
+insert into notice_tb(title, content, created_at) values ('공지2', '공지2 내용', now());
+insert into notice_tb(title, content, created_at) values ('공지3', '공지3 내용', now());
+
+
 
 insert into cancel_tb(sale_id, created_at, price) values (1, now(), 25000);
+insert into cancel_tb(sale_id, created_at, price) values (2, now(), 37000);
+insert into cancel_tb(sale_id, created_at, price) values (3, now(), 17000);

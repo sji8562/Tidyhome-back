@@ -2,6 +2,7 @@ package com.tenco.projectinit.dto.responsedto;
 
 import lombok.Data;
 
+
 public class EnterResponseDTO {
     @Data
     public static class EnterDTO{
@@ -16,5 +17,6 @@ public class EnterResponseDTO {
             this.enter = enter;
             this.password = password;
         }
+
     }
 }

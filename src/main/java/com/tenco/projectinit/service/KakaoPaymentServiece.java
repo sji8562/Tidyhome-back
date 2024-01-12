@@ -136,7 +136,7 @@ public class KakaoPaymentServiece {
         Integer price = option.getPrice();
         Optional<KakaoPayment> optionalKakaoPayment = kakaoPaymentJPARepository.findByUser(user);
         KakaoPayment kakaoPayment = optionalKakaoPayment.get();
-        Sale sale = new Sale(null, user, price, kakaoPayment, null, tid);
+        Sale sale = new Sale(null, user, price, kakaoPayment, null, tid, 1);
         saleJPARepository.save(sale);
         ReservationSuc reservationSuc = new ReservationSuc(null, reservation, sale, null);
 
@@ -145,7 +145,7 @@ public class KakaoPaymentServiece {
         return approveResponse;
     }
 
-    public KakaoPaymentResponseDTO.KakaoApproveResponse kakaoPayCancle(KakaoPaymentRequestDTO.KakaoApproveDTO kakaoApproveDTO, Integer id) {
+    public KakaoPaymentResponseDTO.KakaoApproveResponse kakaoPayCancel(KakaoPaymentRequestDTO.KakaoApproveDTO kakaoApproveDTO, Integer id) {
         Optional<ReservationSuc> optionalReservationSuc = reservationSucJPARepository.findById(kakaoApproveDTO.getReservationId());
         ReservationSuc reservationSuc = optionalReservationSuc.get();
         Reservation reservation = reservationSuc.getReservation();

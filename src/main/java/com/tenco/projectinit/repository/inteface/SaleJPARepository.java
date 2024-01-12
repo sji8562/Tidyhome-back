@@ -13,7 +13,7 @@ public interface SaleJPARepository extends JpaRepository<Sale, Integer> {
     List<Sale> findAllSalesWithUsers();
 
     // 카테고리 이름
-    @Query("SELECT DISTINCT fc.name " +
+    @Query("SELECT fc.name " +
             "FROM FirstCategory fc " +
             "JOIN SecondCategory sc ON fc.id = sc.firstCategory.id " +
             "JOIN Option o ON sc.id = o.secondCategory.id " +

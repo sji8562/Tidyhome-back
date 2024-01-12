@@ -35,10 +35,10 @@ public class KaokaopayRestController {
     }
 
     // 결제 취소
-    @PostMapping("/cancle")
-    public ResponseEntity<?> kakaoPayCancle(@RequestBody KakaoPaymentRequestDTO.KakaoApproveDTO kakaoApproveDTO, HttpSession session){
+    @PostMapping("/cancel")
+    public ResponseEntity<?> kakaoPayCancel(@RequestBody KakaoPaymentRequestDTO.KakaoApproveDTO kakaoApproveDTO, HttpSession session){
         User sessionUser = (User) session.getAttribute("sessionUser");
-        KakaoPaymentResponseDTO.KakaoApproveResponse kakaoApproveResponse = kakaoPaymentServiece.kakaoPayCancle(kakaoApproveDTO, sessionUser.getId());
+        KakaoPaymentResponseDTO.KakaoApproveResponse kakaoApproveResponse = kakaoPaymentServiece.kakaoPayCancel(kakaoApproveDTO, sessionUser.getId());
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 }
