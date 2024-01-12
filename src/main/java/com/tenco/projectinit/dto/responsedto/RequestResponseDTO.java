@@ -1,5 +1,6 @@
 package com.tenco.projectinit.dto.responsedto;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 
 public class RequestResponseDTO {
@@ -17,4 +18,5 @@ public class RequestResponseDTO {
             this.otherRequest = otherRequest;
         }
     }
+
 }

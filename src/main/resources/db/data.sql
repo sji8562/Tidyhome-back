@@ -2,7 +2,7 @@
 insert into admin_tb(admin_name,admin_password, created_at) values ('admin','1234',now());
 
 
-
+insert into user_tb(tel,created_at) values ('1234',now());
 insert into user_tb(tel,created_at) values ('01093971773',now());
 insert into user_tb(tel,created_at) values ('01012345678',now());
 insert into user_tb(tel,created_at) values ('01058288562',now());
@@ -10,7 +10,6 @@ insert into user_tb(tel,created_at) values ('01051515151',now());
 insert into user_tb(tel,created_at) values ('01051519595',now());
 insert into user_tb(tel,created_at) values ('01095953535',now());
 insert into user_tb(tel,created_at) values ('01095959595',now());
-insert into user_tb(tel,created_at) values ('1234',now());
 
 
 
@@ -111,9 +110,13 @@ insert into info_tb(option_id, reservation_date, reservation_time, pet, created_
 insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (17, '2024-01-20', '09:00:00', true, now());
 insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (34, '2024-01-20', '18:00:00', true, now());
 
-insert into address_info_tb(user_id, address) values (1, 'test 주소1');
-insert into address_info_tb(user_id, address) values (2, 'test 주소2');
-insert into address_info_tb(user_id, address) values (3, 'test 주소3');
+
+insert into address_info_tb(user_id, address, address_detail, choice) values (1, 'test 주소1', 'test1동 test1호', true);
+insert into address_info_tb(user_id, address, address_detail) values (1, 'test 주소2', 'test2동 test2호');
+insert into address_info_tb(user_id, address, address_detail) values (1, 'test 주소3', 'test3동 test3호');
+insert into address_info_tb(user_id, address, address_detail) values (1, 'test 주소4', 'test4동 test4호');
+
+
 
 insert into reservation_tb(address_info_id, info_id, created_at) values (1, 1, now());
 insert into reservation_tb(address_info_id, info_id, created_at) values (2, 2, now());
@@ -128,8 +131,11 @@ insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (2, 2
 insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (3, 3, now());
 
 insert into notice_tb(title, content, created_at) values ('공지1', '공지1 내용', now());
+
 insert into notice_tb(title, content, created_at) values ('공지2', '공지2 내용', now());
 insert into notice_tb(title, content, created_at) values ('공지3', '공지3 내용', now());
+
+
 
 insert into cancel_tb(sale_id, created_at, price) values (1, now(), 25000);
 insert into cancel_tb(sale_id, created_at, price) values (2, now(), 37000);

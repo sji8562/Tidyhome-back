@@ -64,8 +64,8 @@
 
                 </div>
                 <div>
-                    <button type="button" class="btn btn-success" onclick="location.href='/mng/board/${notice.id}/notice-update'">수정</button>
-                    <button type="button" class="btn btn-danger" onclick="location.href='/mng/board/${notice.id}/notice-delete'">삭제</button>
+                    <button type="button" class="btn btn-success" onclick="location.href='/mng/notice/${notice.id}/update'">수정</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='/mng/notice/${notice.id}/delete'">삭제</button>
                 </div>
                         </c:when>
                 <c:otherwise>

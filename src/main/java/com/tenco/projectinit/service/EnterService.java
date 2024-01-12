@@ -1,12 +1,13 @@
 package com.tenco.projectinit.service;
 
-import com.tenco.projectinit.dto.requestdto.RequestRequestDTO;
-import com.tenco.projectinit.dto.responsedto.RequestResponseDTO;
+import com.tenco.projectinit.dto.requestdto.EnterRequestDTO;
+import com.tenco.projectinit.dto.responsedto.EnterResponseDTO;
 import com.tenco.projectinit.repository.entity.EtcInfo;
 import com.tenco.projectinit.repository.entity.Info;
+import com.tenco.projectinit.repository.entity.sub_entity.Enter;
 import com.tenco.projectinit.repository.entity.sub_entity.Request;
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
-import com.tenco.projectinit.repository.entity.sub_entity.ReservationSuc;
+import com.tenco.projectinit.repository.inteface.EnterJPARepository;
 import com.tenco.projectinit.repository.inteface.EtcInfoJPARepository;
 import com.tenco.projectinit.repository.inteface.RequestJPARepository;
 import com.tenco.projectinit.repository.inteface.ReservationJPARepository;
@@ -17,19 +18,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-public class RequestService {
+public class EnterService {
     @Autowired
-    private RequestJPARepository requestJPARepository;
+    private EnterJPARepository enterJPARepository;
     @Autowired
     private ReservationJPARepository reservationJPARepository;
     @Autowired
     private EtcInfoJPARepository etcInfoJPARepository;
 
     @Transactional
-    public RequestResponseDTO.RequestDTO requestEtc(RequestRequestDTO.EtcDTO etcDTO) {
-
-        // 예약 아이디 찾기
-        Integer reservationId = etcDTO.getReservationId();
+    public EnterResponseDTO.EnterDTO Enter(EnterRequestDTO.EnterDTO enterDTO) {
+        Integer reservationId = enterDTO.getReservationId();
         Optional<Reservation> optionalReservation = reservationJPARepository.findById(reservationId);
         Reservation reservation = optionalReservation.get();
         Info info = reservation.getInfo();
@@ -40,26 +39,21 @@ public class RequestService {
 
         etcInfoJPARepository.save(etcInfo);
 
-        // 아이디 찾아서 엔티티 생성
-        Request request = Request.builder()
-                .special(etcDTO.getSpecial())
-                .otherRequest(etcDTO.getOther())
+        Enter enter = Enter.builder()
                 .etcInfo(etcInfo)
+                .enter(enterDTO.getEnter())
+                .enterPassword(enterDTO.getPassword())
                 .build();
 
-        requestJPARepository.save(request);
+        enterJPARepository.save(enter);
 
-
-        return new RequestResponseDTO.RequestDTO(request.getId(), etcInfo.getId(), request.getSpecial(), request.getOtherRequest());
+        return  new EnterResponseDTO.EnterDTO(enter.getId(), etcInfo.getId(), enter.getEnter(), enter.getEnterPassword());
     }
 
-    public void requestDelete(RequestRequestDTO.EtcDeleteDTO etcDeleteDTO) {
-        Integer requestId = etcDeleteDTO.getRequestId();
-        Optional<Request> optionalRequest = requestJPARepository.findById(requestId);
-        Request request = optionalRequest.get();
-        requestJPARepository.delete(request);
+    public void EnterDelete(EnterRequestDTO.EnterDeleteDTO enterDeleteDTO) {
+        Integer enterId = enterDeleteDTO.getEnterId();
+        Optional<Enter> optionalEnter = enterJPARepository.findById(enterId);
+        Enter enter = optionalEnter.get();
+        enterJPARepository.delete(enter);
     }
-
-
 }
-
