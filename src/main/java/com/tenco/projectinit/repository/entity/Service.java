@@ -21,8 +21,7 @@ public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    private Integer code;
+    private String name;
 
     @Column(length = 256)
     @CreationTimestamp
