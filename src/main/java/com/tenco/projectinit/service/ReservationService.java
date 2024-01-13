@@ -88,8 +88,8 @@ public class ReservationService {
         Enter enter = enterJPARepository.findEnterById(reservationId)
                 .orElseThrow(() -> new RuntimeException("Enter not found with id: " + reservationId));
 
-        enter.setEnter(request.getEnter()); // 들어가는 방법
-        enter.setEnterPassword(request.getEnterPassword()); // 현관 비밀번호
+//        enter.setEnter(request.getEnter()); // 들어가는 방법
+//        enter.setEnterPassword(request.getEnterPassword()); // 현관 비밀번호
 
         enterJPARepository.save(enter);
     }

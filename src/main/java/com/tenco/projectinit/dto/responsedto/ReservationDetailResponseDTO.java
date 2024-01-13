@@ -21,6 +21,21 @@ public class ReservationDetailResponseDTO {
             this.firstCategory = firstCategory;
         }
     }
+    @Data
+    public static class ReservationCompleteList {
+        private Integer reservationId;
+        private Date reservationDate;
+        private Time reservationTime;
+        private String firstCategory;
+        private Integer status;
+        public ReservationCompleteList(Integer reservationId, Date reservationDate, Time reservationTime, String firstCategory,Integer status) {
+            this.reservationId = reservationId;
+            this.reservationDate = reservationDate;
+            this.reservationTime = reservationTime;
+            this.firstCategory = firstCategory;
+            this.status = status;
+        }
+    }
 
     @Data
     public static class ReservationDetail {
