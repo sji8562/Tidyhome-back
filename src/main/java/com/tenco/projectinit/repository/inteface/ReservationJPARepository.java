@@ -27,7 +27,7 @@ public interface ReservationJPARepository extends JpaRepository<Reservation, Int
             + "AND s.status = 1 ")
     List<ReservationDetailResponseDTO.ReservationList> findReservationByUserId(@Param("userId") Integer userId); // 예약 목록
 
-    @Query("SELECT new com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO$ReservationList(i.id AS reservationId, i.reservationDate, i.reservationTime, fc.name) "
+    @Query("SELECT new com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO$ReservationCompleteList(i.id AS reservationId, i.reservationDate, i.reservationTime, fc.name,s.status) "
             + "FROM AddressInfo ai "
             + "JOIN Reservation r ON ai.id = r.addressInfo.id "
             + "JOIN Info i ON r.info.id = i.id "
