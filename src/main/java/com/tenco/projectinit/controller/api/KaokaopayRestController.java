@@ -22,7 +22,7 @@ public class KaokaopayRestController {
     public ResponseEntity<?> kakaoPayReady(@RequestBody KakaoPaymentRequestDTO.KakaoReadyDTO kakaoReadyDTO ,HttpSession session) {
         Integer reservationId = kakaoReadyDTO.getReservationId();
         User sessionUser = (User) session.getAttribute("sessionUser");
-      KakaoPaymentResponseDTO.KakaoReadyDTO kakaoPay = kakaoPaymentServiece.kakaoPayReady(sessionUser.getId(), reservationId);
+        KakaoPaymentResponseDTO.KakaoReadyDTO kakaoPay = kakaoPaymentServiece.kakaoPayReady(sessionUser.getId(), reservationId);
         return ResponseEntity.ok().body(ApiUtils.success(kakaoPay));
     }
 
@@ -35,10 +35,10 @@ public class KaokaopayRestController {
     }
 
     // 결제 취소
-    @PostMapping("/cancel")
-    public ResponseEntity<?> kakaoPayCancel(@RequestBody KakaoPaymentRequestDTO.KakaoApproveDTO kakaoApproveDTO, HttpSession session){
+    @PostMapping("/cancle")
+    public ResponseEntity<?> kakaoPayCancle(@RequestBody KakaoPaymentRequestDTO.KakaoCancleDTO kakaoCancleDTO, HttpSession session){
         User sessionUser = (User) session.getAttribute("sessionUser");
-        KakaoPaymentResponseDTO.KakaoApproveResponse kakaoApproveResponse = kakaoPaymentServiece.kakaoPayCancel(kakaoApproveDTO, sessionUser.getId());
-        return ResponseEntity.ok().body(ApiUtils.success(null));
+        KakaoPaymentResponseDTO.KakaoCancleDTO cancleDTO = kakaoPaymentServiece.kakaoPayCancle(kakaoCancleDTO, sessionUser.getId());
+        return ResponseEntity.ok().body(ApiUtils.success(cancleDTO));
     }
 }
