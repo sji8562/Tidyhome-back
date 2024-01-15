@@ -42,8 +42,9 @@ public class ReservationRestController {
     @PostMapping("/")
     public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister request) {
 
-        Reservation reservation = reservationService.reservationRegister(request);
-        return ResponseEntity.ok().body(ApiUtils.success(reservation));
+        int reservationId = reservationService.reservationRegister(request);
+        ReservationDetailResponseDTO.ReservationDetail reservationDetail = reservationService.getReservationDetail(reservationId);
+        return ResponseEntity.ok().body(ApiUtils.success(reservationDetail));
     }
 
 

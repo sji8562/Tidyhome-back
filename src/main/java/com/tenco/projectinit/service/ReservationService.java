@@ -161,7 +161,7 @@ public class ReservationService {
 
 
 
-    public Reservation reservationRegister(ReservationRequestDTO.ReservationRegister request) {
+    public int reservationRegister(ReservationRequestDTO.ReservationRegister request) {
         // 옵션 찾기
         Integer optionId = request.getOptionId();
         Option option = optionJPARepository.findById(optionId)
@@ -187,7 +187,7 @@ public class ReservationService {
         // 레저베이션 저장하고
         reservationRepository.save(reservation);
         // 레저베이션 아이디 리턴
-        return reservation;
+        return reservation.getId();
 
     }
 
