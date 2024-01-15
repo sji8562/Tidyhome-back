@@ -64,7 +64,7 @@ public class ReservationService {
     }
 
     // 예약 상세 내역을 조회하는 메서드
-    public List<ReservationDetailResponseDTO.ReservationDetail> getReservationDetail(Integer reservationId) {
+    public ReservationDetailResponseDTO.ReservationDetail getReservationDetail(Integer reservationId) {
         return reservationRepository.findReservationDetailById(reservationId);
     }
 
@@ -161,7 +161,7 @@ public class ReservationService {
 
 
 
-    public Integer reservationRegister(ReservationRequestDTO.ReservationRegister request) {
+    public Reservation reservationRegister(ReservationRequestDTO.ReservationRegister request) {
         // 옵션 찾기
         Integer optionId = request.getOptionId();
         Option option = optionJPARepository.findById(optionId)
@@ -187,7 +187,7 @@ public class ReservationService {
         // 레저베이션 저장하고
         reservationRepository.save(reservation);
         // 레저베이션 아이디 리턴
-        return reservation.getId();
+        return reservation;
 
     }
 
