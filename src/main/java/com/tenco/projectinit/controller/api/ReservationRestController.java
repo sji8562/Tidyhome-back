@@ -3,23 +3,20 @@ package com.tenco.projectinit.controller.api;
 import com.tenco.projectinit._core.utils.ApiUtils;
 import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
 import com.tenco.projectinit.dto.responsedto.EnterResponseDTO;
+import com.tenco.projectinit.dto.responsedto.RequestResponseDTO;
 import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
 import com.tenco.projectinit.dto.responsedto.ReservationResponseDTO;
 import com.tenco.projectinit.repository.entity.User;
+import com.tenco.projectinit.repository.entity.sub_entity.Enter;
 import com.tenco.projectinit.service.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservation")
@@ -86,9 +83,21 @@ public class ReservationRestController {
 
     // 출입방법 입력
     @PostMapping("/list/{reservationId}/enter")
-    public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO request) {
-        reservationService.updateEnter(reservationId, request);
+    public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO.EnterDTO request) {
         try {
+            reservationService.updateEnter(reservationId, request);
+            return ResponseEntity.ok(ApiUtils.success(null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
+        }
+    }
+
+    // 출입방법 삭제
+    @PostMapping("/list/{reservationId}/enter/delete")
+    public ResponseEntity<?> deleteEnter(@PathVariable Integer reservationId) {
+        try {
+            reservationService.deleteEnter(reservationId);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -97,5 +106,26 @@ public class ReservationRestController {
     }
 
     // 기타 요청사항 입력
+    @PostMapping("/list/{reservationId}/request")
+    public ResponseEntity<?> updateRequest(@PathVariable Integer reservationId, @RequestBody RequestResponseDTO.RequestDTO request) {
+        try {
+            reservationService.updateRequest(reservationId, request);
+            return ResponseEntity.ok(ApiUtils.success(null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
+        }
+    }
 
+    // 기타 요청사항 삭제
+    @PostMapping("/list/{reservationId}/request/delete")
+    public ResponseEntity<?> deleteRequest(@PathVariable Integer reservationId) {
+        try {
+            reservationService.deleteRequest(reservationId);
+            return ResponseEntity.ok(ApiUtils.success(null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
+        }
+    }
 }
