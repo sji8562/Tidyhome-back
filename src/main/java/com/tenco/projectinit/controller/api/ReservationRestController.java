@@ -6,7 +6,6 @@ import com.tenco.projectinit.dto.responsedto.EnterResponseDTO;
 import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
 import com.tenco.projectinit.dto.responsedto.ReservationResponseDTO;
 import com.tenco.projectinit.repository.entity.User;
-import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import com.tenco.projectinit.service.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -41,9 +40,9 @@ public class ReservationRestController {
     // 예약 등록
     @PostMapping("/")
     public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister request) {
-
-        Reservation reservation = reservationService.reservationRegister(request);
-        return ResponseEntity.ok().body(ApiUtils.success(reservation));
+        Integer reservationID = reservationService.reservationRegister(request);
+        ReservationDetailResponseDTO.ReservationDetail reservationDetail = reservationService.getReservationDetail(reservationID);
+        return ResponseEntity.ok().body(ApiUtils.success(reservationDetail));
     }
 
 
