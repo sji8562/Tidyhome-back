@@ -19,4 +19,15 @@ public class EnterResponseDTO {
         }
 
     }
+
+    @Data
+    public static class InquiryDTO{
+        private String enter;
+        private String pasword;
+
+        public InquiryDTO(String enter, String pasword) {
+            this.enter = enter;
+            this.pasword = pasword;
+        }
+    }
 }
