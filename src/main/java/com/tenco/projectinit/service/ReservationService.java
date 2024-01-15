@@ -83,6 +83,7 @@ public class ReservationService {
         infoJPARepository.save(info);
     }
 
+
     // 출입 방법 입력 메서드
 //    public void updateEnter(Integer reservationId, EnterResponseDTO responseDTO) {
 //        EtcInfo etcInfo = etcInfoJPARepository.findEtcInfoIdByReservationId(reservationId);
@@ -112,6 +113,7 @@ public class ReservationService {
                 .enter(request.getEnter())
                 .enterPassword(request.getPassword())
                 .build();
+
 
         enterJPARepository.save(enter);
     }
