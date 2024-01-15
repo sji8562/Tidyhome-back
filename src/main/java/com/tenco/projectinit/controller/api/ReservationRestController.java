@@ -35,7 +35,7 @@ public class ReservationRestController {
     }
 
     // 예약 등록
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister request) {
         Integer reservationID = reservationService.reservationRegister(request);
         return ResponseEntity.ok().body(ApiUtils.success(new ReservationResponseDTO.ReservationDTO(reservationID)));
@@ -83,7 +83,7 @@ public class ReservationRestController {
 
     // 출입방법 입력
     @PostMapping("/list/{reservationId}/enter")
-    public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO request) {
+    public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO.EnterDTO request) {
         try {
             reservationService.updateEnter(reservationId, request);
             return ResponseEntity.ok(ApiUtils.success(null));

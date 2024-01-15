@@ -290,21 +290,21 @@
 								<!-- 대여신청 -->
 								<li class="sidebar-item"><a
 									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/board/noticeList"> <i
+									href="/mng/notice/list"> <i
 										class="mdi mdi-information-outline"></i> <span
 										class="hide-menu">공지사항</span>
 								</a></li>
 								<!-- 자주 묻는 질문 -->
 								<li class="sidebar-item"><a
 									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/board/faq-list?keyword="> <i
+									href="/mng/faq/list"> <i
 										class="mdi mdi-comment-question-outline"></i> <span
 										class="hide-menu">자주 묻는 질문</span>
 								</a></li>
 								<!-- 1:1 문의 -->
 								<li class="sidebar-item"><a
 									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/board/qna?keyword="> <i class="mdi mdi-forum"></i>
+									href="/mng/board/qna"> <i class="mdi mdi-forum"></i>
 										<span class="hide-menu">1:1 문의</span>
 								</a></li>
 								<li class="sidebar-item"><a

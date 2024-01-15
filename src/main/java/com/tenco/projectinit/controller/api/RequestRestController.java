@@ -18,10 +18,19 @@ public class RequestRestController {
     @Autowired
     private RequestService requestService;
 
-    @PostMapping
-    public ResponseEntity<?> request(@RequestBody RequestRequestDTO.EtcDTO etcDTO) {
-        RequestResponseDTO.RequestDTO requestDTO = requestService.request(etcDTO);
+    // 기타 요청사항
+    @PostMapping("/etc")
+    public ResponseEntity<?> requestEtc(@RequestBody RequestRequestDTO.EtcDTO etcDTO) {
+        RequestResponseDTO.RequestDTO requestDTO = requestService.requestEtc(etcDTO);
+        return ResponseEntity.ok().body(ApiUtils.success(requestDTO));
+    }
+
+    // 기타 요청사항 삭제
+    @PostMapping("/etc-delete")
+    public ResponseEntity<?> requestDelete(@RequestBody RequestRequestDTO.EtcDeleteDTO etcDeleteDTO) {
+        requestService.requestDelete(etcDeleteDTO);
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
+
 
 }

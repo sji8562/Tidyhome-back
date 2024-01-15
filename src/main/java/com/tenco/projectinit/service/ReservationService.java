@@ -48,6 +48,8 @@ public class ReservationService {
     private EtcInfoJPARepository etcInfoJPARepository;
     @Autowired
     private RequestJPARepository requestJPARepository;
+    @Autowired
+    private WaitJPARepository waitJPARepository;
 
 
 
@@ -82,13 +84,35 @@ public class ReservationService {
     }
 
     // 출입 방법 입력 메서드
-    public void updateEnter(Integer reservationId, EnterResponseDTO responseDTO) {
-        EtcInfo etcInfo = etcInfoJPARepository.findEtcInfoIdByReservationId(reservationId);
+//    public void updateEnter(Integer reservationId, EnterResponseDTO responseDTO) {
+//        EtcInfo etcInfo = etcInfoJPARepository.findEtcInfoIdByReservationId(reservationId);
+//        Enter enter = Enter.builder()
+//                .etcInfo(etcInfo)
+//                .enter(responseDTO.getEnter())
+//                .enterPassword(responseDTO.getEnterPassword())
+//                .build();
+
+    // 출입 방법 입력 메서드
+    public void updateEnter(Integer reservationId, EnterResponseDTO.EnterDTO request) {
+        Info info = infoJPARepository.findByReservationId(reservationId);
+
+        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
+
+        EtcInfo etcInfo = wait.getEtcInfo();
+        if(etcInfo == null) {
+            etcInfo = EtcInfo.builder()
+                    .info(info)
+                    .build();
+            etcInfoJPARepository.save(etcInfo);
+            wait.setEtcInfo(etcInfo);
+        }
+
         Enter enter = Enter.builder()
                 .etcInfo(etcInfo)
-                .enter(responseDTO.getEnter())
-                .enterPassword(responseDTO.getEnterPassword())
+                .enter(request.getEnter())
+                .enterPassword(request.getPassword())
                 .build();
+
         enterJPARepository.save(enter);
     }
 
@@ -103,7 +127,19 @@ public class ReservationService {
 
     // 기타 요청사항 입력 메서드
     public void updateRequest(Integer reservationId, RequestResponseDTO.RequestDTO responseDTO) {
-        EtcInfo etcInfo = etcInfoJPARepository.findEtcInfoIdByReservationId(reservationId);
+        Info info = infoJPARepository.findByReservationId(reservationId);
+
+        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
+
+        EtcInfo etcInfo = wait.getEtcInfo();
+        if(etcInfo == null) {
+            etcInfo = EtcInfo.builder()
+                    .info(info)
+                    .build();
+            etcInfoJPARepository.save(etcInfo);
+            wait.setEtcInfo(etcInfo);
+        }
+
         Request request = Request.builder()
                 .etcInfo(etcInfo)
                 .special(responseDTO.getSpecial())

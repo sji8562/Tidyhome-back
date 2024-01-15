@@ -24,7 +24,7 @@
             <div class="col-7 align-self-center">
                 <div class="d-flex align-items-center justify-content-end">
                     <button class="btn btn-primary btn-sm ml-2"
-                            onclick="location.href='/mng/board/notice-submit'">
+                            onclick="location.href='/mng/notice/save'">
                         등록하기
                     </button>
                 </div>
@@ -67,32 +67,32 @@
                                         <c:choose>
                                         <c:when test="${noticeList != null }">
 
-                                            <c:forEach var="noticeList" items="${noticeList}">
+                                            <c:forEach var="noticeList" items="${noticeList.content}">
                                                 <tr>
                                                     <th class="applyDetail" scope="row"><a
-                                                            href="/mng/board/${noticeList.id}/notice-detail">${noticeList.id}</a>
+                                                            href="/mng/notice/${noticeList.id}/detail">${noticeList.id}</a>
                                                     </th>
                                                     <td class="applyDetail"><a
-                                                            href="/mng/board/${noticeList.id}/notice-detail">${noticeList.title}</a>
+                                                            href="/mng/notice/${noticeList.id}/detail">${noticeList.title}</a>
                                                     </td>
 
                                                     <td class="applyDetail"><a
-                                                            href="/mng/board/${noticeList.id}/notice-detail">${noticeList.userName}</a>
+                                                            href="/mng/notice/${noticeList.id}/detail">관리자</a>
                                                     </td>
                                                     <td class="applyDetail"><a
-                                                            href="/mng/board/${noticeList.id}/notice-detail"><fmt:formatDate value="${noticeList.createdAt }" pattern="yyyy. MM. dd" /></a>
+                                                            href="/mng/notice/${noticeList.id}/detail"><fmt:formatDate value="${noticeList.createdAt }" pattern="yyyy. MM. dd" /></a>
                                                     </td>
 
                                                     <td>
                                                         <div>
                                                             <button class="btn btn-success"
                                                                     style="border: 1px solid black"
-                                                                    onclick="location.href='/mng/board/${noticeList.id}/notice-update'">
+                                                                    onclick="location.href='/mng/notice/${noticeList.id}/update'">
                                                                 수정
                                                             </button>
                                                             &nbsp;&nbsp;
                                                             <button class="btn-danger btn"
-                                                                    onclick="location.href='/mng/board/${noticeList.id}/notice-delete'">
+                                                                    onclick="location.href='/mng/notice/${noticeList.id}/delete'">
                                                                 삭제
                                                             </button>
                                                         </div>
@@ -109,25 +109,13 @@
                                     </table>
                                 </div>
                                 <div style="display: block; text-align: center;">
-                                    <c:if test="${paging.startPage != 1 }">
-                                        <a
-                                                href="noticeList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
-                                    </c:if>
-                                    <c:forEach begin="${paging.startPage }"
-                                               end="${paging.endPage }" var="p">
-                                        <c:choose>
-                                            <c:when test="${p == paging.nowPage }">
-                                                <b>${p }</b>
-                                            </c:when>
-                                            <c:when test="${p != paging.nowPage }">
-                                                <a href="noticeList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
-                                            </c:when>
-                                        </c:choose>
-                                    </c:forEach>
-                                    <c:if test="${paging.endPage != paging.lastPage}">
-                                        <a
-                                                href="noticeList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
-                                    </c:if>
+                                    <ul class="pagination d-flex justify-content-center">
+                                        <li class="page-item <c:if test="${noticeList.first}">disabled</c:if>"><a class="page-link"
+                                                                                                                 href="?page=${prevPage}">Previous</a>
+                                        </li>
+                                        <li class="page-item <c:if test="${noticeList.last}">disabled</c:if>"><a class="page-link"
+                                                                                                                href="?page=${nextPage}">Next</a></li>
+                                    </ul>
                                 </div>
 
                             </div>
