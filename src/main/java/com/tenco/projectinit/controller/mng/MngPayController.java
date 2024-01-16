@@ -4,7 +4,8 @@ import com.tenco.projectinit.dto.mng.payListRequestDTO;
 import com.tenco.projectinit.dto.responsedto.KakaoPaymentResponseDTO;
 import com.tenco.projectinit.repository.entity.Sale;
 import com.tenco.projectinit.service.CancelService;
-import com.tenco.projectinit.service.KakaoPaymentServiece;
+
+
 import com.tenco.projectinit.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,15 +26,15 @@ public class MngPayController {
     private SaleService saleService;
     @Autowired
     private CancelService cancelService;
-    @Autowired
-    private KakaoPaymentServiece kakaoPaymentServiece;
+
+
 
     // 결제 내역 목록 조회
     @GetMapping("list")
     public String payList(Model model) {
-        List<Sale> saleList = saleService.getList();
-        List<payListRequestDTO.payListDTO> payList = saleService.getCategoryName(saleList);
-        model.addAttribute("payList", payList);
+//        List<Sale> saleList = saleService.getList();
+//        List<payListRequestDTO.payListDTO> payList = saleService.getCategoryName(saleList);
+//        model.addAttribute("payList", payList);
         return "/mng/pay/list";
     }
 

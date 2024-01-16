@@ -30,7 +30,6 @@ public class Info {
     @ManyToOne(fetch = FetchType.LAZY)
     private Option option;
 
-
     private String reservationDate;
     private String reservationTime;
 

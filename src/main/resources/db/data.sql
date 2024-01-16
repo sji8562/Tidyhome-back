@@ -698,9 +698,7 @@ insert into sale_tb(user_id, price, created_at, status) values (1, 25000, now(),
 insert into sale_tb(user_id, price, created_at, status) values (2, 37000, now(), 3);
 insert into sale_tb(user_id, price, created_at, status) values (1, 17000, now(), 4);
 
-insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (1, 1, now());
-insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (2, 2, now());
-insert into reservation_suc_tb(reservation_id, sale_id, created_at) values (3, 3, now());
+
 
 insert into notice_tb(title, content, created_at) values ('공지1', '공지1 내용', now());
 
