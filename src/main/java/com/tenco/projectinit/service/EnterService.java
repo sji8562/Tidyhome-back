@@ -57,11 +57,11 @@ public class EnterService {
         enterJPARepository.delete(enter);
     }
 
-    public EnterResponseDTO.InquiryDTO inquiry(Integer enterId) {
-        Optional<Enter> optionalEnter = enterJPARepository.findEnterById(enterId);
+    public EnterResponseDTO.InquiryDTO inquiry(Integer reservationId) {
+        Optional<Enter> optionalEnter = enterJPARepository.findEnterById(reservationId);
         Enter enter = optionalEnter.get();
         String howenter = enter.getEnter();
         String enterPassword = enter.getEnterPassword();
-        return new EnterResponseDTO.InquiryDTO(enterId, howenter, enterPassword);
+        return new EnterResponseDTO.InquiryDTO(reservationId, howenter, enterPassword);
     }
 }
