@@ -16,8 +16,8 @@ public class RequestRestController {
     private RequestService requestService;
 
     @GetMapping("/inquiry")
-    public ResponseEntity<?> inquiry(@RequestParam Integer requestId){
-       RequestResponseDTO.RequestDTO requestDTO = requestService.inquiry(requestId);
+    public ResponseEntity<?> inquiry(@RequestParam Integer reservationId){
+       RequestResponseDTO.RequestDTO requestDTO = requestService.inquiry(reservationId);
         return ResponseEntity.ok().body(ApiUtils.success(requestDTO));
     }
 

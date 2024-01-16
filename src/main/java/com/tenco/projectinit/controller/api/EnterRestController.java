@@ -15,8 +15,8 @@ public class EnterRestController {
     private EnterService enterService;
 
     @GetMapping("/inquiry")
-    public ResponseEntity<?> inquiry(@RequestParam Integer enterId){
-     EnterResponseDTO.InquiryDTO inquiryDTO  = enterService.inquiry(enterId);
+    public ResponseEntity<?> inquiry(@RequestParam Integer reservationId){
+     EnterResponseDTO.InquiryDTO inquiryDTO  = enterService.inquiry(reservationId);
      return ResponseEntity.ok().body(ApiUtils.success(inquiryDTO));
     }
 
