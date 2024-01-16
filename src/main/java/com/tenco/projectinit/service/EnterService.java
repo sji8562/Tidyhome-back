@@ -60,7 +60,8 @@ public class EnterService {
     public EnterResponseDTO.InquiryDTO inquiry(Integer enterId) {
         Optional<Enter> optionalEnter = enterJPARepository.findEnterById(enterId);
         Enter enter = optionalEnter.get();
+        String howenter = enter.getEnter();
         String enterPassword = enter.getEnterPassword();
-        return new EnterResponseDTO.InquiryDTO(enter.getEnter(), enterPassword);
+        return new EnterResponseDTO.InquiryDTO(enterId, howenter, enterPassword);
     }
 }
