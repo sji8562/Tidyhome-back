@@ -49,8 +49,8 @@ public class RequestService {
 
         requestJPARepository.save(request);
 
-
-        return new RequestResponseDTO.RequestDTO(request.getId() ,request.getSpecial(), request.getOtherRequest());
+    return null;
+//        return new RequestResponseDTO.RequestDTO(request.getId() ,request.getSpecial(), request.getOtherRequest());
     }
 
     public void requestDelete(RequestRequestDTO.EtcDeleteDTO etcDeleteDTO) {
