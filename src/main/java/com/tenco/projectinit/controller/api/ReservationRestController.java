@@ -41,7 +41,6 @@ public class ReservationRestController {
     // 예약 등록
     @PostMapping("/")
     public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister request) {
-
         int reservationId = reservationService.reservationRegister(request);
         ReservationDetailResponseDTO.ReservationDetail reservationDetail = reservationService.getReservationDetail(reservationId);
         return ResponseEntity.ok().body(ApiUtils.success(reservationDetail));
