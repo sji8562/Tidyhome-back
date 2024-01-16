@@ -53,6 +53,7 @@ public class ReservationRestController {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
         List<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getReservationList(user.getId());
+        System.out.println(reservationList);
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 
@@ -61,7 +62,8 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserCompletedReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getCompletedReservationList(user.getId());
+        List<ReservationDetailResponseDTO.ReservationCompleteList> reservationList = reservationService.getCompletedReservationList(user.getId());
+        System.out.println(reservationList);
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 

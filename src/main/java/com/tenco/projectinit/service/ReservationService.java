@@ -57,7 +57,7 @@ public class ReservationService {
     }
 
     // 완료 목록을 보여주는 메서드
-    public List<ReservationDetailResponseDTO.ReservationList> getCompletedReservationList(Integer userId) {
+    public List<ReservationDetailResponseDTO.ReservationCompleteList> getCompletedReservationList(Integer userId) {
         return reservationRepository.findCompletedReservationByUserId(userId);
     }
 
