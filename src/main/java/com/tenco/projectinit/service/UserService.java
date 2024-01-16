@@ -102,7 +102,7 @@ public class UserService {
             userJPARepository.flush();
         }
         smsCodeJPARepository.delete(smsCode);
-
+        User loginId = userJPARepository.findByPhone(joinDTO.getTel());
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
 
     }
