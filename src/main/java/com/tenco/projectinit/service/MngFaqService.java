@@ -14,6 +14,6 @@ public class MngFaqService {
     FaqJPARepository faqJPARepository;
     public List<FaqResponseDTO.faqListDTO> findAll() {
         List<FaqResponseDTO.faqListDTO> faqListDTOList = faqJPARepository.findAllWithFaqPart();
-                return faqListDTOList;
+        return faqListDTOList;
     }
 }

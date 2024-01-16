@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Builder
 @Entity
 @Table(name = "service_tb")
-public class Service {
+public class Services {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
