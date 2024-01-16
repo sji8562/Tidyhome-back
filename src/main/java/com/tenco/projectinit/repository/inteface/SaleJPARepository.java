@@ -13,14 +13,13 @@ public interface SaleJPARepository extends JpaRepository<Sale, Integer> {
     List<Sale> findAllSalesWithUsers();
 
     // 카테고리 이름
-    @Query("SELECT fc.name " +
-            "FROM FirstCategory fc " +
-            "JOIN SecondCategory sc ON fc.id = sc.firstCategory.id " +
-            "JOIN Option o ON sc.id = o.secondCategory.id " +
-            "JOIN Info i ON o.id = i.option.id " +
-            "JOIN Reservation r ON i.id = r.info.id " +
-            "JOIN ReservationSuc rs ON r.id = rs.reservation.id " +
-            "JOIN Sale s ON rs.sale.id = s.id " +
-            "WHERE s.id = :saleId")
-    String findFirstCategoryNameBySaleId(Integer saleId);
+//    @Query("SELECT fc.name " +
+//            "FROM FirstCategory fc " +
+//            "JOIN SecondCategory sc ON fc.id = sc.firstCategory.id " +
+//            "JOIN Option o ON sc.id = o.secondCategory.id " +
+//            "JOIN Info i ON o.id = i.option.id " +
+//            "JOIN Reservation r ON i.id = r.info.id " +
+//            "JOIN Sale s ON r.sale.id = s.id " +
+//            "WHERE s.id = :saleId")
+//    String findFirstCategoryNameBySaleId(Integer saleId);
 }

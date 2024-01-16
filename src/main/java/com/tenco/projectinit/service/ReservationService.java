@@ -34,18 +34,10 @@ public class ReservationService {
     private UserJPARepository userJPARepository;
     @Autowired
     private KakaoPaymentJPARepository kakaoPaymentJPARepository;
-    @Autowired
-    private ReservationSucJPARepository reservationSucJPARepository;
+
     @Autowired
     private SaleJPARepository saleJPARepository;
-    @Autowired
-    private EnterJPARepository enterJPARepository;
-    @Autowired
-    private EtcInfoJPARepository etcInfoJPARepository;
-    @Autowired
-    private RequestJPARepository requestJPARepository;
-    @Autowired
-    private WaitJPARepository waitJPARepository;
+
     @Autowired
     private ReservationJPARepository reservationJPARepository;
 
@@ -53,17 +45,20 @@ public class ReservationService {
 
     // 예약 목록을 보여주는 메서드
     public List<ReservationDetailResponseDTO.ReservationList> getReservationList(Integer userId) {
-        return reservationRepository.findReservationByUserId(userId);
+//        return reservationRepository.findReservationByUserId(userId);
+        return null;
     }
 
     // 완료 목록을 보여주는 메서드
     public List<ReservationDetailResponseDTO.ReservationCompleteList> getCompletedReservationList(Integer userId) {
-        return reservationRepository.findCompletedReservationByUserId(userId);
+//        return reservationRepository.findCompletedReservationByUserId(userId);
+        return null;
     }
 
     // 예약 상세 내역을 조회하는 메서드
     public ReservationDetailResponseDTO.ReservationDetail getReservationDetail(Integer reservationId) {
-        return reservationRepository.findReservationDetailById(reservationId);
+//        return reservationRepository.findReservationDetailById(reservationId);
+        return null;
     }
 
 
@@ -92,70 +87,70 @@ public class ReservationService {
 //                .build();
 
     // 출입 방법 입력 메서드
-    public void updateEnter(Integer reservationId, EnterResponseDTO.EnterDTO request) {
-        Info info = infoJPARepository.findByReservationId(reservationId);
-
-        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
-
-        EtcInfo etcInfo = wait.getEtcInfo();
-        if(etcInfo == null) {
-            etcInfo = EtcInfo.builder()
-                    .info(info)
-                    .build();
-            etcInfoJPARepository.save(etcInfo);
-            wait.setEtcInfo(etcInfo);
-        }
-
-        Enter enter = Enter.builder()
-                .etcInfo(etcInfo)
-                .enter(request.getEnter())
-                .enterPassword(request.getPassword())
-                .build();
-
-
-        enterJPARepository.save(enter);
-    }
-
-    // 출입 방법 삭제 메서드
-    public void deleteEnter(Integer reservationId) {
-        Optional<Enter> optionalEnter = enterJPARepository.findEnterById(reservationId);
-        if(optionalEnter.isPresent()) {
-            Enter enter = optionalEnter.get();
-            enterJPARepository.delete(enter);
-        }
-    }
-
-    // 기타 요청사항 입력 메서드
-    public void updateRequest(Integer reservationId, RequestResponseDTO.RequestDTO responseDTO) {
-        Info info = infoJPARepository.findByReservationId(reservationId);
-
-        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
-
-        EtcInfo etcInfo = wait.getEtcInfo();
-        if(etcInfo == null) {
-            etcInfo = EtcInfo.builder()
-                    .info(info)
-                    .build();
-            etcInfoJPARepository.save(etcInfo);
-            wait.setEtcInfo(etcInfo);
-        }
-
-        Request request = Request.builder()
-                .etcInfo(etcInfo)
-                .special(responseDTO.getSpecial())
-                .otherRequest(responseDTO.getOtherRequest())
-                .build();
-        requestJPARepository.save(request);
-    }
-
-    // 기타 요청사항 삭제 메서드
-    public void deleteRequest(Integer reservationId) {
-        Optional<Request> optionalRequest = requestJPARepository.findEnterById(reservationId);
-        if(optionalRequest.isPresent()) {
-            Request request = optionalRequest.get();
-            requestJPARepository.delete(request);
-        }
-    }
+//    public void updateEnter(Integer reservationId, EnterResponseDTO.EnterDTO request) {
+//        Info info = infoJPARepository.findByReservationId(reservationId);
+//
+//        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
+//
+//        EtcInfo etcInfo = wait.getEtcInfo();
+//        if(etcInfo == null) {
+//            etcInfo = EtcInfo.builder()
+//                    .info(info)
+//                    .build();
+//            etcInfoJPARepository.save(etcInfo);
+//            wait.setEtcInfo(etcInfo);
+//        }
+//
+//        Enter enter = Enter.builder()
+//                .etcInfo(etcInfo)
+//                .enter(request.getEnter())
+//                .enterPassword(request.getPassword())
+//                .build();
+//
+//
+//        enterJPARepository.save(enter);
+//    }
+//
+//    // 출입 방법 삭제 메서드
+//    public void deleteEnter(Integer reservationId) {
+//        Optional<Enter> optionalEnter = enterJPARepository.findEnterById(reservationId);
+//        if(optionalEnter.isPresent()) {
+//            Enter enter = optionalEnter.get();
+//            enterJPARepository.delete(enter);
+//        }
+//    }
+//
+//    // 기타 요청사항 입력 메서드
+//    public void updateRequest(Integer reservationId, RequestResponseDTO.RequestDTO responseDTO) {
+//        Info info = infoJPARepository.findByReservationId(reservationId);
+//
+//        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
+//
+//        EtcInfo etcInfo = wait.getEtcInfo();
+//        if(etcInfo == null) {
+//            etcInfo = EtcInfo.builder()
+//                    .info(info)
+//                    .build();
+//            etcInfoJPARepository.save(etcInfo);
+//            wait.setEtcInfo(etcInfo);
+//        }
+//
+//        Request request = Request.builder()
+//                .etcInfo(etcInfo)
+//                .special(responseDTO.getSpecial())
+//                .otherRequest(responseDTO.getOtherRequest())
+//                .build();
+//        requestJPARepository.save(request);
+//    }
+//
+//    // 기타 요청사항 삭제 메서드
+//    public void deleteRequest(Integer reservationId) {
+//        Optional<Request> optionalRequest = requestJPARepository.findEnterById(reservationId);
+//        if(optionalRequest.isPresent()) {
+//            Request request = optionalRequest.get();
+//            requestJPARepository.delete(request);
+//        }
+//    }
 
 
     @Transactional
@@ -203,41 +198,41 @@ public class ReservationService {
 
     }
 
-    public Integer reservationSuccess(ReservationRequestDTO.ReservationSuccessDTO successDTO, Integer userId) {
-        // 예약 아이디 가져오기
-        Integer reservationId = successDTO.getReservationId();
-        // 예약엔티티 가져오기
-        Reservation reservation = reservationRepository.findById(reservationId)
-                .orElseThrow(() -> new Exception404("예약이 없습니다"));
-        // 옵션 가져오기
-        Option option = reservation.getInfo().getOption();
-        // 옵션에서 price 가져오기
-        Integer price = option.getPrice();
-        // 유저 가져오기
-        User user = userJPARepository.findById(userId)
-                .orElseThrow(() -> new Exception404("사용자가 없습니다"));
-        // 카카오페이먼트 가져오기
-        Integer kakaoPaymentId = successDTO.getKakaoPaymentId();
-        KakaoPayment kakaoPayment = kakaoPaymentJPARepository.findById(kakaoPaymentId)
-                .orElseThrow(() -> new Exception404("카카오페이먼트가 없습니다"));
-        // tid 가져오기
-        String tid = successDTO.getTid();
-
-        // sale 만들기
-        Sale sale = Sale.builder()
-                .kakaoPayment(kakaoPayment)
-                .price(price)
-                .user(user)
-                .tid(tid)
-                .build();
-        saleJPARepository.save(sale);
-        ReservationSuc reservationSuc = ReservationSuc.builder()
-                .reservation(reservation)
-                .sale(sale)
-                .build();
-        reservationSucJPARepository.save(reservationSuc);
-        return reservationSuc.getId();
-    }
+//    public Integer reservationSuccess(ReservationRequestDTO.ReservationSuccessDTO successDTO, Integer userId) {
+//        // 예약 아이디 가져오기
+//        Integer reservationId = successDTO.getReservationId();
+//        // 예약엔티티 가져오기
+//        Reservation reservation = reservationRepository.findById(reservationId)
+//                .orElseThrow(() -> new Exception404("예약이 없습니다"));
+//        // 옵션 가져오기
+//        Option option = reservation.getInfo().getOption();
+//        // 옵션에서 price 가져오기
+//        Integer price = option.getPrice();
+//        // 유저 가져오기
+//        User user = userJPARepository.findById(userId)
+//                .orElseThrow(() -> new Exception404("사용자가 없습니다"));
+//        // 카카오페이먼트 가져오기
+//        Integer kakaoPaymentId = successDTO.getKakaoPaymentId();
+//        KakaoPayment kakaoPayment = kakaoPaymentJPARepository.findById(kakaoPaymentId)
+//                .orElseThrow(() -> new Exception404("카카오페이먼트가 없습니다"));
+//        // tid 가져오기
+//        String tid = successDTO.getTid();
+//
+//        // sale 만들기
+//        Sale sale = Sale.builder()
+//                .kakaoPayment(kakaoPayment)
+//                .price(price)
+//                .user(user)
+//                .tid(tid)
+//                .build();
+//        saleJPARepository.save(sale);
+//        ReservationSuc reservationSuc = ReservationSuc.builder()
+//                .reservation(reservation)
+//                .sale(sale)
+//                .build();
+//        reservationSucJPARepository.save(reservationSuc);
+//        return reservationSuc.getId();
+//    }
 
     public Reservation findById(int id){
         return reservationJPARepository.findById(id);

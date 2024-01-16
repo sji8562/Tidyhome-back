@@ -26,7 +26,7 @@ public interface PartnerJPARepository extends JpaRepository<Partner, Integer> {
 
 //    @Modifying
 //    @Transactional
-//    @Query(value = "update Partner p set p.username = :username, p.tel = :tel, p.gender = :gender , p.categoryId = :categoryId where p.id = :id")
+//    @Query(value = "update Partner p set p.username = :username, p.tel = :tel,  p.categoryId = :categoryId where p.id = :id")
 //    void updateByPartnerId(Optional<Partner>  partner);
 
 //    void updateByPartnerId(@Param("id") Integer id,@Param("username") String username,@Param("tel") String tel,@Param("categoryId") String temp);
