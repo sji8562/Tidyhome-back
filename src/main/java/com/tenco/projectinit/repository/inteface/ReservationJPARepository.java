@@ -38,7 +38,7 @@ public interface ReservationJPARepository extends JpaRepository<Reservation, Int
             + "JOIN Sale s ON s.id = rs.sale.id "
             + "WHERE ai.user.id = :userId "
             + "AND s.status IN (2, 3, 4) ")
-    List<ReservationDetailResponseDTO.ReservationList> findCompletedReservationByUserId(@Param("userId") Integer userId); // 예약 완료 목록
+    List<ReservationDetailResponseDTO.ReservationCompleteList> findCompletedReservationByUserId(@Param("userId") Integer userId); // 예약 완료 목록
 
     @Query("SELECT new com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO$ReservationDetail(ai.address AS address, ai.addressDetail AS addressDetail, "
             + "i.reservationDate AS reservationDate, i.reservationTime AS reservationTime, i.pet AS pet, "
@@ -55,7 +55,7 @@ public interface ReservationJPARepository extends JpaRepository<Reservation, Int
             + "JOIN SecondCategory sc ON sc.id = o.secondCategory.id "
             + "JOIN FirstCategory fc ON fc.id = sc.firstCategory.id "
             + "WHERE r.id = :reservationId")
-    List<ReservationDetailResponseDTO.ReservationDetail> findReservationDetailById(@Param("reservationId") Integer reservationId); // 예약 내역 상세
+    ReservationDetailResponseDTO.ReservationDetail findReservationDetailById(@Param("reservationId") Integer reservationId); // 예약 내역 상세
 
 
 
