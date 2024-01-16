@@ -58,6 +58,8 @@ public interface ReservationJPARepository extends JpaRepository<Reservation, Int
     ReservationDetailResponseDTO.ReservationDetail findReservationDetailById(@Param("reservationId") Integer reservationId); // 예약 내역 상세
 
 
+    Reservation findById(int id);
+
 
 }
 
