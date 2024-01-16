@@ -32,8 +32,6 @@ public class Info {
 
 
     private String reservationDate;
-
-
     private String reservationTime;
 
     private Boolean pet;
