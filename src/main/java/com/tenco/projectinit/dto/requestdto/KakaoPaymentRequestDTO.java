@@ -15,4 +15,10 @@ public class KakaoPaymentRequestDTO {
         private String tid;
         private String pgToken;
     }
+    @Data
+    public static class KakaoCancleDTO{
+        private Integer reservationId;
+        private String tid;
+        private String pgToken;
+    }
 }

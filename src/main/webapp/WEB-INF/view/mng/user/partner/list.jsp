@@ -66,7 +66,7 @@
 											<th scope="col">전화번호</th>
 											<th scope="col">파트너이름</th>
 											<th scope="col">일 종류</th>
-											<th scope="col">성별</th>
+
 											<th scope="col">생성날짜</th>
 											<th scope="col">회원관리</th>
 										</tr>
@@ -82,16 +82,6 @@
 													<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">${partnerPG.tel }</a></td>
 													<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">${partnerPG.username }</a></td>
 													<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">${partnerPG.categoryId }</a></td>
-													<c:if test="${partnerPG.gender == null ||empty partnerPG.gender}">
-														<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">업체</a></td>
-													</c:if>
-													<c:if test="${partnerPG.gender == 'f'}">
-														<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">여자</a></td>
-													</c:if>
-													<c:if test="${partnerPG.gender == 'm'}">
-														<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail">남자</a></td>
-													</c:if>
-
 													<td class="applyDetail"><a href="/mng/user/${partnerPG.id}/partner-detail"><fmt:formatDate value="${partnerPG.createdAt}" pattern="yyyy. MM. dd" /></a></td>
 													<td>
 														<div>
@@ -129,10 +119,10 @@
 									<c:if test="${empty keyword}">
 										<ul class="pagination d-flex justify-content-center">
 											<li class="page-item <c:if test="${partnerPG.first}">disabled</c:if>"><a class="page-link"
-																												  href="?page=${prevPage}">Previous</a>
+																													 href="?page=${prevPage}">Previous</a>
 											</li>
 											<li class="page-item <c:if test="${partnerPG.last}">disabled</c:if>"><a class="page-link"
-																												 href="?page=${nextPage}">Next</a></li>
+																													href="?page=${nextPage}">Next</a></li>
 										</ul>
 									</c:if>
 								</div>

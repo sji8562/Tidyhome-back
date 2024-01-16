@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.repository.entity.User;
 
 import java.time.Instant;
@@ -20,6 +21,19 @@ public class JwtTokenUtils {
                 .sign(Algorithm.HMAC512("meta")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
         return jwt;
     }
+    public static String create(Partner partner) {
+        String jwt = JWT.create()
+                .withSubject("tok-key") // 해당 토큰 이름 정하는 메소드
+                .withClaim("id", partner.getId()) // 페이로드에 담길 정보(인증된 회원의 유효한 정보 담을 수 있음)
+                .withClaim("loginId", partner.getTel())
+                .withClaim("username",partner.getUsername())
+                .withClaim("categoryId",partner.getCategoryId())
+                .withClaim("location",partner.getLocation())
+                .withClaim("picUrl",partner.getPicUrl())
+                .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L)) // 해당 토큰 유효기간 만료 정하는 메소드
+                .sign(Algorithm.HMAC512("meta")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
+        return jwt;
+    }
 
     public static String createMockUser() {
         String jwt = JWT.create()
@@ -28,6 +42,19 @@ public class JwtTokenUtils {
                 .withClaim("tel", "1234")
                 .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L*31))
                 .sign(Algorithm.HMAC512("meta"));
+        return jwt;
+    }
+    public static String createMockPartner() {
+        String jwt = JWT.create()
+                .withSubject("tok-key") // 해당 토큰 이름 정하는 메소드
+                .withClaim("id", 1) // 페이로드에 담길 정보(인증된 회원의 유효한 정보 담을 수 있음)
+                .withClaim("loginId", 1234)
+                .withClaim("username","타이디홈")
+                .withClaim("categoryId","1,2")
+                .withClaim("location","금정구, 해운대구")
+                .withClaim("picUrl","null")
+                .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L)) // 해당 토큰 유효기간 만료 정하는 메소드
+                .sign(Algorithm.HMAC512("meta")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
         return jwt;
     }
 

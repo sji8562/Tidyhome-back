@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddressInfoResponseDTO {
 
-    private Integer id;
     private String address;
     private String addressDetail;
     private boolean choice;

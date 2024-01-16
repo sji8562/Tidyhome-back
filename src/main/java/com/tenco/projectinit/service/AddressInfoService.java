@@ -1,5 +1,7 @@
 package com.tenco.projectinit.service;
 
+import com.tenco.projectinit._core.errors.exception.Exception500;
+import com.tenco.projectinit.dto.requestdto.AddressInfoChoiceRequestDTO;
 import com.tenco.projectinit.dto.responsedto.AddressInfoResponseDTO;
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.User;
@@ -60,4 +62,39 @@ public class AddressInfoService {
         // 대표 주소 정보 저장
         addressInfoJPARepository.saveAll(addressList);
     }
+
+    // 대표 주소 설정 메서드(정)
+    @Transactional
+    public void setFirstAddress(AddressInfoChoiceRequestDTO requestDTO) {
+        List<AddressInfo> addressList = addressInfoJPARepository.findByUserId(requestDTO.getUserId());
+
+        Optional<AddressInfo> optionalEntity = addressInfoJPARepository.findById(requestDTO.getAddressInfoId());
+        AddressInfo addressInfo;
+        if (optionalEntity.isPresent()) {
+            addressInfo = optionalEntity.get();
+        } else {
+            throw new Exception500("해당 주소가 존재하지 않습니다.");
+        }
+
+        if (!addressList.isEmpty()) {
+            // 대표 주소 초기화
+            for (AddressInfo address : addressList) {
+                address.setChoice(false);
+            }
+        }
+        addressInfo.setChoice(true);
+        addressList.add(addressInfo);
+
+        for (AddressInfo address : addressList) {
+            System.out.println(address.getChoice());
+        }
+
+        // 대표 주소 정보 저장
+        addressInfoJPARepository.saveAll(addressList);
+    }
+
+
+
+
+
 }

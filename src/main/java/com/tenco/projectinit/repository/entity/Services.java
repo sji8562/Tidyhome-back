@@ -1,14 +1,12 @@
-package com.tenco.projectinit.repository.entity.sub_entity;
+package com.tenco.projectinit.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tenco.projectinit.repository.entity.Partner;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
 
 import java.sql.Timestamp;
 
@@ -17,23 +15,17 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "match_tb")
-public class Match {
+@Table(name = "service_tb")
+public class Services {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Wait wait;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Partner partner;
+    private String name;
 
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
-}
 
+    // Getters and setters (omitted for brevity)
+}

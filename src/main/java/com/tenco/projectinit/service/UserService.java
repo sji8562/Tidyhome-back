@@ -60,9 +60,8 @@ public class UserService {
     }
 
     // 회원탈퇴
-    public void delete(UserRequestDTO.LoginDTO loginDTO) {
-        String loginId = loginDTO.getTel();
-        Optional<User> optionalUser = userJPARepository.findByTel(loginId);
+    public void delete(Integer userId) {
+        Optional<User> optionalUser = userJPARepository.findById(userId);
 
         if (optionalUser.isPresent()) {
             // 사용자가 존재하면 삭제
@@ -81,7 +80,7 @@ public class UserService {
             User user =userJPARepository.findByPhone(tel);
             return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user);
         }
-        if (tel == null || tel.length() != 11) {
+        if (tel == null || tel.length() != 13) {
 
             throw new Exception400("전화번호는 11자리여야 합니다.");
         }
@@ -169,9 +168,7 @@ public class UserService {
 
     @Transactional
     public void deleteById(Integer id) {
-        System.out.println("오냐 ?123421");
         userJPARepository.deleteById(id);
-        System.out.println("삭제 됬냐 ?");
     }
 
 }

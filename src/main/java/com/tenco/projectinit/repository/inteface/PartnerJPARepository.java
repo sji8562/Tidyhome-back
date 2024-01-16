@@ -3,6 +3,7 @@ package com.tenco.projectinit.repository.inteface;
 import com.tenco.projectinit.dto.mng.PartnerRequestDTO;
 import com.tenco.projectinit.repository.entity.Partner;
 
+import com.tenco.projectinit.repository.entity.User;
 import jakarta.transaction.Transactional;
 
 import org.springframework.data.domain.Page;
@@ -20,9 +21,12 @@ public interface PartnerJPARepository extends JpaRepository<Partner, Integer> {
 
 
 
+    Optional<Partner> findByTel(String tel);
+
+
 //    @Modifying
 //    @Transactional
-//    @Query(value = "update Partner p set p.username = :username, p.tel = :tel, p.gender = :gender , p.categoryId = :categoryId where p.id = :id")
+//    @Query(value = "update Partner p set p.username = :username, p.tel = :tel,  p.categoryId = :categoryId where p.id = :id")
 //    void updateByPartnerId(Optional<Partner>  partner);
 
 //    void updateByPartnerId(@Param("id") Integer id,@Param("username") String username,@Param("tel") String tel,@Param("categoryId") String temp);

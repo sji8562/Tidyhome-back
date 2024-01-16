@@ -1,7 +1,10 @@
-//package com.tenco.projectinit.mng;
+//package com.tenco.projectinit.mng.api;
 //
 //import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
+//
+//import com.tenco.projectinit.MyWithRestDoc;
+//import com.tenco.projectinit.dto.mng.NoticeRequestDTO;
+//
 //import org.junit.jupiter.api.Test;
 //import org.springframework.boot.test.context.SpringBootTest;
 //import org.springframework.http.MediaType;
@@ -11,13 +14,15 @@
 //import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 //
 //@SpringBootTest
-//public class MngConrollerTest {
+//public class MngRestConrollerTest extends MyWithRestDoc {
 //    @Test
-//    public void join_test() throws Exception {
+//    public void notice_submit_test() throws Exception {
 //        //given
-//        UserRequestDTO.JoinDTO requestDTO = new UserRequestDTO.JoinDTO();
+//        NoticeRequestDTO.NoticeSaveDTO requestDTO = new NoticeRequestDTO.NoticeSaveDTO();
 //
-//        requestDTO.setTel("01058288562");
+//
+//        requestDTO.setTitle("공지테스트1");
+//        requestDTO.setContent("공지테스트111111111");
 //
 //
 //        System.out.println(requestDTO);
@@ -28,7 +33,7 @@
 //        //when
 //        ResultActions resultActions =
 //                mockMvc.perform(
-//                        MockMvcRequestBuilders.post("/api/users/join")
+//                        MockMvcRequestBuilders.post("/mng/notice/save-proc")
 //                                .content(requestBody)
 //                                .contentType(MediaType.APPLICATION_JSON)
 //                );
@@ -36,7 +41,7 @@
 //        System.out.println(responseBody);
 //        //then
 //        resultActions
-//                .andExpect(MockMvcResultMatchers.status().isCreated())
+//                .andExpect(MockMvcResultMatchers.status().isOk())
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true))
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.error").isEmpty())
 //                .andDo(MockMvcResultHandlers.print())
