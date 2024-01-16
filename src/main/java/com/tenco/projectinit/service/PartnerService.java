@@ -60,6 +60,7 @@ public class PartnerService {
     @Value("${sms.api.secret}")
     private String apiSecret;
 
+
     private DefaultMessageService messageService;
 
     public List<Partner> findByLevel() {
