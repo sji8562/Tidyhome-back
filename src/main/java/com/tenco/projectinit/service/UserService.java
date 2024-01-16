@@ -60,9 +60,8 @@ public class UserService {
     }
 
     // 회원탈퇴
-    public void delete(UserRequestDTO.LoginDTO loginDTO) {
-        String loginId = loginDTO.getTel();
-        Optional<User> optionalUser = userJPARepository.findByTel(loginId);
+    public void delete(Integer userId) {
+        Optional<User> optionalUser = userJPARepository.findById(userId);
 
         if (optionalUser.isPresent()) {
             // 사용자가 존재하면 삭제

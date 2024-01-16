@@ -50,7 +50,7 @@ public class RequestService {
         requestJPARepository.save(request);
 
 
-        return new RequestResponseDTO.RequestDTO(request.getId(), etcInfo.getId(), request.getSpecial(), request.getOtherRequest());
+        return new RequestResponseDTO.RequestDTO(request.getId() ,request.getSpecial(), request.getOtherRequest());
     }
 
     public void requestDelete(RequestRequestDTO.EtcDeleteDTO etcDeleteDTO) {
@@ -61,5 +61,12 @@ public class RequestService {
     }
 
 
+    public RequestResponseDTO.RequestDTO inquiry(Integer requestId) {
+        Optional<Request> optionalRequest = requestJPARepository.findById(requestId);
+        Request request = optionalRequest.get();
+        String special = request.getSpecial();
+        String otherRequest = request.getOtherRequest();
+        return new RequestResponseDTO.RequestDTO(requestId ,special, otherRequest);
+    }
 }
 

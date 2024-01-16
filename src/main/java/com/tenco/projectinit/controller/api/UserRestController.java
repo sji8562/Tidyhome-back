@@ -3,7 +3,9 @@ package com.tenco.projectinit.controller.api;
 import com.tenco.projectinit._core.utils.ApiUtils;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
+import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,8 +45,9 @@ public class UserRestController {
 
     // 회원탈퇴
     @PostMapping("/delete")
-    public ResponseEntity<?> delete(@RequestBody UserRequestDTO.LoginDTO loginDTO){
-        userService.delete(loginDTO);
+    public ResponseEntity<?> delete(HttpSession session){
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        userService.delete(sessionUser.getId());
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 }
