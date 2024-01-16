@@ -1,6 +1,7 @@
 package com.tenco.projectinit.service;
 
 import com.tenco.projectinit._core.errors.exception.Exception404;
+import com.tenco.projectinit._core.errors.exception.Exception500;
 import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
 
 import com.tenco.projectinit.dto.responsedto.EnterResponseDTO;
@@ -13,14 +14,9 @@ import com.tenco.projectinit.repository.entity.*;
 
 import com.tenco.projectinit.repository.entity.sub_entity.*;
 import com.tenco.projectinit.repository.inteface.*;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.Date;
-import java.sql.Time;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +46,8 @@ public class ReservationService {
     private RequestJPARepository requestJPARepository;
     @Autowired
     private WaitJPARepository waitJPARepository;
+    @Autowired
+    private ReservationJPARepository reservationJPARepository;
 
 
 
@@ -59,7 +57,7 @@ public class ReservationService {
     }
 
     // 완료 목록을 보여주는 메서드
-    public List<ReservationDetailResponseDTO.ReservationList> getCompletedReservationList(Integer userId) {
+    public List<ReservationDetailResponseDTO.ReservationCompleteList> getCompletedReservationList(Integer userId) {
         return reservationRepository.findCompletedReservationByUserId(userId);
     }
 
@@ -71,7 +69,7 @@ public class ReservationService {
 
     // 예약 일정을 변경하는 메서드
     @Transactional
-    public void updateReservationDateTime(Integer reservationId, Date newReservationDate, Time newReservationTime) {
+    public void updateReservationDateTime(Integer reservationId, String newReservationDate, String newReservationTime) {
         Reservation reservation = reservationRepository.findById(reservationId)
                 .orElseThrow(() -> new RuntimeException("Reservation not found with id: " + reservationId));
 
@@ -160,32 +158,46 @@ public class ReservationService {
     }
 
 
-
+    @Transactional
     public int reservationRegister(ReservationRequestDTO.ReservationRegister request) {
         // 옵션 찾기
         Integer optionId = request.getOptionId();
         Option option = optionJPARepository.findById(optionId)
                 .orElseThrow(() -> new Exception404("옵션이 없습니다"));
         // 인포 엔티티 만들기
+
         Info info = Info.builder()
                 .option(option)
-                .reservationTime(Time.valueOf(request.getReservationTime()))
-                .reservationDate(Date.valueOf(request.getReservationDate()))
+                .reservationTime(request.getReservationTime())
+                .reservationDate(request.getReservationDate())
                 .pet(request.isPet())
                 .build();
         // 인포엔티티 저장
-        infoJPARepository.save(info);
+        try{
+            infoJPARepository.save(info);
+        } catch(Exception e){
+            throw new Exception500("인포 저장 실패");
+        }
+
         // 어드레스 엔티티 찾기
         Integer addressInfoId = request.getAddressInfoId();
         AddressInfo addressInfo = addressInfoJPARepository.findById(addressInfoId)
                 .orElseThrow(() -> new Exception404("주소가 없습니다"));
         // 어드레스랑 인포로 레저베이션 만들기
+        System.out.println("5까지");
         Reservation reservation = Reservation.builder()
                 .addressInfo(addressInfo)
                 .info(info)
                 .build();
         // 레저베이션 저장하고
-        reservationRepository.save(reservation);
+        System.out.println("6까지");
+
+        try{
+            reservationRepository.save(reservation);
+        }catch(Exception e){
+            throw new Exception500("예약 저장 실패");
+
+        }
         // 레저베이션 아이디 리턴
         return reservation.getId();
 
@@ -226,4 +238,9 @@ public class ReservationService {
         reservationSucJPARepository.save(reservationSuc);
         return reservationSuc.getId();
     }
+
+    public Reservation findById(int id){
+        return reservationJPARepository.findById(id);
+    }
+
 }

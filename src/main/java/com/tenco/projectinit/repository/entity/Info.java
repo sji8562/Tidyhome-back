@@ -31,10 +31,8 @@ public class Info {
     private Option option;
 
 
-    private Date reservationDate;
-
-
-    private Time reservationTime;
+    private String reservationDate;
+    private String reservationTime;
 
     private Boolean pet;
 
