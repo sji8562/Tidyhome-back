@@ -4,7 +4,6 @@ import com.tenco.projectinit._core.utils.ApiUtils;
 import com.tenco.projectinit.dto.responsedto.FaqPartResponseDTO;
 import com.tenco.projectinit.repository.entity.Faq;
 import com.tenco.projectinit.repository.entity.Services;
-import com.tenco.projectinit.service.FaqPartService;
 import com.tenco.projectinit.service.FaqService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +17,6 @@ public class FaqRestController {
 
     @Autowired
     FaqService faqService;
-
-    @Autowired
-    FaqPartService faqPartService;
 
     @GetMapping("/{id}/list")
     public ResponseEntity<?> serviceList(@PathVariable Integer id, @RequestParam Integer partId){
