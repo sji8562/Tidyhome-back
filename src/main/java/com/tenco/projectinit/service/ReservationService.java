@@ -4,21 +4,16 @@ import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
 
 import com.tenco.projectinit.dto.responsedto.EnterResponseDTO;
+import com.tenco.projectinit.dto.responsedto.RequestResponseDTO;
 import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
 
 
-import com.tenco.projectinit.repository.entity.AddressInfo;
-import com.tenco.projectinit.repository.entity.Info;
-import com.tenco.projectinit.repository.entity.KakaoPayment;
-import com.tenco.projectinit.repository.entity.Sale;
-import com.tenco.projectinit.repository.entity.User;
+import com.tenco.projectinit.repository.entity.*;
 
 
-import com.tenco.projectinit.repository.entity.sub_entity.Enter;
-import com.tenco.projectinit.repository.entity.sub_entity.Option;
-import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
-import com.tenco.projectinit.repository.entity.sub_entity.ReservationSuc;
+import com.tenco.projectinit.repository.entity.sub_entity.*;
 import com.tenco.projectinit.repository.inteface.*;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +22,6 @@ import java.sql.Date;
 import java.sql.Time;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -50,6 +44,12 @@ public class ReservationService {
     private SaleJPARepository saleJPARepository;
     @Autowired
     private EnterJPARepository enterJPARepository;
+    @Autowired
+    private EtcInfoJPARepository etcInfoJPARepository;
+    @Autowired
+    private RequestJPARepository requestJPARepository;
+    @Autowired
+    private WaitJPARepository waitJPARepository;
 
 
 
@@ -83,20 +83,85 @@ public class ReservationService {
         infoJPARepository.save(info);
     }
 
-    // 출입 방법 입력하는 메서드
-    public void updateEnter(Integer reservationId, EnterResponseDTO request) {
-        Enter enter = enterJPARepository.findEnterById(reservationId)
-                .orElseThrow(() -> new RuntimeException("Enter not found with id: " + reservationId));
 
-//        enter.setEnter(request.getEnter()); // 들어가는 방법
-//        enter.setEnterPassword(request.getEnterPassword()); // 현관 비밀번호
+    // 출입 방법 입력 메서드
+//    public void updateEnter(Integer reservationId, EnterResponseDTO responseDTO) {
+//        EtcInfo etcInfo = etcInfoJPARepository.findEtcInfoIdByReservationId(reservationId);
+//        Enter enter = Enter.builder()
+//                .etcInfo(etcInfo)
+//                .enter(responseDTO.getEnter())
+//                .enterPassword(responseDTO.getEnterPassword())
+//                .build();
+
+    // 출입 방법 입력 메서드
+    public void updateEnter(Integer reservationId, EnterResponseDTO.EnterDTO request) {
+        Info info = infoJPARepository.findByReservationId(reservationId);
+
+        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
+
+        EtcInfo etcInfo = wait.getEtcInfo();
+        if(etcInfo == null) {
+            etcInfo = EtcInfo.builder()
+                    .info(info)
+                    .build();
+            etcInfoJPARepository.save(etcInfo);
+            wait.setEtcInfo(etcInfo);
+        }
+
+        Enter enter = Enter.builder()
+                .etcInfo(etcInfo)
+                .enter(request.getEnter())
+                .enterPassword(request.getPassword())
+                .build();
+
 
         enterJPARepository.save(enter);
     }
 
+    // 출입 방법 삭제 메서드
+    public void deleteEnter(Integer reservationId) {
+        Optional<Enter> optionalEnter = enterJPARepository.findEnterById(reservationId);
+        if(optionalEnter.isPresent()) {
+            Enter enter = optionalEnter.get();
+            enterJPARepository.delete(enter);
+        }
+    }
+
+    // 기타 요청사항 입력 메서드
+    public void updateRequest(Integer reservationId, RequestResponseDTO.RequestDTO responseDTO) {
+        Info info = infoJPARepository.findByReservationId(reservationId);
+
+        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
+
+        EtcInfo etcInfo = wait.getEtcInfo();
+        if(etcInfo == null) {
+            etcInfo = EtcInfo.builder()
+                    .info(info)
+                    .build();
+            etcInfoJPARepository.save(etcInfo);
+            wait.setEtcInfo(etcInfo);
+        }
+
+        Request request = Request.builder()
+                .etcInfo(etcInfo)
+                .special(responseDTO.getSpecial())
+                .otherRequest(responseDTO.getOtherRequest())
+                .build();
+        requestJPARepository.save(request);
+    }
+
+    // 기타 요청사항 삭제 메서드
+    public void deleteRequest(Integer reservationId) {
+        Optional<Request> optionalRequest = requestJPARepository.findEnterById(reservationId);
+        if(optionalRequest.isPresent()) {
+            Request request = optionalRequest.get();
+            requestJPARepository.delete(request);
+        }
+    }
 
 
-    public Integer reservationRegister(ReservationRequestDTO.ReservationRegister request) {
+
+    public int reservationRegister(ReservationRequestDTO.ReservationRegister request) {
         // 옵션 찾기
         Integer optionId = request.getOptionId();
         Option option = optionJPARepository.findById(optionId)

@@ -30,11 +30,11 @@ public class EtcInfo {
     @ManyToOne(fetch = FetchType.LAZY)
     private Info info;
 
-    @JsonIgnoreProperties({ "etcInfo" })
-    @OneToMany(mappedBy = "etcInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Enter> enters = new ArrayList<>();
+    @JsonIgnore
+    @OneToOne(mappedBy = "etcInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Enter enter;
 
-    @JsonIgnoreProperties({ "etcInfo" })
-    @OneToMany(mappedBy = "etcInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Request> requests = new ArrayList<>();
+    @JsonIgnore
+    @OneToOne(mappedBy = "etcInfo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Request request;
 }

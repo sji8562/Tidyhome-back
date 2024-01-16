@@ -85,6 +85,10 @@ public class AddressInfoService {
         addressInfo.setChoice(true);
         addressList.add(addressInfo);
 
+        for (AddressInfo address : addressList) {
+            System.out.println(address.getChoice());
+        }
+
         // 대표 주소 정보 저장
         addressInfoJPARepository.saveAll(addressList);
     }
