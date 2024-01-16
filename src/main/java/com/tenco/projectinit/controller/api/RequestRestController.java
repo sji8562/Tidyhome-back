@@ -15,11 +15,11 @@ public class RequestRestController {
     @Autowired
     private RequestService requestService;
 
-    @GetMapping("/inquiry")
-    public ResponseEntity<?> inquiry(@RequestParam Integer requestId){
-       RequestResponseDTO.RequestDTO requestDTO = requestService.inquiry(requestId);
-        return ResponseEntity.ok().body(ApiUtils.success(requestDTO));
-    }
+//    @GetMapping("/inquiry")
+//    public ResponseEntity<?> inquiry(@RequestParam Integer requestId){
+//       RequestResponseDTO.RequestDTO requestDTO = requestService.inquiry(requestId);
+//        return ResponseEntity.ok().body(ApiUtils.success(requestDTO));
+//    }
 
     // 기타 요청사항
     @PostMapping("/etc")
@@ -34,6 +34,4 @@ public class RequestRestController {
         requestService.requestDelete(etcDeleteDTO);
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
-
-
 }
