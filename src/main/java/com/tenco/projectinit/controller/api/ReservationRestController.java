@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,12 +30,10 @@ public class ReservationRestController {
     private ReservationService reservationService;
 
 
-
-
     // 예약 등록
     @PostMapping("/save")
-    public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister request) {
-        int reservationId = reservationService.reservationRegister(request);
+    public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister reservationRegister) {
+        int reservationId = reservationService.reservationRegister(reservationRegister);
         ReservationDetailResponseDTO.ReservationResult responseDTO = new ReservationDetailResponseDTO.ReservationResult(reservationService.findById(reservationId));
         return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
     }
@@ -43,13 +42,12 @@ public class ReservationRestController {
     // 예약 내역 목록
     @GetMapping("/list")
     public ResponseEntity<?> getUserReservationInfo(HttpServletRequest httpServletRequest) {
-//        HttpSession session = httpServletRequest.getSession();
-//        User user = (User) session.getAttribute("sessionUser");
-        List<Reservation> reservations = reservationService.getReservationList(1);
+        HttpSession session = httpServletRequest.getSession();
+        User user = (User) session.getAttribute("sessionUser");
+        List<Reservation> reservations = reservationService.getReservationList(user.getId());
         List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
                 .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
                 .collect(Collectors.toList());
-
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 
@@ -58,17 +56,24 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserCompletedReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<ReservationDetailResponseDTO.ReservationCompleteList> reservationList = reservationService.getCompletedReservationList(1);
-        System.out.println(reservationList);
+        List<Reservation> reservations = reservationService.getCompletedReservationList(user.getId());
+        List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
+                .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
+                .collect(Collectors.toList());
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 
     // 예약 상세 내역 조회
     @GetMapping("/list/{reservationId}")
     public ResponseEntity<?> getReservationDetail(@PathVariable Integer reservationId) {
-        Reservation reservation = reservationService.findById(reservationId);
-        ReservationDetailResponseDTO.JReservationDetail reservationDetail = new ReservationDetailResponseDTO.JReservationDetail(reservation);
-        return ResponseEntity.ok().body(ApiUtils.success(reservationDetail));
+        Optional<ReservationDetailResponseDTO.ReservationDetail> reservationDetailOptional = reservationService.getReservationDetail(reservationId);
+
+        if (reservationDetailOptional.isPresent()) {
+            ReservationDetailResponseDTO.ReservationDetail reservationDetail = reservationDetailOptional.get();
+            return ResponseEntity.ok().body(ApiUtils.success(reservationDetail));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // 일정 변경

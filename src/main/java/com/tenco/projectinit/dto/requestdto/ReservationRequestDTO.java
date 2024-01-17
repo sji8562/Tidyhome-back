@@ -13,13 +13,11 @@ public class ReservationRequestDTO {
         private String reservationDate;
         private String reservationTime;
         private boolean pet;
-    }
-
-    @Data
-    public static class ReservationSuccessDTO{
-        private Integer kakaoPaymentId;
-        private Integer reservationId;
-        private String tid;
+        private String enter;
+        private String enterPassword;
+        private String special;
+        private String otherRequest;
+        private Integer status;
     }
 
 }
