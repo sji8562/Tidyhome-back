@@ -29,7 +29,6 @@ public class ReservationRestController {
     @Autowired
     private ReservationService reservationService;
 
-
     // 예약 등록
     @PostMapping("/save")
     public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister reservationRegister) {
@@ -94,7 +93,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/enter")
     public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO.EnterDTO request) {
         try {
-//            reservationService.updateEnter(reservationId, request);
+            reservationService.updateEnter(reservationId, request);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
