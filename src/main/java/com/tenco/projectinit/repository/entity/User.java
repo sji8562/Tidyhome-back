@@ -1,7 +1,6 @@
 package com.tenco.projectinit.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.tenco.projectinit.repository.entity.sub_entity.Request;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,7 +31,7 @@ public class User {
 
     @JsonIgnoreProperties({ "user" })
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<AddressInfo> addressInfos = new ArrayList<>();
+    private final List<AddressInfo> addressInfos = new ArrayList<>();
 
 
 }

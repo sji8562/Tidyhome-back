@@ -38,7 +38,7 @@ public class UserRestController {
     }
     // 회원가입 & 로그인
     @PostMapping("/login")
-    public ResponseEntity<?> join(@Valid @RequestBody UserRequestDTO.JoinDTO joinDTO){
+    public ResponseEntity<?> joinAndLogin(@Valid @RequestBody UserRequestDTO.JoinDTO joinDTO){
         UserResponseDTO.TokenDTO tokenDTO = userService.join(joinDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(tokenDTO));
     }
