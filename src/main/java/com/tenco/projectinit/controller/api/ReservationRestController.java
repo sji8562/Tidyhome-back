@@ -28,7 +28,7 @@ public class ReservationRestController {
     @Autowired
     private ReservationService reservationService;
 
-    // 예약 성공
+
 
 
     // 예약 등록
