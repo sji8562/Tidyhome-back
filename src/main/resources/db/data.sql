@@ -563,13 +563,15 @@ insert into faq_part_tb(faq_id, title,content, code) values (5,'영수증 발급
 – 잔금을 파트너에게 직접 결제 및 계좌이체한 경우 해당 업체에 문의해 주세요.',2);
 
 
-insert into reservation_tb(address_info_id, info_id, created_at) values (1, 1, now());
-insert into reservation_tb(address_info_id, info_id, created_at) values (2, 2, now());
-insert into reservation_tb(address_info_id, info_id, created_at) values (3, 3, now());
 
 insert into sale_tb(user_id, price, created_at) values (1, 25000, now());
-insert into sale_tb(user_id, price, created_at) values (2, 37000, now());
+insert into sale_tb(user_id, price, created_at) values (1, 37000, now());
 insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
+insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
+
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (1, 1, 1, 1, now());
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (4, 2, 2, 1, now());
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (3, 3, 3, 3, now());
 
 
 
