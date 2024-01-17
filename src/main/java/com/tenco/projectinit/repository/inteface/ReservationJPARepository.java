@@ -45,17 +45,18 @@ public interface ReservationJPARepository extends JpaRepository<Reservation, Int
 //            + "s.price AS price, "
 //            + "fc.name AS firstCategory, "
 //            + "sc.name AS secondCategory, "
-//            + "o.name AS option) "
+//            + "o.name AS option)"
+//            + "r.id AS reservationId)"
 //            + "FROM AddressInfo ai "
 //            + "JOIN Reservation r ON ai.id = r.addressInfo.id "
 //            + "JOIN Info i ON r.info.id = i.id "
-//            + "JOIN ReservationSuc rs ON r.id = rs.reservation.id "
 //            + "JOIN Sale s ON rs.sale.id = s.id "
 //            + "JOIN Option o ON o.id = i.option.id "
 //            + "JOIN SecondCategory sc ON sc.id = o.secondCategory.id "
 //            + "JOIN FirstCategory fc ON fc.id = sc.firstCategory.id "
 //            + "WHERE r.id = :reservationId")
 //    ReservationDetailResponseDTO.ReservationDetail findReservationDetailById(@Param("reservationId") Integer reservationId); // 예약 내역 상세
+
 
 
     Reservation findById(int id);
