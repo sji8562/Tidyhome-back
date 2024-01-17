@@ -14,10 +14,6 @@ public class FaqService {
     @Autowired
     FaqJPARepository faqJPARepository;
 
-
-    public List<FaqPartResponseDTO.FaqJoinPartDTO> findAllAndServicesIdAndPartId(Integer id) {
-        return faqJPARepository.findAllAndServicesId(id);
-    }
     public List<FaqPartResponseDTO.FaqJoinPartDTO> findAllAndServicesIdAndPartId(Integer id, Integer partId) {
         return faqJPARepository.findAllAndServicesIdAndPartId(id,partId);
     }
