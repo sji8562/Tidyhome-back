@@ -77,7 +77,7 @@ public class ReservationService {
     }
 
 
-    // 출입 방법 입력 메서드
+//     출입 방법 입력 메서드
 //    public void updateEnter(Integer reservationId, EnterResponseDTO responseDTO) {
 //        EtcInfo etcInfo = etcInfoJPARepository.findEtcInfoIdByReservationId(reservationId);
 //        Enter enter = Enter.builder()
@@ -87,70 +87,36 @@ public class ReservationService {
 //                .build();
 
     // 출입 방법 입력 메서드
-//    public void updateEnter(Integer reservationId, EnterResponseDTO.EnterDTO request) {
-//        Info info = infoJPARepository.findByReservationId(reservationId);
-//
-//        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
-//
-//        EtcInfo etcInfo = wait.getEtcInfo();
-//        if(etcInfo == null) {
-//            etcInfo = EtcInfo.builder()
-//                    .info(info)
-//                    .build();
-//            etcInfoJPARepository.save(etcInfo);
-//            wait.setEtcInfo(etcInfo);
-//        }
-//
-//        Enter enter = Enter.builder()
-//                .etcInfo(etcInfo)
-//                .enter(request.getEnter())
-//                .enterPassword(request.getPassword())
-//                .build();
-//
-//
-//        enterJPARepository.save(enter);
-//    }
-//
-//    // 출입 방법 삭제 메서드
-//    public void deleteEnter(Integer reservationId) {
-//        Optional<Enter> optionalEnter = enterJPARepository.findEnterById(reservationId);
-//        if(optionalEnter.isPresent()) {
-//            Enter enter = optionalEnter.get();
-//            enterJPARepository.delete(enter);
-//        }
-//    }
-//
-//    // 기타 요청사항 입력 메서드
-//    public void updateRequest(Integer reservationId, RequestResponseDTO.RequestDTO responseDTO) {
-//        Info info = infoJPARepository.findByReservationId(reservationId);
-//
-//        Wait wait = waitJPARepository.findByReservationSuc_Reservation_Id(reservationId);
-//
-//        EtcInfo etcInfo = wait.getEtcInfo();
-//        if(etcInfo == null) {
-//            etcInfo = EtcInfo.builder()
-//                    .info(info)
-//                    .build();
-//            etcInfoJPARepository.save(etcInfo);
-//            wait.setEtcInfo(etcInfo);
-//        }
-//
-//        Request request = Request.builder()
-//                .etcInfo(etcInfo)
-//                .special(responseDTO.getSpecial())
-//                .otherRequest(responseDTO.getOtherRequest())
-//                .build();
-//        requestJPARepository.save(request);
-//    }
-//
-//    // 기타 요청사항 삭제 메서드
-//    public void deleteRequest(Integer reservationId) {
-//        Optional<Request> optionalRequest = requestJPARepository.findEnterById(reservationId);
-//        if(optionalRequest.isPresent()) {
-//            Request request = optionalRequest.get();
-//            requestJPARepository.delete(request);
-//        }
-//    }
+    public void updateEnter(Integer reservationId, EnterResponseDTO.EnterDTO request) {
+        Info info = infoJPARepository.findByReservationId(reservationId);
+        info.setEnter(request.getEnter());
+        info.setEnterPassword(request.getPassword());
+        infoJPARepository.save(info);
+    }
+
+    // 출입 방법 삭제 메서드
+    public void deleteEnter(Integer reservationId) {
+        Info info = infoJPARepository.findByReservationId(reservationId);
+        info.setEnter(null);
+        info.setEnterPassword(null);
+        infoJPARepository.save(info);
+    }
+
+    // 기타 요청사항 입력 메서드
+    public void updateRequest(Integer reservationId, RequestResponseDTO.RequestDTO request) {
+        Info info = infoJPARepository.findByReservationId(reservationId);
+        info.setSpecial(request.getSpecial());
+        info.setOtherRequest(request.getOtherRequest());
+        infoJPARepository.save(info);
+    }
+
+    // 기타 요청사항 삭제 메서드
+    public void deleteRequest(Integer reservationId) {
+        Info info = infoJPARepository.findByReservationId(reservationId);
+        info.setSpecial(null);
+        info.setOtherRequest(null);
+        infoJPARepository.save(info);
+    }
 
 
     @Transactional

@@ -35,6 +35,14 @@ public class Info {
 
     private Boolean pet;
 
+    private String enter;
+
+    private String enterPassword;
+
+    private String special;
+
+    private String otherRequest;
+
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
