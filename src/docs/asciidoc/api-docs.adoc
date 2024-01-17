@@ -2,17 +2,24 @@ ifndef::snippets[]
 :snippets: ./build/generated-snippets
 endif::[]
 
+
 :user: user-rest-controller-test
 :reservation: reservation-rest-controller-test
 :address: address-rest-controller-test
 :category: category-rest-controller-test
+:service: service-rest-controller-test
+:faq: faq-rest-controller-test
+:notice: notice-rest-controller-test
+:option: option-rest-controller-test
+
+
 // :product: product-rest-controller-test
 = REST API
 :toc: left
 :toclevels: 2
 :source-highlighter: highlightjs
 
-= 1.회원
+== 1.회원
 
 === 1. 회원가입
 
@@ -24,7 +31,7 @@ include::{snippets}/{user}/join_test/http-request.adoc[]
 
 include::{snippets}/{user}/join_test/http-response.adoc[]
 
-= 2. 주소
+== 2. 주소
 
 === 1. 주소 추가
 
@@ -51,15 +58,15 @@ include::{snippets}/{address}/first_address_add_test/http-response.adoc[]
 
 ===== Request
 
-include::{snippets}/{address}/view-product-list-by-category-id/http-request.adoc[]
+include::{snippets}/{address}/view_address_list_by_user-id/http-request.adoc[]
 
 ===== Response
 
-include::{snippets}/{address}/view-product-list-by-category-id/http-response.adoc[]
+include::{snippets}/{address}/view_address_list_by_user-id/http-response.adoc[]
 
-= 3. 카테고리
+== 3. 카테고리
 
-== 1. 첫번쨰 카테고리
+=== 1. 첫번쨰 카테고리
 
 ===== Request
 
@@ -69,7 +76,7 @@ include::{snippets}/{category}/first_category_test/http-request.adoc[]
 
 include::{snippets}/{category}/first_category_test/http-response.adoc[]
 
-== 2. 두번째 카테고리
+=== 2. 두번째 카테고리
 
 ===== Request
 
@@ -83,3 +90,69 @@ include::{snippets}/{category}/second_category_by_1_test/http-response.adoc[]
 include::{snippets}/{category}/second_category_by_2_test/http-response.adoc[]
 include::{snippets}/{category}/second_category_by_3_test/http-response.adoc[]
 
+== 4. 서비스
+
+=== 1. 서비스 리스트
+
+===== Request
+
+include::{snippets}/{service}/service_list_test/http-request.adoc[]
+
+===== Response
+
+include::{snippets}/{service}/service_list_test/http-request.adoc[]
+
+== 5. 자주 묻는 질문
+
+=== 1. 자주 묻는 질문 리스트
+
+===== Request
+
+include::{snippets}/{faq}/faq_list_by_part_id_1_test/http-request.adoc[]
+include::{snippets}/{faq}/faq_list_by_part_id_2_test/http-request.adoc[]
+include::{snippets}/{faq}/faq_list_by_part_id_3_test/http-request.adoc[]
+include::{snippets}/{faq}/faq_list_by_part_id_4_test/http-request.adoc[]
+include::{snippets}/{faq}/faq_list_by_part_id_5_test/http-request.adoc[]
+
+
+===== Response
+
+include::{snippets}/{faq}/faq_list_by_part_id_1_test/http-response.adoc[]
+include::{snippets}/{faq}/faq_list_by_part_id_2_test/http-response.adoc[]
+include::{snippets}/{faq}/faq_list_by_part_id_3_test/http-response.adoc[]
+include::{snippets}/{faq}/faq_list_by_part_id_4_test/http-response.adoc[]
+include::{snippets}/{faq}/faq_list_by_part_id_5_test/http-response.adoc[]
+
+== 6. 공지사항
+
+=== 1. 공지사항 리스트
+
+===== Request
+
+include::{snippets}/{notice}/notice_list_test/http-request.adoc[]
+
+===== Response
+
+include::{snippets}/{notice}/notice_list_test/http-response.adoc[]
+
+=== 2. 공지사항 디테일
+
+===== Request
+
+include::{snippets}/{notice}/notice_detail_by_id_test/http-request.adoc[]
+
+===== Response
+
+include::{snippets}/{notice}/notice_detail_by_id_test/http-response.adoc[]
+
+== 7. 옵션
+
+=== 1. 옵션 리스트
+
+===== Request
+
+include::{snippets}/{option}/option_detail_test/http-request.adoc[]
+
+===== Response
+
+include::{snippets}/{option}/option_detail_test/http-response.adoc[]

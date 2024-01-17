@@ -29,18 +29,12 @@ public class Info {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Option option;
-
     private String reservationDate;
     private String reservationTime;
-
     private Boolean pet;
-
     private String enter;
-
     private String enterPassword;
-
     private String special;
-
     private String otherRequest;
 
     @Column(length = 256)
