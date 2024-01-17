@@ -1,12 +1,15 @@
 package com.tenco.projectinit.service;
 
 import com.tenco.projectinit._core.errors.exception.Exception400;
+import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit._core.errors.exception.Exception500;
 import com.tenco.projectinit._core.utils.JwtTokenUtils;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
+import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.repository.entity.SmsCode;
 import com.tenco.projectinit.repository.entity.User;
+import com.tenco.projectinit.repository.inteface.PartnerJPARepository;
 import com.tenco.projectinit.repository.inteface.SmsCodeJPARepository;
 import com.tenco.projectinit.repository.inteface.UserJPARepository;
 import jakarta.annotation.PostConstruct;
@@ -44,6 +47,9 @@ public class UserService {
 
     @Autowired
     private SmsCodeJPARepository smsCodeJPARepository;
+
+    @Autowired
+    private PartnerJPARepository partnerJPARepository;
 
     @Value("${sms.api.key}")
     private String apiKey;
@@ -170,4 +176,11 @@ public class UserService {
         userJPARepository.deleteById(id);
     }
 
+    public void updatePartner(Integer userId, UserRequestDTO.partnerDTO request) {
+        Partner partner = partnerJPARepository.findById(userId).orElseThrow(() -> new Exception404("옵션이 없습니다"));
+        partner.setUsername(request.getUserName());
+        partner.setBusinessNumber(request.getBusinessNumber());
+        partner.setPicUrl(request.getPicUrl());
+        partnerJPARepository.save(partner);
+    }
 }
