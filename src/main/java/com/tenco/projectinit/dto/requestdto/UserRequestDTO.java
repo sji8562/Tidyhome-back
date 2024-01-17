@@ -30,4 +30,11 @@ public class UserRequestDTO {
         private String tel;
         private String code;
     }
+
+    @Data
+    public static class partnerDTO {
+        private String userName;
+        private String businessNumber;
+        private String picUrl;
+    }
 }

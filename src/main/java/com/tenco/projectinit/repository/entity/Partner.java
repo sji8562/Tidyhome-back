@@ -26,7 +26,7 @@ public class Partner {
     private String picUrl;
     private String categoryId;
     private String location;
-    private Integer businessNumber;
+    private String businessNumber;
     private String gender;
     private Integer level;
     @Column(length = 256)
