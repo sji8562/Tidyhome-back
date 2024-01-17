@@ -18,7 +18,7 @@ public class JwtTokenUtils {
                 .withClaim("id", user.getId()) // 페이로드에 담길 정보(인증된 회원의 유효한 정보 담을 수 있음)
                 .withClaim("loginId", user.getTel())
                 .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L)) // 해당 토큰 유효기간 만료 정하는 메소드
-                .sign(Algorithm.HMAC512("meta")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
+                .sign(Algorithm.HMAC512("tenco")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
         return jwt;
     }
     public static String create(Partner partner) {
@@ -31,7 +31,7 @@ public class JwtTokenUtils {
                 .withClaim("location",partner.getLocation())
                 .withClaim("picUrl",partner.getPicUrl())
                 .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L)) // 해당 토큰 유효기간 만료 정하는 메소드
-                .sign(Algorithm.HMAC512("meta")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
+                .sign(Algorithm.HMAC512("tenco")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
         return jwt;
     }
 
@@ -41,7 +41,7 @@ public class JwtTokenUtils {
                 .withClaim("id", 1)
                 .withClaim("tel", "1234")
                 .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L*31))
-                .sign(Algorithm.HMAC512("meta"));
+                .sign(Algorithm.HMAC512("tenco"));
         return jwt;
     }
     public static String createMockPartner() {
@@ -54,7 +54,7 @@ public class JwtTokenUtils {
                 .withClaim("location","금정구, 해운대구")
                 .withClaim("picUrl","null")
                 .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L)) // 해당 토큰 유효기간 만료 정하는 메소드
-                .sign(Algorithm.HMAC512("meta")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
+                .sign(Algorithm.HMAC512("tenco")); // 비밀 키 값을 입력하여 어떤 알고리즘으로 암호화할지 결정
         return jwt;
     }
 
@@ -63,7 +63,7 @@ public class JwtTokenUtils {
         jwt = jwt.replace("Bearer ", "");
 
         // JWT를 검증한 후, 검증이 완료되면, header, payload를 base64로 복호화함.
-        DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512("meta"))
+        DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC512("tenco"))
                 .build().verify(jwt);
         return decodedJWT;
     }

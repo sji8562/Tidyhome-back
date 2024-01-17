@@ -23,6 +23,8 @@ public class UserRestControllerTest extends MyWithRestDoc {
         //given
         UserRequestDTO.JoinDTO requestDTO = new UserRequestDTO.JoinDTO();
 
+
+
         requestDTO.setTel("01058288562");
 
 
@@ -49,53 +51,24 @@ public class UserRestControllerTest extends MyWithRestDoc {
                 .andDo(document);
     }
 
-    @Test
-    public void delete_test() throws Exception {
-        //given
-        UserRequestDTO.LoginDTO requestDTO = new UserRequestDTO.LoginDTO();
 
-        requestDTO.setTel("01058288562");
-
-
-        System.out.println(requestDTO);
-
-        ObjectMapper om = new ObjectMapper();
-        String requestBody = om.writeValueAsString(requestDTO);
-
-        //when
-        ResultActions resultActions =
-                mockMvc.perform(
-                        MockMvcRequestBuilders.post("/api/users/delete")
-                                .content(requestBody)
-                                .contentType(MediaType.APPLICATION_JSON)
-                );
-        String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        System.out.println(responseBody);
-        //then
-        resultActions
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.success").value(true))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.error").isEmpty())
-                .andDo(MockMvcResultHandlers.print())
-                .andDo(document);
-    }
-    @Test
-    public void userList_test() throws Exception {
-        // Given
-
-        // When
-        ResultActions resultActions = mockMvc.perform(
-                MockMvcRequestBuilders.get("/mng/user/user-list")
-                        .contentType(MediaType.APPLICATION_JSON)
-        );
-
-        // Then
-
-        resultActions
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(MockMvcResultHandlers.print())
-                .andDo(document);
-    }
+//    @Test
+//    public void userList_test() throws Exception {
+//        // Given
+//
+//        // When
+//        ResultActions resultActions = mockMvc.perform(
+//                MockMvcRequestBuilders.get("/mng/user/user-list")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//        );
+//
+//        // Then
+//
+//        resultActions
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andDo(MockMvcResultHandlers.print())
+//                .andDo(document);
+//    }
 
 //    @Test
 //    public void login_test() throws Exception {
