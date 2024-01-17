@@ -14,10 +14,10 @@ public class ReservationResponseDTO {
 
     @Data
     public static class ReservationSuccessDTO{
-        private Integer reservationSuccessId;
+        private Integer saleId;
 
-        public ReservationSuccessDTO(Integer reservationSuccessId) {
-            this.reservationSuccessId = reservationSuccessId;
+        public ReservationSuccessDTO(Integer saleId) {
+            this.saleId = saleId;
         }
     }
 }

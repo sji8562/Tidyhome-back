@@ -26,15 +26,13 @@ public class InfoService {
     public InfoResponseDTO.InfoDTO info(Integer infoId) {
         Optional<Info> optionalInfo = infoJPARepository.findById(infoId);
         Info info = optionalInfo.get();
-        Integer id = info.getId();
-        Optional<Reservation> optionalReservation = reservationJPARepository.findById(id);
-        Option option = info.getOption();
+        Optional<Reservation> optionalReservation = reservationJPARepository.findByInfo(info);
         Reservation reservation = optionalReservation.get();
-        Integer reservationId = reservation.getId();
+        Option option = info.getOption();
         AddressInfo addressInfo = reservation.getAddressInfo();
 
         InfoResponseDTO.InfoDTO infoDTO = new InfoResponseDTO.InfoDTO(
-                infoId, reservation.getStatus(), reservationId, info.getReservationDate(), info.getReservationTime(), addressInfo.getPostNumber(), addressInfo.getAddress(), addressInfo.getAddressDetail(), info.getPet(), info.getEnter(), info.getEnterPassword(), info.getSpecial(), info.getOtherRequest(), option.getPrice()
+                infoId, reservation.getStatus(), info.getReservationDate(), info.getReservationTime(), addressInfo.getPostNumber(), addressInfo.getAddress(), addressInfo.getAddressDetail(), info.getPet(), info.getEnter(), info.getEnterPassword(), info.getSpecial(), info.getOtherRequest(), option.getPrice()
         );
 
         return infoDTO;
