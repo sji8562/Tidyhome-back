@@ -27,21 +27,18 @@ public class Reservation{
     private Integer id;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AddressInfo addressInfo;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Info info;
 
-<<<<<<< HEAD
-=======
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Sale sale;
 
 
->>>>>>> 0682305d8043dd205abd8db2258ccc8cb5d36805
     private Integer status;
 
     @Column(length = 256)
