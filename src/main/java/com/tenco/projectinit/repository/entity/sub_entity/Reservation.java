@@ -33,7 +33,16 @@ public class Reservation{
     @ManyToOne(fetch = FetchType.LAZY)
     private Info info;
 
+    private Integer status;
+
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
+
+    public String statusToString() {
+        if (status == 1) return "결제전";
+        else if (status == 2) return "결제후";
+        else if (status == 3) return "서비스완료";
+        else return "예약취소";
+    }
 }

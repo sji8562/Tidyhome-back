@@ -694,9 +694,9 @@ insert into reservation_tb(address_info_id, info_id, created_at) values (1, 1, n
 insert into reservation_tb(address_info_id, info_id, created_at) values (2, 2, now());
 insert into reservation_tb(address_info_id, info_id, created_at) values (3, 3, now());
 
-insert into sale_tb(user_id, price, created_at, status) values (1, 25000, now(), 1);
-insert into sale_tb(user_id, price, created_at, status) values (2, 37000, now(), 3);
-insert into sale_tb(user_id, price, created_at, status) values (1, 17000, now(), 4);
+insert into sale_tb(user_id, price, created_at) values (1, 25000, now());
+insert into sale_tb(user_id, price, created_at) values (2, 37000, now());
+insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
 
 
 

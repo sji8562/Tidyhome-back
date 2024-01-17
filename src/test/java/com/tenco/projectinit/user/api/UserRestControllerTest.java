@@ -19,13 +19,6 @@ import java.util.List;
 public class UserRestControllerTest extends MyWithRestDoc {
 
     @Test
-    public void hello_test() {
-        String a = "1234";
-        System.out.println(a.chars());
-    }
-
-
-    @Test
     public void join_test() throws Exception {
         //given
         UserRequestDTO.JoinDTO requestDTO = new UserRequestDTO.JoinDTO();
