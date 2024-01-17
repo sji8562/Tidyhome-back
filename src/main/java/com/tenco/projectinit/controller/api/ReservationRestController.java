@@ -94,7 +94,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/enter")
     public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO.EnterDTO request) {
         try {
-//            reservationService.updateEnter(reservationId, request);
+            reservationService.updateEnter(reservationId, request);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
