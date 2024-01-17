@@ -2,6 +2,7 @@ package com.tenco.projectinit.repository.inteface;
 
 import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
 
+import com.tenco.projectinit.repository.entity.Info;
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -61,7 +62,7 @@ public interface ReservationJPARepository extends JpaRepository<Reservation, Int
 
     Reservation findById(int id);
 
-
+    Optional<Reservation> findByInfo(Info info);
     List<Reservation> findByAddressInfo_User_IdAndStatusIn(Integer userId, List<Integer> statusList);
 
 

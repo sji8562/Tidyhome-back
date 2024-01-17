@@ -25,7 +25,7 @@ public class SaleRestController {
     public ResponseEntity<?> savePayment(@RequestBody ReservationRequestDTO.ReservationSuccessDTO successDTO, HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User sessionUser = (User) session.getAttribute("sessionUser");
-        Integer reservationSuccesId = saleService.savePayment(successDTO, sessionUser.getId());
-        return ResponseEntity.ok().body(ApiUtils.success(new ReservationResponseDTO.ReservationSuccessDTO(reservationSuccesId)));
+        Integer saleId = saleService.savePayment(successDTO, sessionUser.getId());
+        return ResponseEntity.ok().body(ApiUtils.success(new ReservationResponseDTO.ReservationSuccessDTO(saleId)));
     }
 }
