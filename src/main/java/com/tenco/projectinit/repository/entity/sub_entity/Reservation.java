@@ -3,6 +3,7 @@ package com.tenco.projectinit.repository.entity.sub_entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.Info;
+import com.tenco.projectinit.repository.entity.Sale;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +34,14 @@ public class Reservation{
     @ManyToOne(fetch = FetchType.LAZY)
     private Info info;
 
+<<<<<<< HEAD
+=======
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Sale sale;
+
+
+>>>>>>> 0682305d8043dd205abd8db2258ccc8cb5d36805
     private Integer status;
 
     @Column(length = 256)

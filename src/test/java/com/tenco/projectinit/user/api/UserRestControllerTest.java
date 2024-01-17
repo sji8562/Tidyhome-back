@@ -34,7 +34,7 @@ public class UserRestControllerTest extends MyWithRestDoc {
         //when
         ResultActions resultActions =
                 mockMvc.perform(
-                        MockMvcRequestBuilders.post("/api/users/join")
+                        MockMvcRequestBuilders.post("/api/users/login")
                                 .content(requestBody)
                                 .contentType(MediaType.APPLICATION_JSON)
                 );

@@ -44,9 +44,8 @@ public class ReservationService {
 
 
     // 예약 목록을 보여주는 메서드
-    public List<ReservationDetailResponseDTO.ReservationList> getReservationList(Integer userId) {
-//        return reservationRepository.findReservationByUserId(userId);
-        return null;
+    public List<Reservation> getReservationList(Integer userId) {
+        return reservationRepository.findAllById(userId);
     }
 
     // 완료 목록을 보여주는 메서드
@@ -76,15 +75,6 @@ public class ReservationService {
         infoJPARepository.save(info);
     }
 
-
-//     출입 방법 입력 메서드
-//    public void updateEnter(Integer reservationId, EnterResponseDTO responseDTO) {
-//        EtcInfo etcInfo = etcInfoJPARepository.findEtcInfoIdByReservationId(reservationId);
-//        Enter enter = Enter.builder()
-//                .etcInfo(etcInfo)
-//                .enter(responseDTO.getEnter())
-//                .enterPassword(responseDTO.getEnterPassword())
-//                .build();
 
     // 출입 방법 입력 메서드
     public void updateEnter(Integer reservationId, EnterResponseDTO.EnterDTO request) {

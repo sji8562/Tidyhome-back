@@ -76,10 +76,10 @@ public class UserService {
     @Transactional
     public UserResponseDTO.TokenDTO join(UserRequestDTO.JoinDTO joinDTO) {
         String tel = joinDTO.getTel();
-        if (tel.equals("1234")){
-            User user =userJPARepository.findByPhone(tel);
-            return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user);
-        }
+//        if (tel.equals("1234")){
+//            User user =userJPARepository.findByPhone(tel);
+//            return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user);
+//        }
         if (tel == null || tel.length() != 13) {
 
             throw new Exception400("전화번호는 11자리여야 합니다.");
@@ -101,7 +101,6 @@ public class UserService {
             userJPARepository.flush();
         }
         smsCodeJPARepository.delete(smsCode);
-        User loginId = userJPARepository.findByPhone(joinDTO.getTel());
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
 
     }

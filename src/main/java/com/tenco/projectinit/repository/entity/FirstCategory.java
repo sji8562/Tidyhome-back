@@ -23,7 +23,7 @@ public class FirstCategory {
     private Integer id;
     private String name;
 
-//    @JsonIgnoreProperties({ "firstCategory" })
-//    @OneToMany(mappedBy = "firstCategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<SecondCategory> secondCategories = new ArrayList<>();
+    @JsonIgnoreProperties({ "firstCategory" })
+    @OneToMany(mappedBy = "firstCategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<SecondCategory> secondCategories = new ArrayList<>();
 }
