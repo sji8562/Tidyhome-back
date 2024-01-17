@@ -29,10 +29,6 @@ public class Sale {
 
     private Integer price;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    private KakaoPayment kakaoPayment;
-
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;

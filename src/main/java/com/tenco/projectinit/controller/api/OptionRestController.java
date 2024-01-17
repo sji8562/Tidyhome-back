@@ -16,7 +16,9 @@ public class OptionRestController {
 
     @Autowired
     private OptionService optionService;
+
     @GetMapping("/")
+
     public ResponseEntity<?> optionDetail(@RequestParam Integer secondCategoryId){
         OptionResponseDTO.OptionDetail optionDetail = optionService.getOptionDetail(secondCategoryId);
         return ResponseEntity.ok().body(ApiUtils.success(optionDetail));

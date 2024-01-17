@@ -151,42 +151,6 @@ public class ReservationService {
 
     }
 
-//    public Integer reservationSuccess(ReservationRequestDTO.ReservationSuccessDTO successDTO, Integer userId) {
-//        // 예약 아이디 가져오기
-//        Integer reservationId = successDTO.getReservationId();
-//        // 예약엔티티 가져오기
-//        Reservation reservation = reservationRepository.findById(reservationId)
-//                .orElseThrow(() -> new Exception404("예약이 없습니다"));
-//        // 옵션 가져오기
-//        Option option = reservation.getInfo().getOption();
-//        // 옵션에서 price 가져오기
-//        Integer price = option.getPrice();
-//        // 유저 가져오기
-//        User user = userJPARepository.findById(userId)
-//                .orElseThrow(() -> new Exception404("사용자가 없습니다"));
-//        // 카카오페이먼트 가져오기
-//        Integer kakaoPaymentId = successDTO.getKakaoPaymentId();
-//        KakaoPayment kakaoPayment = kakaoPaymentJPARepository.findById(kakaoPaymentId)
-//                .orElseThrow(() -> new Exception404("카카오페이먼트가 없습니다"));
-//        // tid 가져오기
-//        String tid = successDTO.getTid();
-//
-//        // sale 만들기
-//        Sale sale = Sale.builder()
-//                .kakaoPayment(kakaoPayment)
-//                .price(price)
-//                .user(user)
-//                .tid(tid)
-//                .build();
-//        saleJPARepository.save(sale);
-//        ReservationSuc reservationSuc = ReservationSuc.builder()
-//                .reservation(reservation)
-//                .sale(sale)
-//                .build();
-//        reservationSucJPARepository.save(reservationSuc);
-//        return reservationSuc.getId();
-//    }
-
     public Reservation findById(int id){
         return reservationJPARepository.findById(id);
     }
