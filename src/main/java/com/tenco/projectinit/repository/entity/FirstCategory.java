@@ -1,7 +1,6 @@
 package com.tenco.projectinit.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.tenco.projectinit.repository.entity.sub_entity.Request;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +23,7 @@ public class FirstCategory {
     private Integer id;
     private String name;
 
-//    @JsonIgnoreProperties({ "firstCategory" })
-//    @OneToMany(mappedBy = "firstCategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<SecondCategory> secondCategories = new ArrayList<>();
+    @JsonIgnoreProperties({ "firstCategory" })
+    @OneToMany(mappedBy = "firstCategory", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<SecondCategory> secondCategories = new ArrayList<>();
 }

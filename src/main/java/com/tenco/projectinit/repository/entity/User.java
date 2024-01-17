@@ -1,14 +1,12 @@
 package com.tenco.projectinit.repository.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.tenco.projectinit.repository.entity.sub_entity.Request;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
