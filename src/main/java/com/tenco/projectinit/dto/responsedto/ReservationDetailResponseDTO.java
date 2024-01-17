@@ -102,4 +102,38 @@ public class ReservationDetailResponseDTO {
         }
     }
 
+
+    @Data
+    public static class JReservationDetail {
+        private Integer reservationId;
+        // addressInfo_tb
+        private String address;
+        private String addressDetail;
+
+        // info_tb
+        private String reservationDate;
+        private String reservationTime;
+        private Boolean pet;
+
+        // sale_tb
+        private Integer price;
+
+        private String firstCategory;
+        private String secondCategory;
+        private String option;
+
+        public JReservationDetail(Reservation reservation) {
+            this.reservationId = reservation.getId();
+            this.address = reservation.getAddressInfo().getAddress();
+            this.addressDetail = reservation.getAddressInfo().getAddressDetail();
+            this.reservationDate = reservation.getInfo().getReservationDate();
+            this.reservationTime = reservation.getInfo().getReservationTime();
+            this.pet = reservation.getInfo().getPet();
+            this.price = reservation.getInfo().getOption().getPrice();
+            this.firstCategory = reservation.getInfo().getOption().getSecondCategory().getFirstCategory().getName();
+            this.secondCategory = reservation.getInfo().getOption().getSecondCategory().getName();
+            this.option = reservation.getInfo().getOption().getName();
+        }
+    }
+
 }

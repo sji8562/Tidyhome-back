@@ -1,19 +1,16 @@
 package com.tenco.projectinit.dto.responsedto;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 
 public class RequestResponseDTO {
     @Data
     public static class RequestDTO{
-        private Integer requestId;
-        private Integer etcInfo;
+        private Integer reservationId;
         private String special;
         private String otherRequest;
 
-        public RequestDTO(Integer requestId, Integer etcInfo, String special, String otherRequest) {
-            this.requestId = requestId;
-            this.etcInfo = etcInfo;
+        public RequestDTO(Integer reservationId, String special, String otherRequest) {
+            this.reservationId = reservationId;
             this.special = special;
             this.otherRequest = otherRequest;
         }

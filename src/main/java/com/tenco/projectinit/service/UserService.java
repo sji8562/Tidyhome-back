@@ -80,15 +80,15 @@ public class UserService {
             User user =userJPARepository.findByPhone(tel);
             return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user);
         }
-        if (tel == null || tel.length() != 13) {
-
-            throw new Exception400("전화번호는 11자리여야 합니다.");
-        }
-
-        SmsCode smsCode = smsCodeJPARepository.findByTel(joinDTO.getTel()).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
-        if (!smsCode.isChecked()) {
-            throw new Exception400("인증되지 않았습니다");
-        }
+//        if (tel == null || tel.length() != 13) {
+//
+//            throw new Exception400("전화번호는 11자리여야 합니다.");
+//        }
+//
+//        SmsCode smsCode = smsCodeJPARepository.findByTel(joinDTO.getTel()).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
+//        if (!smsCode.isChecked()) {
+//            throw new Exception400("인증되지 않았습니다");
+//        }
 
         User user = userJPARepository.findByTel(joinDTO.getTel()).orElse(
                 User.builder()
@@ -100,8 +100,8 @@ public class UserService {
             userJPARepository.save(user);
             userJPARepository.flush();
         }
-        smsCodeJPARepository.delete(smsCode);
-
+//        smsCodeJPARepository.delete(smsCode);
+        User loginId = userJPARepository.findByPhone(joinDTO.getTel());
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
 
     }

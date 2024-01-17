@@ -22,10 +22,12 @@ public class EnterResponseDTO {
 
     @Data
     public static class InquiryDTO{
+        private Integer reservationId;
         private String enter;
         private String pasword;
 
-        public InquiryDTO(String enter, String pasword) {
+        public InquiryDTO(Integer reservationId, String enter, String pasword) {
+            this.reservationId = reservationId;
             this.enter = enter;
             this.pasword = pasword;
         }

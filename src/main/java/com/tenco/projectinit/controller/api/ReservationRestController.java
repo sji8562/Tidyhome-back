@@ -8,10 +8,8 @@ import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
 import com.tenco.projectinit.dto.responsedto.ReservationResponseDTO;
 import com.tenco.projectinit.repository.entity.User;
 
+
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
-
-import com.tenco.projectinit.repository.entity.sub_entity.Enter;
-
 import com.tenco.projectinit.service.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -30,13 +28,7 @@ public class ReservationRestController {
     private ReservationService reservationService;
 
     // 예약 성공
-    @PostMapping("/success")
-    public ResponseEntity<?> reservationSuccess(@RequestBody ReservationRequestDTO.ReservationSuccessDTO successDTO, HttpServletRequest httpServletRequest) {
-        HttpSession session = httpServletRequest.getSession();
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        Integer reservationSuccesId = reservationService.reservationSuccess(successDTO, sessionUser.getId());
-        return ResponseEntity.ok().body(ApiUtils.success(new ReservationResponseDTO.ReservationSuccessDTO(reservationSuccesId)));
-    }
+
 
     // 예약 등록
     @PostMapping("/save")
@@ -61,14 +53,16 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserCompletedReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getCompletedReservationList(user.getId());
+        List<ReservationDetailResponseDTO.ReservationCompleteList> reservationList = reservationService.getCompletedReservationList(user.getId());
+        System.out.println(reservationList);
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 
     // 예약 상세 내역 조회
     @GetMapping("/list/{reservationId}")
     public ResponseEntity<?> getReservationDetail(@PathVariable Integer reservationId) {
-        ReservationDetailResponseDTO.ReservationDetail reservationDetail = reservationService.getReservationDetail(reservationId);
+        Reservation reservation = reservationService.findById(reservationId);
+        ReservationDetailResponseDTO.JReservationDetail reservationDetail = new ReservationDetailResponseDTO.JReservationDetail(reservation);
         return ResponseEntity.ok().body(ApiUtils.success(reservationDetail));
     }
 
@@ -90,7 +84,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/enter")
     public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO.EnterDTO request) {
         try {
-            reservationService.updateEnter(reservationId, request);
+//            reservationService.updateEnter(reservationId, request);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -102,7 +96,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/enter/delete")
     public ResponseEntity<?> deleteEnter(@PathVariable Integer reservationId) {
         try {
-            reservationService.deleteEnter(reservationId);
+//            reservationService.deleteEnter(reservationId);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -114,7 +108,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/request")
     public ResponseEntity<?> updateRequest(@PathVariable Integer reservationId, @RequestBody RequestResponseDTO.RequestDTO request) {
         try {
-            reservationService.updateRequest(reservationId, request);
+//            reservationService.updateRequest(reservationId, request);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -126,7 +120,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/request/delete")
     public ResponseEntity<?> deleteRequest(@PathVariable Integer reservationId) {
         try {
-            reservationService.deleteRequest(reservationId);
+//            reservationService.deleteRequest(reservationId);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

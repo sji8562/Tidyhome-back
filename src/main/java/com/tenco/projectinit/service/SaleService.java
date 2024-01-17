@@ -24,8 +24,8 @@ public class SaleService {
     public List<payListRequestDTO.payListDTO> getCategoryName(List<Sale> saleList) {
         List<String> categoryNames = new ArrayList<>();
         for (Sale sale : saleList) {
-            String categoryName = saleJPARepository.findFirstCategoryNameBySaleId(sale.getId());
-            categoryNames.add(categoryName);
+//            String categoryName = saleJPARepository.findFirstCategoryNameBySaleId(sale.getId());
+//            categoryNames.add(categoryName);
         }
         List<payListRequestDTO.payListDTO> payList = new ArrayList<>();
         for(int i = 0; i < saleList.size(); i++) {

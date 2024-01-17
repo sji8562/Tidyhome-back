@@ -60,7 +60,6 @@ public class PartnerService {
     @Value("${sms.api.secret}")
     private String apiSecret;
 
-
     private DefaultMessageService messageService;
 
     public List<Partner> findByLevel() {
@@ -193,24 +192,24 @@ public class PartnerService {
         return parseCateparse(partner);
     }
 
-    public void updateById(PartnerRequestDTO.UpdateDTO dto) {
-
-
-        String parse = dto.getCategory();
-        String temp = "";
-        for (int i = 0; i < parse.length(); i++) {
-            if (i == 0) {
-                temp += parse.split("")[i];
-            } else {
-                temp += "," + parse.split("")[i];
-            }
+//    public void updateById(PartnerRequestDTO.UpdateDTO dto) {
+//
+//
+//        String parse = dto.getCategory();
+//        String temp = "";
+//        for (int i = 0; i < parse.length(); i++) {
+//            if (i == 0) {
+//                temp += parse.split("")[i];
+//            } else {
+//                temp += "," + parse.split("")[i];
+//            }
 
 //            partnerJPARepository.updateByPartnerId(dto.getId(),dto.getUsername(),dto.getTel(),temp);
 //                return 0;
 
 
-        }
-    }
+//        }
+//    }
 
     public PartnerResponseDTO.TokenDTO join(com.tenco.projectinit.dto.requestdto.PartnerRequestDTO.JoinDTO joinDTO) {
 
