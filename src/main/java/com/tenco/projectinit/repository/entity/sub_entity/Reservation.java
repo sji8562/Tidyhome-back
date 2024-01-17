@@ -27,7 +27,7 @@ public class Reservation{
     private Integer id;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private AddressInfo addressInfo;
 
     @JsonIgnore
