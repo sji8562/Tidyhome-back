@@ -1,5 +1,7 @@
 package com.tenco.projectinit.service;
 
+import com.tenco.projectinit._core.errors.exception.Exception500;
+import com.tenco.projectinit.dto.requestdto.InfoRequestDTO;
 import com.tenco.projectinit.dto.responsedto.InfoResponseDTO;
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.Info;
@@ -18,6 +20,9 @@ public class InfoService {
     @Autowired
     private InfoJPARepository infoJPARepository;
 
+    @Autowired
+    private OptionJPARepository optionJPARepository;
+
     public InfoResponseDTO.InfoDTO info(Integer infoId) {
         Optional<Info> optionalInfo = infoJPARepository.findById(infoId);
         Info info = optionalInfo.get();
@@ -33,5 +38,24 @@ public class InfoService {
         );
 
         return infoDTO;
+    }
+
+    public void save(InfoRequestDTO.InfoSaveRequestDTO dto) {
+        System.out.println("여기2"+dto.toString());
+        Integer optionId = dto.getOptionId();
+        Option option = optionJPARepository.findById(optionId).orElseThrow(() -> new Exception500("옵션이 없습니다"));
+        System.out.println(option.toString());
+        System.out.println("여기3");
+        Info info = Info.builder()
+                .option(option)
+                .reservationDate(dto.getReservationDate())
+                .reservationTime(dto.getReservationTime())
+                .pet(dto.isPet())
+                .build();
+        System.out.println("여기4");
+
+        infoJPARepository.save(info);
+        infoJPARepository.flush();
+        System.out.println("여기5");
     }
 }
