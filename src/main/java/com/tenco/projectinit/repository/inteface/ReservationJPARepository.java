@@ -61,6 +61,8 @@ public interface ReservationJPARepository extends JpaRepository<Reservation, Int
 
     Reservation findById(int id);
 
+    List<Reservation> findAllById(int id);
+
 
 }
 

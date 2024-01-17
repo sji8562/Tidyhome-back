@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/reservation")
@@ -42,9 +43,13 @@ public class ReservationRestController {
     // 예약 내역 목록
     @GetMapping("/list")
     public ResponseEntity<?> getUserReservationInfo(HttpServletRequest httpServletRequest) {
-        HttpSession session = httpServletRequest.getSession();
-        User user = (User) session.getAttribute("sessionUser");
-        List<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getReservationList(1);
+//        HttpSession session = httpServletRequest.getSession();
+//        User user = (User) session.getAttribute("sessionUser");
+        List<Reservation> reservations = reservationService.getReservationList(1);
+        List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
+                .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
+                .collect(Collectors.toList());
+
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 
@@ -53,7 +58,7 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserCompletedReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<ReservationDetailResponseDTO.ReservationCompleteList> reservationList = reservationService.getCompletedReservationList(user.getId());
+        List<ReservationDetailResponseDTO.ReservationCompleteList> reservationList = reservationService.getCompletedReservationList(1);
         System.out.println(reservationList);
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }

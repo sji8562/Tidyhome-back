@@ -22,6 +22,21 @@ public class ReservationDetailResponseDTO {
             this.firstCategory = firstCategory;
         }
     }
+
+    @Data
+    public static class JReservationList {
+        private Integer reservationId;
+        private String reservationDate;
+        private String reservationTime;
+        private String firstCategory;
+
+        public JReservationList(Reservation reservation) {
+            this.reservationId = reservation.getId();
+            this.reservationDate = reservation.getInfo().getReservationDate();
+            this.reservationTime = reservation.getInfo().getReservationTime();
+            this.firstCategory = reservation.getInfo().getOption().getSecondCategory().getFirstCategory().getName();
+        }
+    }
     @Data
     public static class ReservationCompleteList {
         private Integer reservationId;
