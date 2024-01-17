@@ -30,7 +30,7 @@ public class User {
 
     @JsonIgnoreProperties({ "user" })
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<AddressInfo> addressInfos = new ArrayList<>();
+    private final List<AddressInfo> addressInfos = new ArrayList<>();
 
 
 }

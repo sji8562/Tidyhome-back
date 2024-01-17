@@ -18,17 +18,10 @@ public class FaqRestController {
     @Autowired
     FaqService faqService;
 
-    @GetMapping("/{id}/list")
-    public ResponseEntity<?> serviceList(@PathVariable Integer id, @RequestParam Integer partId){
-
+    @GetMapping("/{id}/list/{partId}")
+    public ResponseEntity<?> serviceList(@PathVariable Integer id, @PathVariable Integer partId){
         List<FaqPartResponseDTO.FaqJoinPartDTO> dto;
-        if(partId == 0 || partId == null){
-            dto = faqService.findAllAndServicesIdAndPartId(id);
-            return ResponseEntity.ok().body(ApiUtils.success(dto));
-        }else{
             dto = faqService.findAllAndServicesIdAndPartId(id,partId);
             return ResponseEntity.ok().body(ApiUtils.success(dto));
-        }
     }
-
 }

@@ -9,7 +9,7 @@ import com.tenco.projectinit.dto.responsedto.ReservationResponseDTO;
 import com.tenco.projectinit.repository.entity.User;
 
 
-
+import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import com.tenco.projectinit.service.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -44,8 +44,7 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getReservationList(user.getId());
-        System.out.println(reservationList);
+        List<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getReservationList(1);
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 
@@ -62,7 +61,8 @@ public class ReservationRestController {
     // 예약 상세 내역 조회
     @GetMapping("/list/{reservationId}")
     public ResponseEntity<?> getReservationDetail(@PathVariable Integer reservationId) {
-        ReservationDetailResponseDTO.ReservationDetail reservationDetail = reservationService.getReservationDetail(reservationId);
+        Reservation reservation = reservationService.findById(reservationId);
+        ReservationDetailResponseDTO.JReservationDetail reservationDetail = new ReservationDetailResponseDTO.JReservationDetail(reservation);
         return ResponseEntity.ok().body(ApiUtils.success(reservationDetail));
     }
 
