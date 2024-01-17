@@ -32,9 +32,8 @@ public class MngPayController {
     // 결제 내역 목록 조회
     @GetMapping("list")
     public String payList(Model model) {
-//        List<Sale> saleList = saleService.getList();
-//        List<payListRequestDTO.payListDTO> payList = saleService.getCategoryName(saleList);
-//        model.addAttribute("payList", payList);
+        List<payListRequestDTO.payListDTO> payList = saleService.getPayList();
+        model.addAttribute("payList", payList);
         return "/mng/pay/list";
     }
 

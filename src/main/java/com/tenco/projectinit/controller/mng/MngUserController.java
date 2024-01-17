@@ -3,9 +3,11 @@ package com.tenco.projectinit.controller.mng;
 import com.tenco.projectinit._core.errors.exception.CustomRestfullException;
 import com.tenco.projectinit._core.utils.Define;
 import com.tenco.projectinit.dto.mng.PartnerRequestDTO;
+import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.FirstCategory;
 import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.repository.entity.User;
+import com.tenco.projectinit.repository.inteface.AddressInfoJPARepository;
 import com.tenco.projectinit.service.CategoryService;
 import com.tenco.projectinit.service.PartnerService;
 import com.tenco.projectinit.service.UserService;
@@ -39,6 +41,8 @@ public class MngUserController {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    AddressInfoJPARepository addressInfoJPARepository;
 
     @GetMapping("list")
     public String userList(Model model) {
@@ -61,11 +65,16 @@ public class MngUserController {
         } else {
             userPG = userService.findByPageNation(page, keyword);
         }
-        System.out.println(userPG.stream().toList());
         model.addAttribute("userPG", userPG);
         model.addAttribute("prevPage", userPG.getNumber() - 1);
         model.addAttribute("nextPage", userPG.getNumber() + 1);
         return "/mng/user/customer/list";
+    }
+
+    @GetMapping("/{userId}/address-list")
+    @ResponseBody
+    public List<AddressInfo> getAddressList(@PathVariable Integer userId) {
+        return addressInfoJPARepository.findByUserId(userId);
     }
 
     @GetMapping("partner-list")

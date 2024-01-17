@@ -75,20 +75,20 @@
                                                         <td><fmt:formatDate value="${pay.sale.createdAt}"
                                                                             pattern="yyyy. MM. dd"/></td>
                                                             <%--<td>${pay.createdAt}</td>--%>
-                                                        <td>${pay.sale.statusToString()}</td>
+                                                        <td>${pay.status}</td>
                                                         <td>
                                                             <div>
                                                                 <form id="cancelForm${pay.sale.id}"
                                                                       action="/mng/pay/cancel" method="post">
                                                                     <input type="hidden" name="saleId" value="${pay.sale.id}">
                                                                     <c:choose>
-                                                                        <c:when test="${pay.sale.status eq 4}">
+                                                                        <c:when test="${pay.status eq '예약취소'}">
                                                                             <button class="btn-danger btn" type="button"
                                                                                     style="background-color: dimgray; border-color: dimgray;" disabled>
                                                                                 환불 완료
                                                                             </button>
                                                                         </c:when>
-                                                                        <c:when test="${pay.sale.status eq 3}">
+                                                                        <c:when test="${pay.status eq '결제전' or pay.status eq '서비스완료'}">
                                                                             <button class="btn-danger btn" type="button"
                                                                                     style="background-color: dimgray; border-color: dimgray;" disabled>
                                                                                 결제 취소
