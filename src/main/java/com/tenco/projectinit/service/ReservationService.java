@@ -110,18 +110,22 @@ public class ReservationService {
 
 
     @Transactional
-    public int reservationRegister(ReservationRequestDTO.ReservationRegister request) {
+    public int reservationRegister(ReservationRequestDTO.ReservationRegister reservationRegister) {
         // 옵션 찾기
-        Integer optionId = request.getOptionId();
+        Integer optionId = reservationRegister.getOptionId();
         Option option = optionJPARepository.findById(optionId)
-                .orElseThrow(() -> new Exception404("옵션이 없습니다"));
+                .orElseThrow(() -> new Exception500("옵션이 없습니다"));
         // 인포 엔티티 만들기
 
         Info info = Info.builder()
                 .option(option)
-                .reservationTime(request.getReservationTime())
-                .reservationDate(request.getReservationDate())
-                .pet(request.isPet())
+                .reservationTime(reservationRegister.getReservationTime())
+                .reservationDate(reservationRegister.getReservationDate())
+                .pet(reservationRegister.isPet())
+                .enter(reservationRegister.getEnter())
+                .enterPassword(reservationRegister.getEnterPassword())
+                .special(reservationRegister.getSpecial())
+                .otherRequest(reservationRegister.getOtherRequest())
                 .build();
         // 인포엔티티 저장
         try{
@@ -131,9 +135,9 @@ public class ReservationService {
         }
 
         // 어드레스 엔티티 찾기
-        Integer addressInfoId = request.getAddressInfoId();
+        Integer addressInfoId = reservationRegister.getAddressInfoId();
         AddressInfo addressInfo = addressInfoJPARepository.findById(addressInfoId)
-                .orElseThrow(() -> new Exception404("주소가 없습니다"));
+                .orElseThrow(() -> new Exception500("주소가 없습니다"));
         // 어드레스랑 인포로 레저베이션 만들기
         System.out.println("5까지");
         Reservation reservation = Reservation.builder()
