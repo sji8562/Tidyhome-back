@@ -20,4 +20,10 @@ public class ReservationRequestDTO {
         private Integer status;
     }
 
+    @Data
+    public static class ReservationSuccessDTO{
+        private Integer saleId;
+        private Integer reservationId;
+        private String tid;
+    }
 }
