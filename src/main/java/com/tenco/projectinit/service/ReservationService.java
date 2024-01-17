@@ -72,7 +72,11 @@ public class ReservationService {
         info.setReservationDate(newReservationDate);
         info.setReservationTime(newReservationTime);
 
-        infoJPARepository.save(info);
+       try {
+           infoJPARepository.save(info);
+       } catch(Exception e){
+           System.out.println("info세이브 실패");
+       }
     }
 
 
@@ -201,6 +205,15 @@ public class ReservationService {
 
     public Reservation findById(int id){
         return reservationJPARepository.findById(id);
+    }
+
+    @Transactional
+    public void save(Reservation reservation){
+       try {
+           reservationRepository.save(reservation);
+       } catch(Exception e){
+           throw new Exception500("예약 업데이트 실패");
+       }
     }
 
 }

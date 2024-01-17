@@ -132,4 +132,20 @@ public class ReservationRestController {
                     .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
         }
     }
+
+    //예약 취소(상태를 4로 설정)
+    @PostMapping("/cancel/{id}")
+    public ResponseEntity<?> canselReservation(@PathVariable Integer id){
+        Reservation reservation = reservationService.findById(id);
+        reservation.setStatus(4);
+        try {
+            reservationService.save(reservation);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
+        }
+        return ResponseEntity.ok(ApiUtils.success(null));
+    }
+
+
 }
