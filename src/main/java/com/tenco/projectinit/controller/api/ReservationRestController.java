@@ -52,7 +52,7 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getReservationList(user.getId());
+        List<ReservationDetailResponseDTO.ReservationList> reservationList = reservationService.getReservationList(1);
         return ResponseEntity.ok().body(ApiUtils.success(reservationList));
     }
 

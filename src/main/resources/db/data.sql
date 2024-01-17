@@ -106,9 +106,9 @@ insert into option_tb(second_category_id, name, price) values (15, '거주청소
 
 
 
-insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (1, '2024-01-30', '14:00:00', true, now());
-insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (17, '2024-01-20', '09:00:00', true, now());
-insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (34, '2024-01-20', '18:00:00', true, now());
+insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (1, '2024년1월30일', '오후 2시~오후 4시', true, now());
+insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (17, '2024년01월20일', '오후 4시~오후 6시', true, now());
+insert into info_tb(option_id, reservation_date, reservation_time, pet, created_at) values (34, '2024년1월23일', '오전 9시~오후 11시', true, now());
 
 
 insert into address_info_tb(user_id, address, address_detail, choice) values (1, 'test 주소1', 'test1동 test1호', true);

@@ -40,6 +40,7 @@ public class ReservationDetailResponseDTO {
 
     @Data
     public static class ReservationDetail {
+    private Integer reservationId;
     // addressInfo_tb
     private String address;
     private String addressDetail;
@@ -56,9 +57,8 @@ public class ReservationDetailResponseDTO {
     private String secondCategory;
     private String option;
 
-        public ReservationDetail(String address, String addressDetail, String reservationDate,
-                                 String reservationTime, Boolean pet, Integer price, String firstCategory,
-                                 String secondCategory, String option) {
+        public ReservationDetail(Integer reservationId, String address, String addressDetail, String reservationDate, String reservationTime, Boolean pet, Integer price, String firstCategory, String secondCategory, String option) {
+            this.reservationId = reservationId;
             this.address = address;
             this.addressDetail = addressDetail;
             this.reservationDate = reservationDate;
