@@ -211,6 +211,7 @@ public class PartnerService {
 //        }
 //    }
 
+    @Transactional
     public PartnerResponseDTO.TokenDTO join(com.tenco.projectinit.dto.requestdto.PartnerRequestDTO.JoinDTO joinDTO) {
 
         String tel = joinDTO.getTel();
