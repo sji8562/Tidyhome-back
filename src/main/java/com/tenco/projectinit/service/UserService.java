@@ -1,12 +1,15 @@
 package com.tenco.projectinit.service;
 
 import com.tenco.projectinit._core.errors.exception.Exception400;
+import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit._core.errors.exception.Exception500;
 import com.tenco.projectinit._core.utils.JwtTokenUtils;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
+import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.repository.entity.SmsCode;
 import com.tenco.projectinit.repository.entity.User;
+import com.tenco.projectinit.repository.inteface.PartnerJPARepository;
 import com.tenco.projectinit.repository.inteface.SmsCodeJPARepository;
 import com.tenco.projectinit.repository.inteface.UserJPARepository;
 import jakarta.annotation.PostConstruct;
@@ -45,6 +48,9 @@ public class UserService {
     @Autowired
     private SmsCodeJPARepository smsCodeJPARepository;
 
+    @Autowired
+    private PartnerJPARepository partnerJPARepository;
+
     @Value("${sms.api.key}")
     private String apiKey;
 
@@ -75,24 +81,28 @@ public class UserService {
 
     @Transactional
     public UserResponseDTO.TokenDTO join(UserRequestDTO.JoinDTO joinDTO) {
-        String tel = joinDTO.getTel();
+        String[] tel = joinDTO.getTel().split("-");
+        String nohipen = "";
+        for (int i = 0; i < tel.length; i++) {
+            nohipen += tel[i];
+        }
+
         if (tel.equals("1234")){
-            User user =userJPARepository.findByPhone(tel);
+            User user =userJPARepository.findByPhone("1234");
             return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user);
         }
-//        if (tel == null || tel.length() != 13) {
-//
-//            throw new Exception400("전화번호는 11자리여야 합니다.");
-//        }
-//
-//        SmsCode smsCode = smsCodeJPARepository.findByTel(joinDTO.getTel()).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
-//        if (!smsCode.isChecked()) {
-//            throw new Exception400("인증되지 않았습니다");
-//        }
+        if (nohipen == null || nohipen.length() != 11) {
+            throw new Exception400("전화번호는 11자리여야 합니다.");
+        }
 
-        User user = userJPARepository.findByTel(joinDTO.getTel()).orElse(
+        SmsCode smsCode = smsCodeJPARepository.findByTel(nohipen).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
+        if (!smsCode.isChecked()) {
+            throw new Exception400("인증되지 않았습니다");
+        }
+
+        User user = userJPARepository.findByTel(nohipen).orElse(
                 User.builder()
-                        .tel(joinDTO.getTel())
+                        .tel(nohipen)
                         .build()
         );
 
@@ -101,7 +111,6 @@ public class UserService {
             userJPARepository.flush();
         }
 //        smsCodeJPARepository.delete(smsCode);
-        User loginId = userJPARepository.findByPhone(joinDTO.getTel());
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
 
     }
@@ -171,4 +180,11 @@ public class UserService {
         userJPARepository.deleteById(id);
     }
 
+    public void updatePartner(Integer userId, UserRequestDTO.partnerDTO request) {
+        Partner partner = partnerJPARepository.findById(userId).orElseThrow(() -> new Exception404("옵션이 없습니다"));
+        partner.setUsername(request.getUserName());
+        partner.setBusinessNumber(request.getBusinessNumber());
+        partner.setPicUrl(request.getPicUrl());
+        partnerJPARepository.save(partner);
+    }
 }

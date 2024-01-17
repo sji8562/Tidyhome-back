@@ -5,7 +5,6 @@ insert into admin_tb(admin_name,admin_password, created_at) values ('admin','123
 insert into user_tb(tel,created_at) values ('1234',now());
 insert into user_tb(tel,created_at) values ('01093971773',now());
 insert into user_tb(tel,created_at) values ('01012345678',now());
-insert into user_tb(tel,created_at) values ('01058288562',now());
 insert into user_tb(tel,created_at) values ('01051515151',now());
 insert into user_tb(tel,created_at) values ('01051519595',now());
 insert into user_tb(tel,created_at) values ('01095953535',now());
@@ -20,7 +19,6 @@ insert into partner_tb(tel,username,pic_url,category_id,created_at) values ('010
 
 insert into first_category_tb(name) values ( '가사도우미');
 insert into first_category_tb(name) values ( '사무실청소');
-insert into first_category_tb(name) values ( '가전/침대청소');
 insert into first_category_tb(name) values ('이사청소');
 
 insert into second_category_tb(first_category_id, name) values ( 1, '방/거실');
@@ -31,13 +29,10 @@ insert into second_category_tb(first_category_id, name) values ( 2, '사무실')
 insert into second_category_tb(first_category_id, name) values ( 2, '탕비실');
 insert into second_category_tb(first_category_id, name) values ( 2, '화장실');
 insert into second_category_tb(first_category_id, name) values ( 2, '기타사항');
-insert into second_category_tb(first_category_id, name) values ( 3, '에어컨');
-insert into second_category_tb(first_category_id, name) values ( 3, '세탁기');
-insert into second_category_tb(first_category_id, name) values ( 3, '매트리스');
-insert into second_category_tb(first_category_id, name) values ( 4, '방/거실');
-insert into second_category_tb(first_category_id, name) values ( 4, '주방/욕실');
-insert into second_category_tb(first_category_id, name) values ( 4, '현관/베란다');
-insert into second_category_tb(first_category_id, name) values ( 4, '창/바닥');
+insert into second_category_tb(first_category_id, name) values ( 3, '방/거실');
+insert into second_category_tb(first_category_id, name) values ( 3, '주방/욕실');
+insert into second_category_tb(first_category_id, name) values ( 3, '현관/베란다');
+insert into second_category_tb(first_category_id, name) values ( 3, '창/바닥');
 
 insert into option_tb(second_category_id, name, price) values (1, '2시간', 38900);
 insert into option_tb(second_category_id, name, price) values (1, '3시간', 51900);
@@ -71,38 +66,15 @@ insert into option_tb(second_category_id, name, price) values (8, '2시간', 430
 insert into option_tb(second_category_id, name, price) values (8, '3시간', 59000);
 insert into option_tb(second_category_id, name, price) values (8, '4시간', 72000);
 insert into option_tb(second_category_id, name, price) values (8, '8시간', 112000);
-insert into option_tb(second_category_id, name, price) values (9, '벽걸이 에어컨', 60000);
-insert into option_tb(second_category_id, name, price) values (9, '스탠드 에어컨-일반', 95000);
-insert into option_tb(second_category_id, name, price) values (9, '스탠드 에어컨-스마트', 95000);
-insert into option_tb(second_category_id, name, price) values (9, '시스탬(천장형)에어컨-1 way', 80000);
-insert into option_tb(second_category_id, name, price) values (9, '시스탬(천장형)에어컨-2 way', 80000);
-insert into option_tb(second_category_id, name, price) values (9, '시스탬(천장형)에어컨-4 way', 119000);
-insert into option_tb(second_category_id, name, price) values (10, '일반세탁기-14kg 이하', 89000);
-insert into option_tb(second_category_id, name, price) values (10, '일반세탁기-15-17kg', 99000);
-insert into option_tb(second_category_id, name, price) values (10, '일반세탁기-18kg 이상', 114000);
-insert into option_tb(second_category_id, name, price) values (10, '드럼세탁기-14kg 이하', 89000);
-insert into option_tb(second_category_id, name, price) values (10, '드럼세탁기-15-17kg', 99000);
-insert into option_tb(second_category_id, name, price) values (10, '드럼세탁기-18kg 이상', 114000);
-insert into option_tb(second_category_id, name, price) values (10, '빌트인세탁기', 139000); -- 삼성제품은(149000)이랍니다;
-insert into option_tb(second_category_id, name, price) values (11, '싱글,슈퍼싱글', 40000);
-insert into option_tb(second_category_id, name, price) values (11, '더블,퀸', 45000);
-insert into option_tb(second_category_id, name, price) values (11, '킹', 50000);
+insert into option_tb(second_category_id, name, price) values (9, '9평이하', 150000);
+insert into option_tb(second_category_id, name, price) values (9, '10-18평', 200000);
+insert into option_tb(second_category_id, name, price) values (10, '9평이하', 150000);
+insert into option_tb(second_category_id, name, price) values (10, '10-18평', 200000);
+insert into option_tb(second_category_id, name, price) values (11, '9평이하', 150000);
+insert into option_tb(second_category_id, name, price) values (11, '10-18평', 200000);
 insert into option_tb(second_category_id, name, price) values (12, '9평이하', 150000);
 insert into option_tb(second_category_id, name, price) values (12, '10-18평', 200000);
-insert into option_tb(second_category_id, name, price) values (12, '19평 이상', 10900); -- 이거 평당임 ㅋㅋ
-insert into option_tb(second_category_id, name, price) values (12, '거주청소', 12900); -- 이것도 ㅋ
-insert into option_tb(second_category_id, name, price) values (13, '9평이하', 150000);
-insert into option_tb(second_category_id, name, price) values (13, '10-18평', 200000);
-insert into option_tb(second_category_id, name, price) values (13, '19평 이상', 10900); -- 이거 평당임 ㅋㅋ
-insert into option_tb(second_category_id, name, price) values (13, '거주청소', 12900); -- 이것도 ㅋ
-insert into option_tb(second_category_id, name, price) values (14, '9평이하', 150000);
-insert into option_tb(second_category_id, name, price) values (14, '10-18평', 200000);
-insert into option_tb(second_category_id, name, price) values (14, '19평 이상', 10900); -- 이거 평당임 ㅋㅋ
-insert into option_tb(second_category_id, name, price) values (14, '거주청소', 12900); -- 이것도 ㅋ
-insert into option_tb(second_category_id, name, price) values (15, '9평이하', 150000);
-insert into option_tb(second_category_id, name, price) values (15, '10-18평', 200000);
-insert into option_tb(second_category_id, name, price) values (15, '19평 이상', 10900); -- 이거 평당임 ㅋㅋ
-insert into option_tb(second_category_id, name, price) values (15, '거주청소', 12900); -- 이것도 ㅋ
+
 
 
 
@@ -127,7 +99,7 @@ insert into faq_tb(service_id, name) values (1,'개인정보/환경설정');
 insert into faq_tb(service_id, name) values (1,'가사도우미');
 insert into faq_tb(service_id, name) values (1,'사무실청소');
 insert into faq_tb(service_id, name) values (1,'이사청소');
-insert into faq_tb(service_id, name) values (1,'가전/침구 청소');
+
 
 insert into faq_part_tb(faq_id, title,content, code) values (1,'카드 등록은 어떻게 하나요?','앱에서 신용카드 또는 카카오페이를 등록해 주세요\n카드 결제가 어렵다면 웹과 앱 내 실시간 문의를 통해\n미소로 문의하시길 바랍니다.\n\n\n 1.앱 \n2.내 정보\n3. 결제 수단 관리\n4.[카드 추가하기] 또는 [카카오페이 추가하기]\n\n * 체크카드 또는 타인 명의 카드도 등록 가능합니다.',1);
 insert into faq_part_tb(faq_id, title,content, code) values (1,'결제는 언제 진행되나요?','서비스 별 결제 시기는 다를 수 있어요.
@@ -590,113 +562,16 @@ insert into faq_part_tb(faq_id, title,content, code) values (5,'영수증 발급
 
 – 잔금을 파트너에게 직접 결제 및 계좌이체한 경우 해당 업체에 문의해 주세요.',2);
 
-insert into faq_part_tb(faq_id, title,content, code) values (6,'가전청소 진행 과정이 궁금해요','[세탁기, 에어컨 청소]
-세탁기, 에어컨 청소는 기기를 분해한 후 내부 오염물질을 모두 제거하고 살균 세척을 진행합니다.
-– 세탁기 청소: 세탁기 외부 및 세탁조 내/외부 세척
-– 에어컨 청소: 에어컨 그릴 및 필터세척, 커버 세척, 송풍구/냉각핀 고압세척
-– 에어컨 청소는 기본적으로 일반 분해 방식으로 진행되며,냉방팬을 따로 분리하지 않습니다.
-– 세탁기, 에어컨 청소 진행 시 오수와 찌꺼기가 발생할 수 있습니다.
-
-[매트리스 청소]
-건식으로 진행되며 집먼지 진드기, 미세먼지를 제거합니다.
-– 일반 매트리스 외 라텍스도 서비스 가능합니다.
-– 습식 청소를 원하실 경우 사전에 반드시 [실시간문의]로 요청을 해주셔야 하며 면 당 약 40,000원 ~ 100,000원의 추가 요금이 발생할 수 있습니다.',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'예약 이후 진행 과정이 어떻게 되나요?','파트너가 서비스 시작 시간을 조율하기 위해 서비스 전날까지 유선으로 연락드릴 예정입니다.
-
-– 성수기 주문 폭주로 인하여 요청하신 시간대가 아닌 다른 시간대로 변경될 수 있습니다.
-– 제품 난이도에 따라 2명 이상의 파트너가 방문할 수도 있습니다.',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'우리 지역에서 미소를 이용할 수 있나요?','서울, 경기, 인천, 대전, 대구, 부산, 울산, 광주, 세종 전 지역에서 이용 가능합니다.
-
-일부 가능 지역 안내
--경북: 안동, 영주, 예천, 포항, 경주, 구미, 경산
--경남: 밀양, 양산, 창원, 함안, 진주, 김해
--전북: 전주, 군산, 익산
--전남: 여수, 순천
--충북: 충주, 청주
--충남: 천안, 아산, 서산, 당진
--강원: 춘천, 원주, 강릉',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'가전청소 전에 어떤 것을 준비해야 하나요?','제품을 분해할 수 있는 주변 공간이 확보되어야 합니다.
-
-– 에어컨 주변의 침대, 책상 등의 가구 및 물건들을 다른 위치로 옮겨주세요.
-– 고압 물세척을 진행하니 전기 차단기를 사전에 확인해주세요.
-– 세탁기 위 건조기, 행거가 설치된 경우에는 서비스 진행이 어렵습니다. 세탁기 내부는 완전히 비워주세요.
-– 매트리스 커버를 미리 벗겨주세요.
-
-정확한 확인이 필요하신 경우, 미소 실시간 문의에 사진을 올려주시면 더욱 자세히 안내드리겠습니다.',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'시간은 얼마나 걸리나요?','청소시간은 제품별, 현장상황별로 상이합니다.
-
-대략적으로 아래와 같이 내외로 소요됩니다.
--에어컨: 30분~2시간
--세탁기: 1~3시간
--매트리스: 20분~1시간
-
-서비스 시작 시간 전,후로 충분한 시간을 확보해주시면 더욱 원활한 서비스 진행이 가능합니다.',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'서비스 불가능한 경우가 어떻게 되나요?','서비스 불가능한 제품이나 상황에 클리너가 방문했을 경우, 출장비가 1만원 발생합니다.
-서비스 불가능한 제품 및 여건은 아래와 같습니다.
-
-[제품]
-– 천장형 360 에어컨, 위니아 에어컨, 캐리어 에어컨, 액자형 에어컨, 노후가 심하거나  층고가 5M 이상이어서 서비스 진행이 불가능할 경우
-
-[청소 여건]
-– 세탁기 위에 건조기나 행거가 설치되어 서비스 진행이 불가능할 경우
-– 에어컨 주변에 기사님 혼자 이동이 불가능한 가구가 설치되어 있어 서비스 진행이 불가능할 경우
-– 빌트인 벽걸이 에어컨인 경우 추가금이 부과될 수 있습니다.',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'일반 스탠드 에어컨과 스마트 에어컨은 어떻게 구분하나요?','다음과 같은 기준으로 일반 스탠드에어컨과 스마트에어컨을 구분할 수 있습니다.
-
-– 구입 시기별 : 2009년도 이후 모델
-– 필터 위치별: 필터가 옆면 혹은 뒷면에 위치
-– 모델별: LG 손연재 에어컨, 삼성 김연아 에어컨, LG 손흥민 에어컨, 무풍 에어컨, 투 인 원 에어컨은 스마트 에어컨',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'실외기 청소도 포함되나요?','실외기 청소 및 가스충전을 원할 경우 접수 시 [실시간문의]로 알려주세요. 사전에 고지되지 않은 경우, 서비스가 불가합니다.
-– 실외기 청소 : 3~10만원 추가 비용 발생
-– 실외기 가스 충전 : 3~5만원의 추가 비용 발생',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'비대면 서비스가 가능한가요?','웹과 앱 내 실시간 문의로 현관 출입 방법을 전달해주세요. 고객님께서 부재중이시더라도 서비스를 받아보실 수 있도록 미소에서 파트너님에게 출입 방법을 안내해드립니다. 출입 방법을 미리 전달해주지 않아 출입이 제한될 시 서비스는 당일 취소 처리되며 서비스 정책에 따라 취소 수수료가 부과됩니다.',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'A/S 기간이 궁금해요','[공통 안내사항]
-– 담당 클리너님의 A/S를 원칙으로 합니다.
-– 청소와 관련된 문제일 경우에만 A/S가 가능합니다.
-– 제품별로 고지된 기간 이후에는 A/S가 불가능합니다.
-– 파손 발생으로 인한 A/S는 서비스 이후 7일 이내 접수하셔야 합니다.
-– 소비자의 단순 사용상의 문제로 현장 출동시, 출장비가 발생할 수 있습니다.
-
-[에어컨, 세탁기]
-– 서비스 이후 1개월까지 A/S를 무상으로 진행해드립니다.
-– 이벤트 진행 시 A/S 무상 기간이 달라질 수 있습니다.
-
-[매트리스]
-– 당일 검수 후 A/S 발생 시 무상으로 진행해드립니다.
-– 당일 검수 후 파트너와 일정을 협의해 A/S가 진행됩니다.',1);
-insert into faq_part_tb(faq_id, title,content, code) values (6,'추가 금액은 어떤 경우에 나오고 얼마인가요?','다음과 같은 상황에서 추가 요금이 발생할 수 있습니다.
-
-[제품 공통]
-– 클리너가 유료 주차장을 이용해야 할 경우, 전액 고객 부담
-– 클리너 방문 후 장소 협소, 기기 노후 등 현장 상황으로 인해 서비스 진행이 어렵다고 판단될 경우, 출장비 1만원 발생
-
-[서비스가 불가능한 경우]
-– 천장형 360 에어컨, 층고가 5M 이상이어서 서비스 진행이 불가능할 경우, 출장비 1만원 발생
-
-[에어컨]
-– 층고가 3M 이상인 경우 2만원 추가
-– 가정용 냉/난방기를 추가하는 경우 2~3만 원, 업소용 냉/난방기를 추가하는 경우 4~5만 원 추가
-– 업소용 제품은 크기 및 청소 난이도로 인하여 5~10만원 추가
-– 빌트인 벽걸이 에어컨인 경우 3~5만원 추가
-
-[세탁기]
-– 실내에 위치한 드럼 9kg 모델은 빌트인 가격
-– 올인원세탁기(트윈워시, 플렉스워시)의 경우, 가격 별도 문의
-– 아기사랑 세탁기는 단독 청소가 불가능합니다. 다른 세탁기 예약이 있을때만 진행이 가능하며, 추가금이 5만원 발생합니다.
-– LG 꼬망스 세탁기는 단독 서비스가 불가능합니다. 다른 세탁기 예약이 있을때만 진행이 가능하며, 추가금이 8만원 발생합니다.
-
-[매트리스]
-– 매트리스 습식 청소, 면당 4~10만 원 추가
-– 투매트(받침) 추가하는 경우 2만 원, 토퍼 추가하는 경우 2~6만 원 추가',2);
 
 
-insert into reservation_tb(address_info_id, info_id, created_at) values (1, 1, now());
-insert into reservation_tb(address_info_id, info_id, created_at) values (2, 2, now());
-insert into reservation_tb(address_info_id, info_id, created_at) values (3, 3, now());
+insert into sale_tb(user_id, price, created_at) values (1, 25000, now());
+insert into sale_tb(user_id, price, created_at) values (1, 37000, now());
+insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
+insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
 
-insert into sale_tb(user_id, price, created_at, status) values (1, 25000, now(), 1);
-insert into sale_tb(user_id, price, created_at, status) values (2, 37000, now(), 3);
-insert into sale_tb(user_id, price, created_at, status) values (1, 17000, now(), 4);
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (1, 1, 1, 1, now());
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (4, 2, 2, 1, now());
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (3, 3, 3, 3, now());
 
 
 

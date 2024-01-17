@@ -6,9 +6,9 @@ import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
 
 import com.tenco.projectinit.dto.responsedto.EnterResponseDTO;
 import com.tenco.projectinit.dto.responsedto.RequestResponseDTO;
+
+
 import com.tenco.projectinit.dto.responsedto.ReservationDetailResponseDTO;
-
-
 import com.tenco.projectinit.repository.entity.*;
 
 
@@ -17,26 +17,19 @@ import com.tenco.projectinit.repository.inteface.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ReservationService {
     @Autowired
-    private ReservationJPARepository reservationRepository;
-    @Autowired
     private OptionJPARepository optionJPARepository;
     @Autowired
     private InfoJPARepository infoJPARepository;
     @Autowired
     private AddressInfoJPARepository addressInfoJPARepository;
-    @Autowired
-    private UserJPARepository userJPARepository;
-    @Autowired
-    private KakaoPaymentJPARepository kakaoPaymentJPARepository;
-
-    @Autowired
-    private SaleJPARepository saleJPARepository;
 
     @Autowired
     private ReservationJPARepository reservationJPARepository;
@@ -45,26 +38,26 @@ public class ReservationService {
 
     // 예약 목록을 보여주는 메서드
     public List<Reservation> getReservationList(Integer userId) {
-        return reservationRepository.findAllById(userId);
+        return reservationJPARepository.findByAddressInfo_User_IdAndStatusIn(userId, Arrays.asList(1, 2));
     }
 
     // 완료 목록을 보여주는 메서드
-    public List<ReservationDetailResponseDTO.ReservationCompleteList> getCompletedReservationList(Integer userId) {
-//        return reservationRepository.findCompletedReservationByUserId(userId);
-        return null;
+    public List<Reservation> getCompletedReservationList(Integer userId) {
+        return reservationJPARepository.findByAddressInfo_User_IdAndStatusIn(userId, Arrays.asList(3, 4));
     }
 
     // 예약 상세 내역을 조회하는 메서드
-    public ReservationDetailResponseDTO.ReservationDetail getReservationDetail(Integer reservationId) {
-//        return reservationRepository.findReservationDetailById(reservationId);
-        return null;
+    // 예약 상세 내역을 조회하는 메서드
+    public Optional<ReservationDetailResponseDTO.ReservationDetail> getReservationDetail(Integer reservationId) {
+        Optional<Reservation> reservation = reservationJPARepository.findById(reservationId);
+        return reservation.map(ReservationDetailResponseDTO.ReservationDetail::new);
     }
 
 
     // 예약 일정을 변경하는 메서드
     @Transactional
     public void updateReservationDateTime(Integer reservationId, String newReservationDate, String newReservationTime) {
-        Reservation reservation = reservationRepository.findById(reservationId)
+        Reservation reservation = reservationJPARepository.findById(reservationId)
                 .orElseThrow(() -> new RuntimeException("Reservation not found with id: " + reservationId));
 
         Info info = reservation.getInfo();
@@ -79,15 +72,6 @@ public class ReservationService {
        }
     }
 
-
-//     출입 방법 입력 메서드
-//    public void updateEnter(Integer reservationId, EnterResponseDTO responseDTO) {
-//        EtcInfo etcInfo = etcInfoJPARepository.findEtcInfoIdByReservationId(reservationId);
-//        Enter enter = Enter.builder()
-//                .etcInfo(etcInfo)
-//                .enter(responseDTO.getEnter())
-//                .enterPassword(responseDTO.getEnterPassword())
-//                .build();
 
     // 출입 방법 입력 메서드
     public void updateEnter(Integer reservationId, EnterResponseDTO.EnterDTO request) {
@@ -123,18 +107,22 @@ public class ReservationService {
 
 
     @Transactional
-    public int reservationRegister(ReservationRequestDTO.ReservationRegister request) {
+    public int reservationRegister(ReservationRequestDTO.ReservationRegister reservationRegister) {
         // 옵션 찾기
-        Integer optionId = request.getOptionId();
+        Integer optionId = reservationRegister.getOptionId();
         Option option = optionJPARepository.findById(optionId)
-                .orElseThrow(() -> new Exception404("옵션이 없습니다"));
+                .orElseThrow(() -> new Exception500("옵션이 없습니다"));
         // 인포 엔티티 만들기
 
         Info info = Info.builder()
                 .option(option)
-                .reservationTime(request.getReservationTime())
-                .reservationDate(request.getReservationDate())
-                .pet(request.isPet())
+                .reservationTime(reservationRegister.getReservationTime())
+                .reservationDate(reservationRegister.getReservationDate())
+                .pet(reservationRegister.isPet())
+                .enter(reservationRegister.getEnter())
+                .enterPassword(reservationRegister.getEnterPassword())
+                .special(reservationRegister.getSpecial())
+                .otherRequest(reservationRegister.getOtherRequest())
                 .build();
         // 인포엔티티 저장
         try{
@@ -144,9 +132,9 @@ public class ReservationService {
         }
 
         // 어드레스 엔티티 찾기
-        Integer addressInfoId = request.getAddressInfoId();
+        Integer addressInfoId = reservationRegister.getAddressInfoId();
         AddressInfo addressInfo = addressInfoJPARepository.findById(addressInfoId)
-                .orElseThrow(() -> new Exception404("주소가 없습니다"));
+                .orElseThrow(() -> new Exception500("주소가 없습니다"));
         // 어드레스랑 인포로 레저베이션 만들기
         System.out.println("5까지");
         Reservation reservation = Reservation.builder()
@@ -157,7 +145,7 @@ public class ReservationService {
         System.out.println("6까지");
 
         try{
-            reservationRepository.save(reservation);
+            reservationJPARepository.save(reservation);
         }catch(Exception e){
             throw new Exception500("예약 저장 실패");
 

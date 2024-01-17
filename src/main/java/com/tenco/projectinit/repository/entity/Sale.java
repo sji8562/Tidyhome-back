@@ -40,13 +40,5 @@ public class Sale {
     // 카카오페이 결제번호? - 환불할 때 필요함
     private String tid;
 
-    private Integer status;
-
-    public String statusToString() {
-        if (status == 2) {return "예약 취소";}
-        else if (status == 3) {return "서비스 완료";}
-        else if (status == 4) {return "환불 완료";}
-        else {return "예약 완료";}
-    }
 }
 
