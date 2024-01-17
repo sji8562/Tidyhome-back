@@ -29,7 +29,6 @@ public class ReservationRestController {
     @Autowired
     private ReservationService reservationService;
 
-
     // 예약 등록
     @PostMapping("/save")
     public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister reservationRegister) {
