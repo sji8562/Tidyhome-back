@@ -9,4 +9,7 @@ import org.springframework.data.repository.query.Param;
 public interface InfoJPARepository extends JpaRepository<Info, Integer> {
     @Query("SELECT i FROM Info i WHERE i.id IN (SELECT r.info.id FROM Reservation r WHERE r.id = :reservationId)")
     Info findByReservationId(@Param("reservationId") Integer reservationId);
+
+
+
 }
