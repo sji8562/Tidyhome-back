@@ -101,7 +101,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/enter/delete")
     public ResponseEntity<?> deleteEnter(@PathVariable Integer reservationId) {
         try {
-//            reservationService.deleteEnter(reservationId);
+            reservationService.deleteEnter(reservationId);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -113,7 +113,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/request")
     public ResponseEntity<?> updateRequest(@PathVariable Integer reservationId, @RequestBody RequestResponseDTO.RequestDTO request) {
         try {
-//            reservationService.updateRequest(reservationId, request);
+            reservationService.updateRequest(reservationId, request);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -125,7 +125,7 @@ public class ReservationRestController {
     @PostMapping("/list/{reservationId}/request/delete")
     public ResponseEntity<?> deleteRequest(@PathVariable Integer reservationId) {
         try {
-//            reservationService.deleteRequest(reservationId);
+            reservationService.deleteRequest(reservationId);
             return ResponseEntity.ok(ApiUtils.success(null));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
