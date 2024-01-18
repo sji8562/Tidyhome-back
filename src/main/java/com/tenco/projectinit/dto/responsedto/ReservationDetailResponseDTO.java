@@ -55,6 +55,7 @@ public class ReservationDetailResponseDTO {
     @Data
     public static class ReservationDetail {
         private Integer reservationId;
+        private Integer status;
         // addressInfo_tb
         private String address;
         private String addressDetail;
@@ -73,6 +74,7 @@ public class ReservationDetailResponseDTO {
 
         public ReservationDetail(Reservation reservation) {
             this.reservationId = reservation.getId();
+            this.status = reservation.getStatus();
             this.address = reservation.getAddressInfo().getAddress();
             this.addressDetail = reservation.getAddressInfo().getAddressDetail();
             this.reservationDate = reservation.getInfo().getReservationDate();

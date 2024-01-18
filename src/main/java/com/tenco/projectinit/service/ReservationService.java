@@ -198,7 +198,7 @@ public class ReservationService {
     @Transactional
     public void save(Reservation reservation){
        try {
-           reservationRepository.save(reservation);
+           reservationJPARepository.save(reservation);
        } catch(Exception e){
            throw new Exception500("예약 업데이트 실패");
        }

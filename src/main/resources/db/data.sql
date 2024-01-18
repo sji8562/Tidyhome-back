@@ -569,8 +569,8 @@ insert into sale_tb(user_id, price, created_at) values (1, 37000, now());
 insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
 insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
 
-insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (1, 1, 1, 1, now());
-insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (4, 2, 2, 1, now());
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (1, 1, 1, 2, now());
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (4, 2, 2, 2, now());
 insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (3, 3, 3, 3, now());
 
 
