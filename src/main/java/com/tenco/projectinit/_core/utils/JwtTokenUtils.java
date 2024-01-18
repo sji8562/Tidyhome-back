@@ -36,12 +36,14 @@ public class JwtTokenUtils {
     }
 
     public static String createMockUser() {
+        System.out.println("여기가 문제인거야 ?");
         String jwt = JWT.create()
                 .withSubject("tok-key")
                 .withClaim("id", 1)
                 .withClaim("tel", "1234")
                 .withExpiresAt(Instant.now().plusMillis(1000 * 60 * 60 * 24 * 7L*31))
                 .sign(Algorithm.HMAC512("tenco"));
+        System.out.println("여기가 문제인거야 ?");
         return jwt;
     }
     public static String createMockPartner() {

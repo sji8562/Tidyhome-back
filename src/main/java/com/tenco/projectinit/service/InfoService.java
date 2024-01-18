@@ -41,6 +41,7 @@ public class InfoService {
     public void save(InfoRequestDTO.InfoSaveRequestDTO dto) {
         Integer optionId = dto.getOptionId();
         Option option = optionJPARepository.findById(optionId).orElseThrow(() -> new Exception500("옵션이 없습니다"));
+
         Info info = Info.builder()
                 .option(option)
                 .reservationDate(dto.getReservationDate())
