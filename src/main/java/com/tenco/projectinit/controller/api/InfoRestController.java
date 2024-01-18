@@ -18,9 +18,7 @@ public class InfoRestController {
     //info 생성
     @PostMapping("/save")
     public ResponseEntity<?> infoSave(@RequestBody InfoRequestDTO.InfoSaveRequestDTO infoSaveRequestDTO) {
-        System.out.println("여기1");
         infoService.save(infoSaveRequestDTO);
-        System.out.println("여기6");
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 
