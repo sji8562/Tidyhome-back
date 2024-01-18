@@ -84,8 +84,8 @@ public class ReservationService {
     // 출입 방법 삭제 메서드
     public void deleteEnter(Integer reservationId) {
         Info info = infoJPARepository.findByReservationId(reservationId);
-        info.setEnter(null);
-        info.setEnterPassword(null);
+        info.setEnter("");
+        info.setEnterPassword("");
         infoJPARepository.save(info);
     }
 
@@ -100,8 +100,8 @@ public class ReservationService {
     // 기타 요청사항 삭제 메서드
     public void deleteRequest(Integer reservationId) {
         Info info = infoJPARepository.findByReservationId(reservationId);
-        info.setSpecial(null);
-        info.setOtherRequest(null);
+        info.setSpecial("");
+        info.setOtherRequest("");
         infoJPARepository.save(info);
     }
 

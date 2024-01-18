@@ -87,7 +87,7 @@ public class UserService {
             nohipen += tel[i];
         }
 
-        if (tel.equals("1234")){
+        if (joinDTO.getTel().equals("1234")){
             User user =userJPARepository.findByPhone("1234");
             return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user);
         }

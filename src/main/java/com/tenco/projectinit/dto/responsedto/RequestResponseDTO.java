@@ -5,12 +5,10 @@ import lombok.Data;
 public class RequestResponseDTO {
     @Data
     public static class RequestDTO{
-        private Integer reservationId;
         private String special;
         private String otherRequest;
 
-        public RequestDTO(Integer reservationId, String special, String otherRequest) {
-            this.reservationId = reservationId;
+        public RequestDTO(String special, String otherRequest) {
             this.special = special;
             this.otherRequest = otherRequest;
         }

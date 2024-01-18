@@ -42,6 +42,7 @@ public class UserRestController {
     @PostMapping("/login")
     public ResponseEntity<?> joinAndLogin(@Valid @RequestBody UserRequestDTO.JoinDTO joinDTO){
         UserResponseDTO.TokenDTO tokenDTO = userService.join(joinDTO);
+        System.out.println("로그인 여기까지");
         return ResponseEntity.status(HttpStatus.CREATED).header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success((tokenDTO.getUser())));
     }
