@@ -24,8 +24,7 @@ public class InfoService {
     private OptionJPARepository optionJPARepository;
 
     public InfoResponseDTO.InfoDTO info(Integer reservationId) {
-        Optional<Reservation> optionalReservation = reservationJPARepository.findById(reservationId);
-        Reservation reservation = optionalReservation.get();
+        Reservation reservation = reservationJPARepository.findById(reservationId).orElseThrow(() -> new Exception500("리저베이션이 없습니다."));
         Info info = reservation.getInfo();
         Integer infoId = info.getId();
         AddressInfo addressInfo = reservation.getAddressInfo();
@@ -54,6 +53,8 @@ public class InfoService {
 
         Reservation reservation = new Reservation();
         reservation.setInfo(info);
+        reservation.setStatus(1);
+
 
         reservationJPARepository.save(reservation);
     }

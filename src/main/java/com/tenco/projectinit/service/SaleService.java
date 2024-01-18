@@ -54,6 +54,7 @@ public class SaleService {
                 .build();
         saleJPARepository.save(sale);
         return sale.getId();
+
     }
 
 
