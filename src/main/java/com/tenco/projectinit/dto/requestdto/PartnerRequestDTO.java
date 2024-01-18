@@ -19,13 +19,13 @@ public class PartnerRequestDTO {
     public static class JoinDTO {
         @NotBlank(message = "아이디는 필수 입력값입니다.")
         private String tel;
-        @NotBlank(message = "회사이름은 필수 입력값입니다.")
-        private String username;
-        @NotBlank(message = "사업자 번호는 필수 입력값입니다.")
-        private String businessNumber;
-        private String picUrl;
-        private String categoryId;
-        private String location;
+//        @NotBlank(message = "회사이름은 필수 입력값입니다.")
+//        private String username;
+//        @NotBlank(message = "사업자 번호는 필수 입력값입니다.")
+//        private String businessNumber;
+//        private String picUrl;
+//        private String categoryId;
+//        private String location;
 
     }
 }
