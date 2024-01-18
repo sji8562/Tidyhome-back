@@ -8,7 +8,6 @@ public class InfoResponseDTO {
     public static class InfoDTO {
         private Integer infoId;
         private Integer status;
-        private Integer reservationId;
         private String reservationDate;
         private String reservationTime;
         private String postNumber;
@@ -21,10 +20,9 @@ public class InfoResponseDTO {
         private String otherRequest;
         private Integer price;
 
-        public InfoDTO(Integer infoId, Integer status, Integer reservationId, String reservationDate, String reservationTime, String postNumber, String address, String addressDetail, boolean pet, String enter, String enterPassword, String special, String otherRequest, Integer price) {
+        public InfoDTO(Integer infoId, Integer status, String reservationDate, String reservationTime, String postNumber, String address, String addressDetail, boolean pet, String enter, String enterPassword, String special, String otherRequest, Integer price) {
             this.infoId = infoId;
             this.status = status;
-            this.reservationId = reservationId;
             this.reservationDate = reservationDate;
             this.reservationTime = reservationTime;
             this.postNumber = postNumber;
