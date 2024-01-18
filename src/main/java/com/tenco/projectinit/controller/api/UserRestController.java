@@ -1,5 +1,6 @@
 package com.tenco.projectinit.controller.api;
 
+import com.google.api.Http;
 import com.tenco.projectinit._core.utils.ApiUtils;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
@@ -25,6 +26,8 @@ public class UserRestController {
     private String APISECRETKEY = "";
     private String uri = "https://api.coolsms.co.kr";
 
+    @Autowired
+    private HttpSession session;
     // 인증번호 발송
     @PostMapping("/sms-send")
     public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
@@ -42,6 +45,7 @@ public class UserRestController {
     @PostMapping("/login")
     public ResponseEntity<?> joinAndLogin(@Valid @RequestBody UserRequestDTO.JoinDTO joinDTO){
         UserResponseDTO.TokenDTO tokenDTO = userService.join(joinDTO);
+        session.setAttribute("user",tokenDTO.getUser());
         System.out.println("로그인 성공");
         return ResponseEntity.status(HttpStatus.CREATED).header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success((tokenDTO.getUser())));
