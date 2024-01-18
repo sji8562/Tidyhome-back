@@ -17,7 +17,7 @@ public class OptionRestController {
     @Autowired
     private OptionService optionService;
 
-    @GetMapping("/")
+    @GetMapping("/detail")
 
     public ResponseEntity<?> optionDetail(@RequestParam Integer secondCategoryId){
         OptionResponseDTO.OptionDetail optionDetail = optionService.getOptionDetail(secondCategoryId);

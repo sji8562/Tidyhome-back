@@ -232,10 +232,10 @@ public class PartnerService {
         Partner partner = partnerJPARepository.findByTel(joinDTO.getTel()).orElse(
                 Partner.builder()
                         .tel(joinDTO.getTel())
-                        .username(joinDTO.getUsername())
-                        .categoryId(joinDTO.getCategoryId())
-                        .location(joinDTO.getLocation())
-                        .picUrl(joinDTO.getPicUrl())
+//                        .username(joinDTO.getUsername())
+//                        .categoryId(joinDTO.getCategoryId())
+//                        .location(joinDTO.getLocation())
+//                        .picUrl(joinDTO.getPicUrl())
                         .build()
         );
 
