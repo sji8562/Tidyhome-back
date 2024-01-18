@@ -43,7 +43,7 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<Reservation> reservations = reservationService.getReservationList(user.getId());
+        List<Reservation> reservations = reservationService.getReservationList(1);
         List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
                 .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
                 .collect(Collectors.toList());
@@ -55,7 +55,7 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserCompletedReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<Reservation> reservations = reservationService.getCompletedReservationList(user.getId());
+        List<Reservation> reservations = reservationService.getCompletedReservationList(1);
         List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
                 .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
                 .collect(Collectors.toList());
@@ -137,4 +137,21 @@ public class ReservationRestController {
                     .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
         }
     }
+
+    //예약 취소(상태를 4로 설정)
+    @PostMapping("/cancel/{id}")
+    public ResponseEntity<?> canselReservation(@PathVariable Integer id){
+        System.out.println("여기찍히나?");
+        Reservation reservation = reservationService.findById(id);
+        reservation.setStatus(4);
+        try {
+            reservationService.save(reservation);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
+        }
+        return ResponseEntity.ok(ApiUtils.success(null));
+    }
+
+
 }

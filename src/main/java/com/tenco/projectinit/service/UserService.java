@@ -106,6 +106,7 @@ public class UserService {
         for (int i = 0; i < tel.length; i++) {
             nohipen += tel[i];
         }
+
         User user = userJPARepository.findByTel(nohipen).orElse(
                 User.builder()
                         .tel(nohipen)
