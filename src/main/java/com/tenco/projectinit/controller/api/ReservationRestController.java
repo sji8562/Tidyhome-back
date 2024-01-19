@@ -30,12 +30,12 @@ public class ReservationRestController {
     private ReservationService reservationService;
 
     // 예약 등록
-//    @PostMapping("/save")
-//    public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister reservationRegister) {
-//        int reservationId = reservationService.reservationRegister(reservationRegister);
-//        ReservationDetailResponseDTO.ReservationResult responseDTO = new ReservationDetailResponseDTO.ReservationResult(reservationService.findById(reservationId));
-//        return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
-//    }
+    @PostMapping("/save")
+    public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister reservationRegister) {
+        int reservationId = reservationService.reservationRegister(reservationRegister);
+        ReservationDetailResponseDTO.ReservationResult responseDTO = new ReservationDetailResponseDTO.ReservationResult(reservationService.findById(reservationId));
+        return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
+    }
 
 
     // 예약 내역 목록

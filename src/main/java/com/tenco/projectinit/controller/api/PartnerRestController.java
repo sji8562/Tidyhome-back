@@ -8,6 +8,7 @@ import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.service.PartnerService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/partner")
+@RequiredArgsConstructor
 public class PartnerRestController {
 
-    @Autowired
-    private PartnerService partnerService;
 
-    @Autowired
-    private HttpSession session;
+    private final PartnerService partnerService;
+    private final HttpSession session;
 
     @PostMapping("/sms-send")
     public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
