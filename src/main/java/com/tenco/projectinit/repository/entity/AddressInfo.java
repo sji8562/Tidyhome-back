@@ -32,6 +32,7 @@ public class AddressInfo {
     @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
+
 }
 
 
