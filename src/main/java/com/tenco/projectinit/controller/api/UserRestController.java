@@ -10,6 +10,7 @@ import com.tenco.projectinit.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,17 +18,18 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
+@RequiredArgsConstructor
 public class UserRestController {
 
-    @Autowired
-    private UserService userService;
+
+    private final UserService userService;
     private String fromNumber = "";
     private String APIKEY = "";
     private String APISECRETKEY = "";
     private String uri = "https://api.coolsms.co.kr";
 
-    @Autowired
-    private HttpSession session;
+
+    private final HttpSession session;
     // 인증번호 발송
     @PostMapping("/sms-send")
     public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
@@ -52,7 +54,7 @@ public class UserRestController {
 
     // 회원탈퇴
     @PostMapping("/delete")
-    public ResponseEntity<?> delete(HttpSession session){
+    public ResponseEntity<?> delete(){
         User sessionUser = (User) session.getAttribute("sessionUser");
         userService.delete(sessionUser.getId());
         return ResponseEntity.ok().body(ApiUtils.success(null));

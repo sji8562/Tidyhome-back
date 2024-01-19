@@ -7,6 +7,7 @@ import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.service.SaleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/sale")
+@RequiredArgsConstructor
+
 public class SaleRestController {
-    @Autowired
-    private SaleService saleService;
+
+    private final SaleService saleService;
 
     // 결제정보 저장
     @PostMapping("/save")
