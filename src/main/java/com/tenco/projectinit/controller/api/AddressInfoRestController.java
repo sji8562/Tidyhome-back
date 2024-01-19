@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/address")
+@RequestMapping("/api/address")
 @RequiredArgsConstructor
 public class AddressInfoRestController {
 
@@ -32,8 +32,10 @@ public class AddressInfoRestController {
         if(session == null){
             throw new Exception401("로그인 하고 오세요");
         }
-        User sessionUser = (User) session.getAttribute("sessionUser");
-      AddressInfo addressInfo = addressInfoService.addAddress(request, sessionUser.getId());
+//        User sessionUser = (User) session.getAttribute("sessionUser");
+//        System.out.println("세션유저------");
+//        System.out.println(sessionUser.getTel());
+      AddressInfo addressInfo = addressInfoService.addAddress(request, 1);
        return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(addressInfo));
     }
 

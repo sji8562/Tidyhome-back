@@ -50,6 +50,8 @@ public class JwtAuthorizationFilter implements Filter {
                         ||antPathMatcher.match("/reservation/**",request.getRequestURI().toString())
                         ||antPathMatcher.match("/api/notice/**",request.getRequestURI().toString())
                         ||antPathMatcher.match("/api/info",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/partner/**",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/**",request.getRequestURI().toString())
 
                 )
         )
@@ -71,6 +73,8 @@ public class JwtAuthorizationFilter implements Filter {
                 if(picUrl == null|| picUrl.isEmpty()){
                     User sessionUser = User.builder().id(id).tel(userId).build();
                     session.setAttribute("sessionUser", sessionUser);
+                    Partner partner = Partner.builder().id(id).tel(userId).picUrl(picUrl).build();
+                    session.setAttribute("partner", partner);
                 }else{
                     Partner partner = Partner.builder().id(id).tel(userId).picUrl(picUrl).build();
                     session.setAttribute("partner", partner);

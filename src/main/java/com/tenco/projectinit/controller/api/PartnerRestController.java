@@ -5,7 +5,10 @@ import com.tenco.projectinit.dto.requestdto.PartnerRequestDTO;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.PartnerResponseDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
+import com.tenco.projectinit.repository.entity.Partner;
+import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.service.PartnerService;
+import com.tenco.projectinit.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PartnerRestController {
 
+
+    @Autowired
+    private UserService userService;
 
     private final PartnerService partnerService;
     private final HttpSession session;
@@ -44,8 +50,18 @@ public class PartnerRestController {
     @PostMapping("/login")
     public ResponseEntity<?> join(@Valid @RequestBody PartnerRequestDTO.JoinDTO joinDTO) {
         PartnerResponseDTO.TokenDTO tokenDTO = partnerService.join(joinDTO);
-        session.setAttribute("partner", tokenDTO.getPartner());
+        System.out.println("-s-df-s-dfs-df");
+        System.out.println(tokenDTO.getPartner().getTel());
         return ResponseEntity.status(HttpStatus.CREATED).header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success(tokenDTO.getPartner()));
+    }
+
+    // 파트너 업데이트
+    @PostMapping("/update")
+    public ResponseEntity<?> partnerInfo(@RequestBody UserRequestDTO.partnerDTO partnerDTO) {
+//        User sessionUser = (User) session.getAttribute("sessionUser");
+//        System.out.println();
+        userService.updatePartner(1, partnerDTO);
+        return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 }
