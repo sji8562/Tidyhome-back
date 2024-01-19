@@ -59,13 +59,5 @@ public class UserRestController {
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 
-    // 파트너 가입
-    @PostMapping("/partner-info")
-    public ResponseEntity<?> partnerInfo(@RequestBody UserRequestDTO.partnerDTO partnerDTO,
-        HttpServletRequest httpServletRequest) {
-            HttpSession session = httpServletRequest.getSession();
-            Partner partner = (Partner) session.getAttribute("sessionPartner");
-            userService.updatePartner(partner.getId(), partnerDTO);
-            return ResponseEntity.ok().body(ApiUtils.success(null));
-    }
+
 }

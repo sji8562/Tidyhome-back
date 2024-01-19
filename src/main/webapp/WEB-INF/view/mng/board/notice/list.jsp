@@ -86,7 +86,6 @@
                                                     <td>
                                                         <div>
                                                             <button class="btn btn-success"
-                                                                    style="border: 1px solid black"
                                                                     onclick="location.href='/mng/notice/${noticeList.id}/update'">
                                                                 수정
                                                             </button>

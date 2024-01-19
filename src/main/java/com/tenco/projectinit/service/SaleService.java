@@ -3,12 +3,14 @@ package com.tenco.projectinit.service;
 import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit.dto.mng.payListRequestDTO;
 import com.tenco.projectinit.dto.requestdto.ReservationRequestDTO;
+import com.tenco.projectinit.repository.entity.FirstCategory;
 import com.tenco.projectinit.repository.entity.Sale;
 
 import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.repository.entity.sub_entity.Option;
 
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
+import com.tenco.projectinit.repository.inteface.FirstCategoryJPARepository;
 import com.tenco.projectinit.repository.inteface.ReservationJPARepository;
 import com.tenco.projectinit.repository.inteface.SaleJPARepository;
 import com.tenco.projectinit.repository.inteface.UserJPARepository;
@@ -25,10 +27,11 @@ public class SaleService {
     @Autowired
     private SaleJPARepository saleJPARepository;
     @Autowired
-
     private UserJPARepository userJPARepository;
     @Autowired
     private ReservationJPARepository reservationJPARepository;
+    @Autowired
+    private FirstCategoryJPARepository firstCategoryJPARepository;
 
     // 결제 내역 조회
 //    public List<Sale> getList () {
@@ -98,7 +101,6 @@ public class SaleService {
         countList.add(saleJPARepository.countByCategoryId(1));
         countList.add(saleJPARepository.countByCategoryId(2));
         countList.add(saleJPARepository.countByCategoryId(3));
-        countList.add(saleJPARepository.countByCategoryId(4));
         return countList;
     }
 
@@ -130,6 +132,16 @@ public class SaleService {
         mngTotalDTO.setPayOff(payoff);
 
         return mngTotalDTO;
+    }
+
+    public String monthlyCount() {
+        List<FirstCategory> firstCategoryList = firstCategoryJPARepository.findAll();
+        List<Integer> countList = getCategoryCount();
+        return "['"+ firstCategoryList.get(0).getName() +"', "+ countList.get(0)+"]," +
+                "['"+ firstCategoryList.get(1).getName() +"', "+ countList.get(1)+"]," +
+                "['"+ firstCategoryList.get(2).getName() +"', "+ countList.get(2)+"]";
+
+
     }
 
 }

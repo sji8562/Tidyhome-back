@@ -5,7 +5,10 @@ import com.tenco.projectinit.dto.requestdto.PartnerRequestDTO;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.PartnerResponseDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
+import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.service.PartnerService;
+import com.tenco.projectinit.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,7 @@ public class PartnerRestController {
 
     @Autowired
     private HttpSession session;
+
 
     @PostMapping("/sms-send")
     public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
@@ -47,5 +51,15 @@ public class PartnerRestController {
         session.setAttribute("partner", tokenDTO.getPartner());
         return ResponseEntity.status(HttpStatus.CREATED).header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success(tokenDTO.getPartner()));
+    }
+
+    // 파트너 가입
+    @PostMapping("/partner-info")
+    public ResponseEntity<?> partnerInfo(@RequestBody UserRequestDTO.partnerDTO partnerDTO,
+                                         HttpServletRequest httpServletRequest) {
+//        HttpSession session = httpServletRequest.getSession();
+//        Partner partner = (Partner) session.getAttribute("sessionPartner");
+        partnerService.updatePartner(1, partnerDTO);
+        return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 }

@@ -188,11 +188,6 @@ public class UserService {
         userJPARepository.deleteById(id);
     }
 
-    public void updatePartner(Integer userId, UserRequestDTO.partnerDTO request) {
-        Partner partner = partnerJPARepository.findById(userId).orElseThrow(() -> new Exception404("옵션이 없습니다"));
-        partner.setUsername(request.getUserName());
-        partner.setBusinessNumber(request.getBusinessNumber());
-        partner.setPicUrl(request.getPicUrl());
-        partnerJPARepository.save(partner);
-    }
+    public User findById(int id) { return userJPARepository.findById(id).orElse(null); }
+
 }

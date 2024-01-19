@@ -101,9 +101,8 @@
                                                                         <td>
                                                                             <div>
                                                                                 <button class="btn btn-success"
-                                                                                        style="border: 1px solid black"
                                                                                         type="button"
-                                                                                        onclick="location.href='/mng/board/${faqListDTOList.id}/faq-update'">
+                                                                                        onclick="location.href='/mng/faq/${faqListDTOList.id}/update'">
                                                                                     수정
                                                                                 </button>
                                                                                 &nbsp;&nbsp;
