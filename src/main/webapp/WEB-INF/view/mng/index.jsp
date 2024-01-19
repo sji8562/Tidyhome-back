@@ -2,7 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/view/mng/layout/mngHeader.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <div class="page-wrapper">
     <!-- ============================================================== -->
@@ -39,7 +39,7 @@
         <!-- ============================================================== -->
         <div class="row">
             <div class="col-lg-8">
-                <div class="card">
+                <div class="card" >
                     <div class="card-body">
                         <h4 class="card-title">월별 실적</h4>
                         <div class=""></div>
@@ -49,32 +49,31 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
+                <div class="card" >
+                    <div class="card-body" >
                         <h5 class="card-title mb-1">월별 건수</h5>
-                        <h3 class="font-light">총 ${payOff} 원</h3>
+                        <h3 class="font-light" style="padding-top: 10px;">총 ${count} 건</h3>
                         <div class="mt-3 text-center">
-                            <div id="earnings"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-0">미해결 신청현황</h4>
-                        <h2 class="font-light">${countDTO.totalCount}건</h2>
-                        <div class="mt-4">
-                            <div class="row text-center">
-                                <div class="col-4 border-right">
-                                    <h4 class="mb-0">${countDTO.rentCount}</h4>
-                                    <span class="font-14 text-muted">대여 신청</span>
-                                </div>
-                                <div class="col-4 border-right">
-                                    <h4 class="mb-0">${countDTO.saleCount}</h4>
-                                    <span class="font-14 text-muted">구매 신청</span>
-                                </div>
-                                <div class="col-4">
-                                    <h4 class="mb-0">${countDTO.purchaseCount}</h4>
-                                    <span class="font-14 text-muted">판매 신청</span>
+                            <div id="earnings">
+                                <div class="mt-5">
+                                    <div class="row text-center">
+                                        <div class="col-5">
+                                            <h4 class="mb-0">${countList.get(0)} 건</h4>
+                                            <span class="font-14 text-muted">가사도우미</span>
+                                        </div>
+                                        <div class="col-5" style="padding-bottom: 65px">
+                                            <h4 class="mb-0">${countList.get(1)} 건</h4>
+                                            <span class="font-14 text-muted">사무실청소</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <h4 class="mb-0">${countList.get(2)} 건</h4>
+                                            <span class="font-14 text-muted">가전/침대청소</span>
+                                        </div>
+                                        <div class="col-5" style="padding-bottom: 45px">
+                                            <h4 class="mb-0">${countList.get(3)} 건</h4>
+                                            <span class="font-14 text-muted">이사청소</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -107,77 +106,13 @@
                             </thead>
                             <tbody>
                             <c:choose>
-                                <c:when test="${statusDTO != null }">
-                                    <c:forEach var="statusDTO" items="${statusDTO}">
+                                <c:when test="${payList != null }">
+                                    <c:forEach var="pay" items="${payList}">
                                         <tr>
-                                            <td class="txt-oflo">${statusDTO.userName}</td>
-                                            <c:choose>
-                                                <c:when test="${statusDTO.transactionType == 'Rent' }">
-                                                    <c:choose>
-                                                        <c:when test="${statusDTO.status == 2 }">
-                                                            <td><span
-                                                                    class="label label-success label-rounded">${statusDTO.transactionType}</span>
-                                                            </td>
-
-                                                            <td class="txt-oflo"><fmt:formatDate value="${statusDTO.createdAt}" pattern="yyyy. MM. dd" /></td>
-                                                            <td><span class="font-medium"><fmt:formatNumber value="${statusDTO.price}" pattern="###,###"/></span></td>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <td><span
-                                                                    class="label label-danger label-rounded">${statusDTO.transactionType}</span>
-                                                            </td>
-
-                                                            <td class="txt-oflo"><fmt:formatDate value="${statusDTO.createdAt}" pattern="yyyy. MM. dd" /></td>
-                                                            <td><span class="font-medium">-<fmt:formatNumber value="${statusDTO.price}" pattern="###,###"/></span>
-                                                            </td>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:when>
-                                                <c:when test="${statusDTO.transactionType == 'Sale' }">
-                                                    <c:choose>
-                                                        <c:when test="${statusDTO.status == 2 }">
-                                                            <td><span
-                                                                    class="label label-info label-rounded">${statusDTO.transactionType}</span>
-                                                            </td>
-                                                            <td class="txt-oflo">$<fmt:formatDate value="${statusDTO.createdAt}" pattern="yyyy. MM. dd" /></td>
-                                                            <td><span class="font-medium"><fmt:formatNumber value="${statusDTO.price}" pattern="###,###"/></span></td>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <td><span
-                                                                    class="label label-danger label-rounded">${statusDTO.transactionType}</span>
-                                                            </td>
-                                                            <td class="txt-oflo"><fmt:formatDate value="${statusDTO.createdAt}" pattern="yyyy. MM. dd" /></td>
-                                                            <td><span class="font-medium">-<fmt:formatNumber value="${statusDTO.price}" pattern="###,###"/></span>
-                                                            </td>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:when>
-                                                <c:when test="${statusDTO.transactionType == 'Purchase' }">
-                                                    <c:choose>
-                                                        <c:when test="${statusDTO.status == 2 }">
-                                                            <td><span
-                                                                    class="label label-purple label-rounded">${statusDTO.transactionType}</span>
-                                                            </td>
-                                                            <td class="txt-oflo"><fmt:formatDate value="${statusDTO.createdAt}" pattern="yyyy. MM. dd" />}</td>
-
-                                                            <td><span class="font-medium"><fmt:formatNumber value="${statusDTO.price}" pattern="###,###"/></span></td>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <td><span
-                                                                    class="label label-danger label-rounded">${statusDTO.transactionType}</span>
-                                                            </td>
-                                                            <td class="txt-oflo"><fmt:formatDate value="${statusDTO.createdAt}" pattern="yyyy. MM. dd" /></td>
-                                                            <td><span class="font-medium">-<fmt:formatNumber value="${statusDTO.price}" pattern="###,###"/></span>
-                                                            </td>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    그런 종류는 없습니다.
-                                                </c:otherwise>
-                                            </c:choose>
-
-
+                                            <td class="txt-oflo">${pay.sale.user.tel}</td>
+                                                <td><span class="label label-success label-rounded">${pay.status}</span></td>
+                                                <td class="txt-oflo"><fmt:formatDate value="${pay.sale.createdAt}" pattern="yyyy. MM. dd"/></td>
+                                                <td><span class="font-medium"><fmt:formatNumber value="${pay.sale.price}" pattern="###,###"/></span></td>
                                         </tr>
 
                                     </c:forEach>
@@ -190,10 +125,9 @@
 
                             </tbody>
                         </table>
-                        <div style="display: block; text-align: center;">
-                            <c:if test="${paging.startPage != 1 }">
-                                <a
-                                        href="index?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&keyword=${keyword}">&lt;</a>
+                        <div style="display: block; text-align: center; padding-bottom: 20px">
+                            <c:if test="${paging.startPage != paging.nowPage }">
+                                <a href="index?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&keyword=${keyword}">&lt;</a>
                             </c:if>
                             <c:forEach begin="${paging.startPage }"
                                        end="${paging.endPage }" var="p">
@@ -202,7 +136,7 @@
                                         <b>${p }</b>
                                     </c:when>
                                     <c:when test="${p != paging.nowPage }">
-                                        <a href="index?nowPage=${p }&cntPerPage=${paging.cntPerPage}&keyword=${keyword}">${p }</a>
+                                        <a href="index?nowPage=${p }&cntPerPage=${paging.cntPerPage}&keyword=${keyword}" style="color: black; font-weight: bold">${p + 1}</a>
                                     </c:when>
                                 </c:choose>
                             </c:forEach>
@@ -222,54 +156,7 @@
         <!-- ============================================================== -->
         <!-- Recent comment and chats -->
         <!-- ============================================================== -->
-        <div class="row">
-            <!-- column -->
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">제품 후기</h4>
-                    </div>
-                    <div class="comment-widgets" style="height:430px;">
-                        <!-- Comment Row -->
 
-
-                            <c:choose>
-                                <c:when test="${reviewList != null }">
-                                    <c:forEach var="reviewList" items="${reviewList}">
-                                        <div class="d-flex flex-row comment-row mt-0">
-
-                                            <div class="comment-text w-100">
-                                                <div class="d-flex justify-content-between">
-                                                    <b class="font-medium">${reviewList.userName}</b>
-                                                    <b class="fas fa-star">
-                                                    <c:forEach var="i" begin="1" end="${reviewList.rate}">
-                                                        ⭐️
-                                                    </c:forEach>
-                                                    </b>
-                                                </div>
-                                                <span class="mb-3 d-block">${reviewList.content}</span>
-                                                <div class="comment-footer">
-                                                    <span class="text-muted float-end">${reviewList.createdAt}</span>
-                                                    <span class="text-muted">${reviewList.productName}</span>
-                                                    <span class="action-icons">
-                                                <a href="javascript:void(0)">
-                                                    <i class="ti-pencil-alt"></i>
-                                                </a>
-
-                                            </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                </c:when>
-                                <c:otherwise>
-                                    그런거 없습니다.
-                                </c:otherwise>
-                            </c:choose>
-                    </div>
-                </div>
-            </div>
-            <!-- column -->
 
         </div>
         <!-- ============================================================== -->

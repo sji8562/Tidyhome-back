@@ -4,6 +4,8 @@ import com.tenco.projectinit.repository.entity.Sale;
 import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import lombok.Data;
 
+import java.util.List;
+
 public class payListRequestDTO {
 
     @Data
@@ -18,4 +20,25 @@ public class payListRequestDTO {
             this.status = reservation.statusToString();
         }
     }
+
+    @Data
+    public static class MngTotalDTO{
+        private List<MngMonthDTO> mngMonthDTO;
+        private Integer payOff;
+
+    }
+    @Data
+    public static class MngMonthDTO{
+        private Integer month;
+        private Integer totalSales;
+        private Integer count;
+
+        public MngMonthDTO(Integer month, Long totalSales, Long count) {
+            this.month = month;
+            this.totalSales = totalSales.intValue();
+            this.count = count.intValue();
+        }
+    }
+
+
 }
