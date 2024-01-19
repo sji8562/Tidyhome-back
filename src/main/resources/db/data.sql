@@ -79,7 +79,6 @@ insert into option_tb(second_category_id, name, price) values (12, '10-18평', 2
 
 
 
-<<<<<<< HEAD
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (1, '2024년1월30일', '오후 2시~오후 4시', true, '자유출입', '1234', '싱크대쪽 잘 청소해주세요', '없음', now());
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (2, '2024년2월12일', '오후 2시~오후 4시', true, '자유출입', '1234', '싱크대쪽 잘 청소해주세요', '없음', now());
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (17, '2024년01월20일', '오후 4시~오후 6시', false,'자유출입', '1234', '싱크대쪽 잘 청소해주세요', '없음', now());
@@ -87,11 +86,9 @@ insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, e
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (34, '2024년1월23일', '오전 9시~오후 11시', true, '자유출입', '1234', '싱크대쪽 잘 청소해주세요', '없음', now());
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (35, '2024년3월23일', '오전 9시~오후 11시', false, '자유출입', '1234', '싱크대쪽 잘 청소해주세요', '없음', now());
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (8, '2024년3월23일', '오전 9시~오후 11시', true, '자유출입', '1234', '싱크대쪽 잘 청소해주세요', '없음', now());
-=======
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (1, '2024년1월30일', '오후 2시~오후 4시', true, '자유출입', '1234', '싱크대쪽 잘 청소해주세요', '깨끗하게해주세요', now());
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (17, '2024년01월20일', '오후 4시~오후 6시', true,'자유출입', '1234', '싱크대쪽 잘 청소해주세요', '깨끗하게해주세요', now());
 insert into info_tb(option_id, reservation_date, reservation_time, pet, enter, enter_password, special, other_request, created_at) values (34, '2024년1월23일', '오전 9시~오후 11시', true, '자유출입', '1234', '싱크대쪽 잘 청소해주세요', '깨끗하게해주세요', now());
->>>>>>> e8ab1a166e66e9882218a771e685c04f24382d1b
 
 
 insert into address_info_tb(user_id, address, address_detail, choice) values (1, 'test 주소1', 'test1동 test1호', true);
