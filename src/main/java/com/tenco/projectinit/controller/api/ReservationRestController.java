@@ -30,12 +30,12 @@ public class ReservationRestController {
     private ReservationService reservationService;
 
     // 예약 등록
-    @PostMapping("/save")
-    public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister reservationRegister) {
-        int reservationId = reservationService.reservationRegister(reservationRegister);
-        ReservationDetailResponseDTO.ReservationResult responseDTO = new ReservationDetailResponseDTO.ReservationResult(reservationService.findById(reservationId));
-        return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
-    }
+//    @PostMapping("/save")
+//    public ResponseEntity<?> reservationRegister(@RequestBody ReservationRequestDTO.ReservationRegister reservationRegister) {
+//        int reservationId = reservationService.reservationRegister(reservationRegister);
+//        ReservationDetailResponseDTO.ReservationResult responseDTO = new ReservationDetailResponseDTO.ReservationResult(reservationService.findById(reservationId));
+//        return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
+//    }
 
 
     // 예약 내역 목록
@@ -43,7 +43,7 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<Reservation> reservations = reservationService.getReservationList(user.getId());
+        List<Reservation> reservations = reservationService.getReservationList(1);
         List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
                 .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
                 .collect(Collectors.toList());
@@ -55,7 +55,7 @@ public class ReservationRestController {
     public ResponseEntity<?> getUserCompletedReservationInfo(HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute("sessionUser");
-        List<Reservation> reservations = reservationService.getCompletedReservationList(user.getId());
+        List<Reservation> reservations = reservationService.getCompletedReservationList(1);
         List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
                 .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
                 .collect(Collectors.toList());
@@ -90,7 +90,8 @@ public class ReservationRestController {
     // 일정 취소 -> 카카오페이 환불
 
     // 출입방법 입력
-    @PostMapping("/list/{reservationId}/enter")
+    @PostMapping("/list/{reservationId}/" +
+            "enter")
     public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO.EnterDTO request) {
         try {
             reservationService.updateEnter(reservationId, request);
@@ -136,4 +137,21 @@ public class ReservationRestController {
                     .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
         }
     }
+
+    //예약 취소(상태를 4로 설정)
+    @PostMapping("/cancel/{id}")
+    public ResponseEntity<?> canselReservation(@PathVariable Integer id){
+        System.out.println("여기찍히나?");
+        Reservation reservation = reservationService.findById(id);
+        reservation.setStatus(4);
+        try {
+            reservationService.save(reservation);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiUtils.error(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR));
+        }
+        return ResponseEntity.ok(ApiUtils.success(null));
+    }
+
+
 }

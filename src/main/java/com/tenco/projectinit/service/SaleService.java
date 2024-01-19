@@ -26,6 +26,11 @@ public class SaleService {
     private SaleJPARepository saleJPARepository;
     @Autowired
 
+<<<<<<< HEAD
+=======
+    private UserJPARepository userJPARepository;
+    @Autowired
+>>>>>>> e8ab1a166e66e9882218a771e685c04f24382d1b
     private ReservationJPARepository reservationJPARepository;
 
     // 결제 내역 조회
@@ -61,6 +66,7 @@ public class SaleService {
                 .build();
         saleJPARepository.save(sale);
         return sale.getId();
+
     }
 
 
@@ -78,6 +84,12 @@ public class SaleService {
         for (Reservation reservation : reservations) {
             Sale sale = reservation.getSale();
             payListRequestDTO.payListDTO dto = new payListRequestDTO.payListDTO(sale, reservation);
+<<<<<<< HEAD
+=======
+
+//         for (int i = 0; i < saleList.size(); i++) {
+//             payListRequestDTO.payListDTO dto = new payListRequestDTO.payListDTO(saleList.get(i), categoryNames.get(i));
+>>>>>>> e8ab1a166e66e9882218a771e685c04f24382d1b
             payList.add(dto);
         }
         return payList;

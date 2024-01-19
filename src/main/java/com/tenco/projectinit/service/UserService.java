@@ -81,23 +81,30 @@ public class UserService {
 
     @Transactional
     public UserResponseDTO.TokenDTO join(UserRequestDTO.JoinDTO joinDTO) {
-        String[] tel = joinDTO.getTel().split("-");
-        String nohipen = "";
-        for (int i = 0; i < tel.length; i++) {
-            nohipen += tel[i];
+
+        String getTel = joinDTO.getTel();
+
+
+
+        if (getTel.equals("1234")){
+
+            Optional<User> user =userJPARepository.findByTel(getTel);
+
+            return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user.get());
         }
 
-        if (tel.equals("1234")){
-            User user =userJPARepository.findByPhone("1234");
-            return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user);
-        }
-        if (nohipen == null || nohipen.length() != 11) {
+        if (getTel == null || getTel.length() != 13) {
             throw new Exception400("전화번호는 11자리여야 합니다.");
         }
 
-        SmsCode smsCode = smsCodeJPARepository.findByTel(nohipen).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
+        SmsCode smsCode = smsCodeJPARepository.findByTel(getTel).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
         if (!smsCode.isChecked()) {
             throw new Exception400("인증되지 않았습니다");
+        }
+        String[] tel = getTel.split("-");
+        String nohipen = "";
+        for (int i = 0; i < tel.length; i++) {
+            nohipen += tel[i];
         }
 
         User user = userJPARepository.findByTel(nohipen).orElse(
@@ -110,7 +117,8 @@ public class UserService {
             userJPARepository.save(user);
             userJPARepository.flush();
         }
-//        smsCodeJPARepository.delete(smsCode);
+
+        smsCodeJPARepository.delete(smsCode);
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
 
     }

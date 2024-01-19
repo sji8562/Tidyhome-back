@@ -18,16 +18,14 @@ public class InfoRestController {
     //info 생성
     @PostMapping("/save")
     public ResponseEntity<?> infoSave(@RequestBody InfoRequestDTO.InfoSaveRequestDTO infoSaveRequestDTO) {
-        System.out.println("여기1");
         infoService.save(infoSaveRequestDTO);
-        System.out.println("여기6");
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 
     //예약 아이디로 예약정보 조회
     @GetMapping("/")
-    public ResponseEntity<?> info(@RequestParam Integer infoId) {
-        InfoResponseDTO.InfoDTO infoDTO = infoService.info(infoId);
+    public ResponseEntity<?> info(@RequestParam Integer reservationId) {
+        InfoResponseDTO.InfoDTO infoDTO = infoService.info(reservationId);
         return ResponseEntity.ok().body(ApiUtils.success(infoDTO));
     }
 }
