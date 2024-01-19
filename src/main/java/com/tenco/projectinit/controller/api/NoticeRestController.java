@@ -4,6 +4,7 @@ import com.tenco.projectinit._core.errors.exception.Exception500;
 import com.tenco.projectinit._core.utils.ApiUtils;
 import com.tenco.projectinit.repository.entity.Notice;
 import com.tenco.projectinit.service.NoticeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/notice")
+@RequiredArgsConstructor
 public class NoticeRestController {
-    @Autowired
-    private NoticeService noticeService;
+
+    private final NoticeService noticeService;
 
     // 공지사항 목록 조회
     @GetMapping("/list")
