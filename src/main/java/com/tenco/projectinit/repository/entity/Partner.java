@@ -27,7 +27,6 @@ public class Partner {
     private String categoryId;
     private String location;
     private String businessNumber;
-    private String gender;
     private Integer level;
     @Column(length = 256)
     @CreationTimestamp
