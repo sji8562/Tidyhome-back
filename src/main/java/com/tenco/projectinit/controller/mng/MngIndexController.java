@@ -22,13 +22,15 @@ public class MngIndexController {
         List<payListRequestDTO.payListDTO> payList = saleService.getPayList();
         payListRequestDTO.MngTotalDTO totalDTO = saleService.findByCreatedAt();
         Integer count = saleService.getSaleCount();
-//        List<Integer> countList = saleService.getCategoryCount();
+        List<Integer> countList = saleService.getCategoryCount();
 //        List<payListRequestDTO.MngMonthDTO> totalDTO = saleService.getMonthlySales();
-        System.out.println(totalDTO.toString());
+        String result = saleService.monthlyCount();
         model.addAttribute("dtos",totalDTO.getMngMonthDTO());
+        model.addAttribute("payOff",totalDTO.getPayOff());
         model.addAttribute("payList", payList);
         model.addAttribute("count", count);
-//        model.addAttribute("countList", countList);
+        model.addAttribute("countList", countList);
+        model.addAttribute("result", result);
         return "/mng/index";
     }
 }

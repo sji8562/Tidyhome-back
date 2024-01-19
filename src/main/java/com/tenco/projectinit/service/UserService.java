@@ -191,6 +191,9 @@ public class UserService {
         userJPARepository.deleteById(id);
     }
 
+    public User findById(int id) { return userJPARepository.findById(id).orElse(null); }
+
+
     @Transactional
     public void updatePartner(Integer userId, UserRequestDTO.partnerDTO request) {
         System.out.println(PicToStringUtil.picToString(request.getPicUrl()));
@@ -200,4 +203,5 @@ public class UserService {
         partner.setPicUrl(PicToStringUtil.picToString(request.getPicUrl()));
         partnerJPARepository.save(partner);
     }
+
 }

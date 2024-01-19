@@ -63,7 +63,6 @@ public class MngUserController {
         Page<User> userPG = null;
         model.addAttribute("keyword", keyword);
         if (keyword.isBlank()) {
-            System.out.println("여기오지?");
             userPG = userService.findByPageNation(page);
         } else {
             userPG = userService.findByPageNation(page, keyword);
@@ -75,11 +74,11 @@ public class MngUserController {
         return "/mng/user/customer/list";
     }
 
-    @GetMapping("{userId}/address-list")
-    @ResponseBody
-    public List<AddressInfo> getAddressList(@PathVariable Integer userId) {
-        System.out.println("주소");
-        return addressInfoJPARepository.findByUserId(userId);
+    @GetMapping("user-list/{userId}")
+    public String showUserAddress(@PathVariable int userId, Model model) {
+        List<AddressInfo> addressInfoList = addressInfoJPARepository.findByUserId(userId);
+        model.addAttribute("addressInfoList", addressInfoList);
+        return "/mng/user/customer/list";
     }
 
     @GetMapping("partner-list")

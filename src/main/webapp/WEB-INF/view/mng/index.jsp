@@ -3,7 +3,27 @@
 <%@ include file="/WEB-INF/view/mng/layout/mngHeader.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Reason', 'Count'],
+            ${result}
+        ]);
+
+        var options = {
+            title: '월별 건수'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+</script>
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -42,6 +62,7 @@
                 <div class="card" >
                     <div class="card-body">
                         <h4 class="card-title">월별 실적</h4>
+                        <h3 class="font-light" style="padding-bottom: 5px;">총 ${payOff} 원</h3>
                         <div class=""></div>
                         <div class="sales ct-charts mt-3"></div>
                         <input type="hidden" id="dtos" value="${dtos}">
@@ -57,22 +78,19 @@
                             <div id="earnings">
                                 <div class="mt-5">
                                     <div class="row text-center">
-                                        <div class="col-5">
-                                            <h4 class="mb-0">${countList.get(0)} 건</h4>
-                                            <span class="font-14 text-muted">가사도우미</span>
-                                        </div>
-                                        <div class="col-5" style="padding-bottom: 65px">
-                                            <h4 class="mb-0">${countList.get(1)} 건</h4>
-                                            <span class="font-14 text-muted">사무실청소</span>
-                                        </div>
-                                        <div class="col-5">
-                                            <h4 class="mb-0">${countList.get(2)} 건</h4>
-                                            <span class="font-14 text-muted">가전/침대청소</span>
-                                        </div>
-                                        <div class="col-5" style="padding-bottom: 45px">
-                                            <h4 class="mb-0">${countList.get(3)} 건</h4>
-                                            <span class="font-14 text-muted">이사청소</span>
-                                        </div>
+<%--                                        <div class="col-5">--%>
+<%--                                            <h4 class="mb-0">${countList.get(0)} 건</h4>--%>
+<%--                                            <span class="font-14 text-muted">가사도우미</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-5" style="padding-bottom: 65px">--%>
+<%--                                            <h4 class="mb-0">${countList.get(1)} 건</h4>--%>
+<%--                                            <span class="font-14 text-muted">사무실청소</span>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-5" style="padding-bottom: 45px">--%>
+<%--                                            <h4 class="mb-0">${countList.get(2)} 건</h4>--%>
+<%--                                            <span class="font-14 text-muted">이사청소</span>--%>
+<%--                                        </div>--%>
+                                        <div id="piechart" style="width: 450px; height: 250px;"></div>
                                     </div>
                                 </div>
                             </div>

@@ -1,7 +1,9 @@
 package com.tenco.projectinit.service;
 
+import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit.repository.entity.Cancel;
 import com.tenco.projectinit.repository.entity.Sale;
+import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import com.tenco.projectinit.repository.inteface.CancelJPARepository;
 import com.tenco.projectinit.repository.inteface.ReservationJPARepository;
 import com.tenco.projectinit.repository.inteface.SaleJPARepository;
@@ -23,15 +25,15 @@ public class CancelService {
 
     // (관리자) 환불 신청 승인
     public void cancelApprove(Integer saleId) {
-//        Cancel cancel = cancelJPARepository.findBySaleId(saleId);
-//        reservationJPARepository.
-//        if(cancel != null) {
-//            cancel.setUpdateAt(new Timestamp(System.currentTimeMillis()));
-//            cancel.setPrice(sale.getPrice());
-//            sale.setStatus(4);
-//            cancelJPARepository.save(cancel);
-//            saleJPARepository.save(sale);
-//        }
+        Cancel cancel = cancelJPARepository.findBySaleId(saleId);
+        Reservation reservation = reservationJPARepository.findBySaleId(saleId);
+        Sale sale = saleJPARepository.findById(saleId).orElseThrow(() -> new Exception404("결제 내역이 없습니다."));
+        if(cancel != null) {
+            cancel.setUpdateAt(new Timestamp(System.currentTimeMillis()));
+            cancel.setPrice(sale.getPrice());
+            reservation.setStatus(4);
+            cancelJPARepository.save(cancel);
+        }
     }
 
     // (사용자) 환불 신청

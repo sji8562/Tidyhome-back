@@ -35,7 +35,7 @@ public interface SaleJPARepository extends JpaRepository<Sale, Integer> {
             "JOIN Reservation r ON i.id = r.info.id " +
             "JOIN Sale s ON r.sale.id = s.id " +
             "WHERE YEAR(s.createdAt) = YEAR(CURRENT_DATE) AND MONTH(s.createdAt) = MONTH(CURRENT_DATE) " +
-            "GROUP BY fc.id")
+            "AND fc.id = :categoryId ")
     Integer countByCategoryId(@Param("categoryId") int id);
 
     @Query("SELECT MONTH(s.createdAt) AS month, SUM(s.price) AS totalSales, COUNT(s.id) AS count FROM Sale s WHERE YEAR(s.createdAt) = YEAR(CURRENT_DATE) GROUP BY MONTH(s.createdAt)")

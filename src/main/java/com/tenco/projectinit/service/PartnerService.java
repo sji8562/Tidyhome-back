@@ -2,10 +2,12 @@ package com.tenco.projectinit.service;
 
 import com.tenco.projectinit._core.errors.exception.CustomRestfullException;
 import com.tenco.projectinit._core.errors.exception.Exception400;
+import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit._core.errors.exception.Exception500;
 import com.tenco.projectinit._core.utils.Define;
 import com.tenco.projectinit._core.utils.JwtTokenUtils;
 import com.tenco.projectinit.dto.mng.PartnerRequestDTO;
+import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.PartnerResponseDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.repository.entity.Partner;
@@ -283,5 +285,14 @@ public class PartnerService {
             throw new Exception400("인증기한이 만료되었습니다");
         }
         smsCode.check();
+    }
+
+    @Transactional
+    public void updatePartner(Integer userId, UserRequestDTO.partnerDTO request) {
+        Partner partner = partnerJPARepository.findById(userId).orElseThrow(() -> new Exception404("옵션이 없습니다"));
+        partner.setUsername(request.getUserName());
+        partner.setBusinessNumber(request.getBusinessNumber());
+        partner.setPicUrl(request.getPicUrl());
+        partnerJPARepository.save(partner);
     }
 }
