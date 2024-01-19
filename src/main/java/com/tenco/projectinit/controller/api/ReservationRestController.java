@@ -13,6 +13,7 @@ import com.tenco.projectinit.repository.entity.sub_entity.Reservation;
 import com.tenco.projectinit.service.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +25,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/reservation")
+@RequiredArgsConstructor
 public class ReservationRestController {
 
-    @Autowired
-    private ReservationService reservationService;
+
+    private final ReservationService reservationService;
 
     // 예약 등록
     @PostMapping("/save")

@@ -3,6 +3,7 @@ package com.tenco.projectinit.controller.api;
 import com.tenco.projectinit._core.utils.ApiUtils;
 import com.tenco.projectinit.dto.responsedto.CategoryResponseDTO;
 import com.tenco.projectinit.service.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/category")
+@RequiredArgsConstructor
 public class CategoryRestController {
-    @Autowired
-    private CategoryService categoryService;
+
+    private final CategoryService categoryService;
 
     @GetMapping("/first")
     public ResponseEntity<?> firstCategoryList() {

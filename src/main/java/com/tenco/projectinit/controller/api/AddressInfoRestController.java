@@ -8,6 +8,7 @@ import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.service.AddressInfoService;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/address")
+@RequiredArgsConstructor
 public class AddressInfoRestController {
 
-    @Autowired
-    private AddressInfoService addressInfoService;
 
-    @Autowired
-    private HttpSession session;
+    private final AddressInfoService addressInfoService;
+
+
+    private final HttpSession session;
     // 주소 추가
     @PostMapping("/add")
     public ResponseEntity<?> addAddressInfo(@RequestBody AddressInfoResponseDTO request) {
