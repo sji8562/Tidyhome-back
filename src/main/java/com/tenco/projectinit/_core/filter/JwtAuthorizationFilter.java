@@ -67,16 +67,11 @@ public class JwtAuthorizationFilter implements Filter {
                 int id = decodedJWT.getClaim("id").asInt();
                 String userId = decodedJWT.getClaim("tel").asString();
                 String picUrl = decodedJWT.getClaim("picUrl").asString();
+                User sessionUser = User.builder().id(id).tel(userId).build();
+                Partner partner = Partner.builder().id(id).tel(userId).picUrl(picUrl).build();
                 HttpSession session = request.getSession();
-                if(picUrl == null|| picUrl.isEmpty()){
-                    User sessionUser = User.builder().id(id).tel(userId).build();
-                    session.setAttribute("sessionUser", sessionUser);
-                }else{
-                    Partner partner = Partner.builder().id(id).tel(userId).picUrl(picUrl).build();
-                    session.setAttribute("partner", partner);
-                }
-
-
+                session.setAttribute("sessionUser", sessionUser);
+                session.setAttribute("sessionPartner", partner);
 
             } catch (SignatureVerificationException | JWTDecodeException e1) {
                 onError(response, "토큰 검증 실패");
