@@ -5,9 +5,12 @@ import com.tenco.projectinit.dto.requestdto.PartnerRequestDTO;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.PartnerResponseDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
+import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.service.PartnerService;
+import com.tenco.projectinit.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +27,10 @@ public class PartnerRestController {
     private PartnerService partnerService;
 
     @Autowired
-    private HttpSession session;
+    private UserService userService;
 
+    @Autowired
+    private HttpSession session;
     @PostMapping("/sms-send")
     public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
         partnerService.sendSms(smsSendDTO.getTel());
@@ -44,8 +49,21 @@ public class PartnerRestController {
     @PostMapping("/login")
     public ResponseEntity<?> join(@Valid @RequestBody PartnerRequestDTO.JoinDTO joinDTO) {
         PartnerResponseDTO.TokenDTO tokenDTO = partnerService.join(joinDTO);
-        session.setAttribute("partner", tokenDTO.getPartner());
+        System.out.println("-s-df-s-dfs-df");
+        System.out.println(tokenDTO.getPartner().getTel());
+        session.setAttribute("sessionPartner", tokenDTO.getPartner());
         return ResponseEntity.status(HttpStatus.CREATED).header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success(tokenDTO.getPartner()));
+    }
+
+    // 파트너 업데이트
+    @PostMapping("/update")
+    public ResponseEntity<?> partnerInfo(@RequestBody UserRequestDTO.partnerDTO partnerDTO) {
+        Partner partner = (Partner) session.getAttribute("sessionPartner");
+        System.out.println();
+        System.out.println("-23482834-");
+        System.out.println(partner.getTel());
+        userService.updatePartner(partner.getId(), partnerDTO);
+        return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 }

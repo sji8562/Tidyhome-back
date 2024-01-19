@@ -49,6 +49,7 @@ public class JwtAuthorizationFilter implements Filter {
                         ||antPathMatcher.match("/reservation/**",request.getRequestURI().toString())
                         ||antPathMatcher.match("/api/notice/**",request.getRequestURI().toString())
                         ||antPathMatcher.match("/api/info",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/partner/**",request.getRequestURI().toString())
 
                 )
         ) {

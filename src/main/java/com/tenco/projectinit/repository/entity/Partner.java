@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
