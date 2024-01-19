@@ -4,6 +4,7 @@ import com.tenco.projectinit._core.errors.exception.Exception400;
 import com.tenco.projectinit._core.errors.exception.Exception404;
 import com.tenco.projectinit._core.errors.exception.Exception500;
 import com.tenco.projectinit._core.utils.JwtTokenUtils;
+import com.tenco.projectinit._core.utils.PicToStringUtil;
 import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.repository.entity.Partner;
@@ -30,10 +31,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Slf4j
 @Transactional(readOnly = true)
@@ -189,5 +192,16 @@ public class UserService {
     }
 
     public User findById(int id) { return userJPARepository.findById(id).orElse(null); }
+
+
+    @Transactional
+    public void updatePartner(Integer userId, UserRequestDTO.partnerDTO request) {
+        System.out.println(PicToStringUtil.picToString(request.getPicUrl()));
+        Partner partner = partnerJPARepository.findById(userId).orElseThrow(() -> new Exception404("옵션이 없습니다"));
+        partner.setUsername(request.getUserName());
+        partner.setBusinessNumber(request.getBusinessNumber());
+        partner.setPicUrl(PicToStringUtil.picToString(request.getPicUrl()));
+        partnerJPARepository.save(partner);
+    }
 
 }

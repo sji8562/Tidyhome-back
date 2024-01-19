@@ -8,6 +8,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tenco.projectinit._core.errors.exception.Exception401;
 import com.tenco.projectinit._core.utils.JwtTokenUtils;
+import com.tenco.projectinit.repository.entity.Partner;
 import com.tenco.projectinit.repository.entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,9 +50,12 @@ public class JwtAuthorizationFilter implements Filter {
                         ||antPathMatcher.match("/reservation/**",request.getRequestURI().toString())
                         ||antPathMatcher.match("/api/notice/**",request.getRequestURI().toString())
                         ||antPathMatcher.match("/api/info",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/partner/**",request.getRequestURI().toString())
+                        ||antPathMatcher.match("/api/**",request.getRequestURI().toString())
 
                 )
-        ) {
+        )
+        {
             String jwt = request.getHeader("Authorization");
             if (jwt == null || jwt.isEmpty()) {
                 onError(response, "토큰이 없습니다");
@@ -61,14 +65,23 @@ public class JwtAuthorizationFilter implements Filter {
 
             try {
                 DecodedJWT decodedJWT = JwtTokenUtils.verify(jwt);
+
                 int id = decodedJWT.getClaim("id").asInt();
-                String userId = decodedJWT.getClaim("loginId").asString();
-
-
-                User sessionUser = User.builder().id(id).tel(userId).build();
-
+                String userId = decodedJWT.getClaim("tel").asString();
+                String picUrl = decodedJWT.getClaim("picUrl").asString();
                 HttpSession session = request.getSession();
-                session.setAttribute("sessionUser", sessionUser);
+                if(picUrl == null|| picUrl.isEmpty()){
+                    User sessionUser = User.builder().id(id).tel(userId).build();
+                    session.setAttribute("sessionUser", sessionUser);
+                    Partner partner = Partner.builder().id(id).tel(userId).picUrl(picUrl).build();
+                    session.setAttribute("partner", partner);
+                }else{
+                    Partner partner = Partner.builder().id(id).tel(userId).picUrl(picUrl).build();
+                    session.setAttribute("partner", partner);
+                }
+
+
+
             } catch (SignatureVerificationException | JWTDecodeException e1) {
                 onError(response, "토큰 검증 실패");
             } catch (TokenExpiredException e2) {

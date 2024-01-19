@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
@@ -27,7 +28,6 @@ public class Partner {
     private String categoryId;
     private String location;
     private String businessNumber;
-    private String gender;
     private Integer level;
     @Column(length = 256)
     @CreationTimestamp
