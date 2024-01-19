@@ -6,6 +6,7 @@ import com.tenco.projectinit.dto.requestdto.UserRequestDTO;
 import com.tenco.projectinit.dto.responsedto.PartnerResponseDTO;
 import com.tenco.projectinit.dto.responsedto.UserResponseDTO;
 import com.tenco.projectinit.repository.entity.Partner;
+import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.service.PartnerService;
 import com.tenco.projectinit.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -21,16 +22,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/partner")
+@RequiredArgsConstructor
 public class PartnerRestController {
 
-    @Autowired
-    private PartnerService partnerService;
 
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private HttpSession session;
+    private final PartnerService partnerService;
+    private final HttpSession session;
+
     @PostMapping("/sms-send")
     public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
         partnerService.sendSms(smsSendDTO.getTel());
@@ -51,7 +52,6 @@ public class PartnerRestController {
         PartnerResponseDTO.TokenDTO tokenDTO = partnerService.join(joinDTO);
         System.out.println("-s-df-s-dfs-df");
         System.out.println(tokenDTO.getPartner().getTel());
-        session.setAttribute("sessionPartner", tokenDTO.getPartner());
         return ResponseEntity.status(HttpStatus.CREATED).header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success(tokenDTO.getPartner()));
     }
@@ -59,11 +59,9 @@ public class PartnerRestController {
     // 파트너 업데이트
     @PostMapping("/update")
     public ResponseEntity<?> partnerInfo(@RequestBody UserRequestDTO.partnerDTO partnerDTO) {
-        Partner partner = (Partner) session.getAttribute("sessionPartner");
-        System.out.println();
-        System.out.println("-23482834-");
-        System.out.println(partner.getTel());
-        userService.updatePartner(partner.getId(), partnerDTO);
+//        User sessionUser = (User) session.getAttribute("sessionUser");
+//        System.out.println();
+        userService.updatePartner(1, partnerDTO);
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 }

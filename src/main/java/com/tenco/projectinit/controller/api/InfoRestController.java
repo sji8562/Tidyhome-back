@@ -15,12 +15,7 @@ public class InfoRestController {
     @Autowired
     private InfoService infoService;
 
-    //info 생성
-    @PostMapping("/save")
-    public ResponseEntity<?> infoSave(@RequestBody InfoRequestDTO.InfoSaveRequestDTO infoSaveRequestDTO) {
-        infoService.save(infoSaveRequestDTO);
-        return ResponseEntity.ok().body(ApiUtils.success(null));
-    }
+
 
     //예약 아이디로 예약정보 조회
     @GetMapping("/")

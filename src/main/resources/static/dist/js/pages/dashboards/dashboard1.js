@@ -7,13 +7,13 @@ File: js
 $(function() {
     "use strict";
     var dtosString = document.getElementById("dtos").value;
-    dtosString = dtosString.replace(/MngIndexDTO.MngMonthDTO/g, '');
+    dtosString = dtosString.replace(/payListRequestDTO.MngMonthDTO/g, '');
     dtosString = dtosString.replace(/\(/g, '\{');
     dtosString = dtosString.replace(/\)/g, '\}');
-    dtosString = dtosString.replace(/type=(\w+)/g, '"type":"$1"');
-    dtosString = dtosString.replace(/date=(\w+)/g, '"date":"$1"');
+    // dtosString = dtosString.replace(/type=(\w+)/g, '"type":"$1"');
+    dtosString = dtosString.replace(/month=(\w+)/g, '"date":"$1"');
+    dtosString = dtosString.replace(/totalSales=/g, '"price":');
     dtosString = dtosString.replace(/count=/g, '"count":');
-    dtosString = dtosString.replace(/price=/g, '"price":');
     console.log(dtosString);
     var dtos = JSON.parse(dtosString);
     console.log(dtos);
@@ -64,22 +64,5 @@ $(function() {
     // ============================================================== 
     // Our Visitor
     // ============================================================== 
-    var sparklineLogin = function() {
-        $('#earnings').sparkline(seriesCount, {
-            type: 'bar',
-            height: '40',
-            barWidth: '4',
-            width: '100%',
-            resize: true,
-            barSpacing: '8',
-            barColor: '#137eff'
-        });
-    };
-    var sparkResize;
 
-    $(window).resize(function(e) {
-        clearTimeout(sparkResize);
-        sparkResize = setTimeout(sparklineLogin, 500);
-    });
-    sparklineLogin();
 });
