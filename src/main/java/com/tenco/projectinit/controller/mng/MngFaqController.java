@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/mng/faq")
+@RequestMapping("mng/faq")
 public class MngFaqController {
 
     @Autowired
@@ -29,20 +29,27 @@ public class MngFaqController {
         model.addAttribute("faqListDTOList",faqListDTOList);
         return "/mng/board/faq/list";
     }
-    @GetMapping("{id}/update")
+    @GetMapping("{id}/detail")
     public String faqDetail(@PathVariable Integer id, Model model){
         FaqPart faqPart = mngFaqService.getDetail(id);
         model.addAttribute("board", faqPart);
+        return "/mng/board/faq/detail";
+    }
+    @GetMapping("{id}/update")
+    public String faqUpdate(@PathVariable Integer id, Model model){
+        FaqPart faqPart = mngFaqService.getDetail(id);
+        model.addAttribute("board", faqPart);
         return "/mng/board/faq/update";
+    }
+    @GetMapping("update-proc")
+    public String faqUpdateProc(){
+        return "/mng/board/faq/list";
     }
     @GetMapping("save")
     public String faqSave(Model model){
         return "/mng/board/faq/list";
     }
-    @GetMapping("update")
-    public String faqUpdate(Model model){
-        return "/mng/board/faq/list";
-    }
+
     @GetMapping("{id}/delete")
     public String faqDelete(@PathVariable Integer id){
         mngFaqService.deleteFaq(id);
