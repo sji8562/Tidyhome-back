@@ -33,6 +33,7 @@ public class UserRequestDTO {
 
     @Data
     public static class partnerDTO {
+        private Integer id;
         private String userName;
         private String businessNumber;
         private String picUrl;
