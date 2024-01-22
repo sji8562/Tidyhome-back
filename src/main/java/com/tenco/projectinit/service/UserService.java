@@ -205,10 +205,8 @@ public class UserService {
         partnerJPARepository.save(partner);
     }
 
-<<<<<<< HEAD
     public User findById(Integer id){
         return userJPARepository.findById(id).orElseThrow(() -> new Exception404("유저가 없습니다"));
     }
-=======
->>>>>>> dev
+
 }
