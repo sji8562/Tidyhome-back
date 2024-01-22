@@ -173,37 +173,6 @@
 								class="mdi mdi-cash-multiple"></i> <span class="hide-menu">결제
 									관리</span>
 						</a></li>
-						<%-- 물품관리 --%>
-						<li class="sidebar-item" id="productManagement"><a
-							class="sidebar-link waves-effect waves-dark sidebar-link"
-							href="#" aria-expanded="false" disabled=""> <i
-								class="mdi mdi-dropbox"></i> <span class="hide-menu">물품
-									관리</span>
-						</a>
-							<ul aria-expanded="false" class="collapse first-level">
-								<!-- 물품관리 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/product/list?code=1&keyword="> <i
-										class="mdi mdi-archive"></i> <span class="hide-menu">대여용
-											물품 관리</span>
-								</a></li>
-								<!-- 물품관리 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/product/listForSale?code=2&keyword="> <i
-										class="mdi mdi-archive"></i> <span class="hide-menu">판매용
-											물품 관리</span>
-								</a></li>
-								<!-- 구매신청 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/product/review?keyword="> <i
-										class="mdi mdi-thumb-up"></i> <span class="hide-menu">대여
-											후기 관리</span>
-
-								</a></li>
-							</ul></li>
 						<li class="sidebar-item" id="categoryManagement"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
 							href="/mng/category/categories" aria-expanded="false" style="cursor: default"> <i
@@ -230,7 +199,7 @@
 							<%-- 유저 관리 --%>
 							<li class="sidebar-item" id="applyManagement"><a
 									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/user/list" aria-expanded="false"> <i
+									href="/mng/user/user-list" aria-expanded="false"> <i
 									class="mdi mdi-account"></i> <span class="hide-menu">유저 관리</span>
 							</a>
 								<ul aria-expanded="false" class="collapse first-level">
@@ -270,19 +239,12 @@
 <%--								</ul></li>--%>
 
 
-						<%-- 회사 소개 게시판 --%>
-						<li class="sidebar-item" id="boardManagement"><a
-							class="sidebar-link waves-effect waves-dark sidebar-link"
-							href="/mng/content/info" aria-expanded="false"> <i
-								class="mdi mdi-information-variant"></i> <span class="hide-menu">회사
-									소개 관리</span>
-						</a></li>
 
 
 						<%-- 게시판 관리 --%>
 						<li class="sidebar-item" id="noticeManagement"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
-							href="/mng/board/noticeList" aria-expanded="false"> <i
+							href="/mng/notice/list" aria-expanded="false"> <i
 								class="mdi mdi-file-document-box"></i> <span class="hide-menu">게시판
 									관리</span>
 						</a>
@@ -301,17 +263,7 @@
 										class="mdi mdi-comment-question-outline"></i> <span
 										class="hide-menu">자주 묻는 질문</span>
 								</a></li>
-								<!-- 1:1 문의 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/board/qna"> <i class="mdi mdi-forum"></i>
-										<span class="hide-menu">1:1 문의</span>
-								</a></li>
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/board/productqna?keyword="> <i
-										class="mdi mdi-note-text"></i> <span class="hide-menu">상품질문</span>
-								</a></li>
+
 							</ul></li>
 					</ul>
 					<ul style="position: fixed; bottom: 0px;">

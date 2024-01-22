@@ -192,6 +192,9 @@ public class UserService {
         userJPARepository.deleteById(id);
     }
 
+    public User findById(int id) { return userJPARepository.findById(id).orElse(null); }
+
+
     @Transactional
     public void updatePartner(Integer userId, UserRequestDTO.partnerDTO request) {
         System.out.println(PicToStringUtil.picToString(request.getPicUrl()));
@@ -202,7 +205,10 @@ public class UserService {
         partnerJPARepository.save(partner);
     }
 
+<<<<<<< HEAD
     public User findById(Integer id){
         return userJPARepository.findById(id).orElseThrow(() -> new Exception404("유저가 없습니다"));
     }
+=======
+>>>>>>> dev
 }

@@ -17,7 +17,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="card card-body">
-                    <form class="form-horizontal mt-4" action="/mng/board/${board.id}/faq-update" method="post">
+                    <form class="form-horizontal mt-4" action="/mng/faq/${board.id}/update" method="post">
+                        <input type="hidden" id="id" name="id" value="${board.id}">
                         <div class="form-group">
                             <label for="title">질문 내용</label>
                             <div class="form-floating">
@@ -30,8 +31,8 @@
                                 <textarea class="form-control" placeholder="답변 내용을 입력하세요" maxlength="250" id="content" name="content" style="height: 100px">${board.content}</textarea>
                             </div>
                         </div>
-                        <button class="btn btn-secondary" onclick="history.back()">뒤로가기</button>
                         <button type="submit" class="btn btn-primary">수정하기</button>
+                        <button class="btn btn-secondary" onclick="location.href='/mng/faq/${board.id}/delete'" type="button">삭제하기</button>
                     </form>
                 </div>
             </div>

@@ -98,6 +98,10 @@ insert into address_info_tb(user_id, address, address_detail) values (1, 'test �
 insert into address_info_tb(user_id, address, address_detail) values (2, 'test2 주소1', 'test2동 test1호');
 insert into address_info_tb(user_id, address, address_detail) values (3, 'test3 주소1', 'test3동 test1호');
 insert into address_info_tb(user_id, address, address_detail) values (4, 'test4 주소1', 'test4동 test1호');
+insert into address_info_tb(user_id, address, address_detail) values (4, 'test4 주소2', 'test4동 test2호');
+insert into address_info_tb(user_id, address, address_detail) values (5, 'test5 주소1', 'test5동 test1호');
+insert into address_info_tb(user_id, address, address_detail) values (6, 'test6 주소1', 'test6동 test1호');
+insert into address_info_tb(user_id, address, address_detail) values (7, 'test7 주소1', 'test7동 test1호');
 
 insert into service_tb(name) values ('자주묻는 질문');
 insert into service_tb(name) values ('서비스 상세정보');
@@ -575,13 +579,15 @@ insert into faq_part_tb(faq_id, title,content, code) values (5,'영수증 발급
 
 
 
-insert into sale_tb(user_id, price, created_at) values (1, 25000, now());
-insert into sale_tb(user_id, price, created_at) values (1, 37000, now());
-insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
-insert into sale_tb(user_id, price, created_at) values (1, 17000, now());
-insert into sale_tb(user_id, price, created_at) values (2, 17000, now());
-insert into sale_tb(user_id, price, created_at) values (3, 17000, now());
-insert into sale_tb(user_id, price, created_at) values (4, 17000, now());
+insert into sale_tb(user_id, price, created_at) values (1, 38900, now());
+insert into sale_tb(user_id, price, created_at) values (1, 51900, now());
+insert into sale_tb(user_id, price, created_at) values (1, 43000, now());
+insert into sale_tb(user_id, price, created_at) values (1, 59000, now());
+insert into sale_tb(user_id, price, created_at) values (2, 200000, now());
+insert into sale_tb(user_id, price, created_at) values (3, 150000, now());
+insert into sale_tb(user_id, price, created_at) values (4, 112900, now());
+insert into sale_tb(user_id, price, created_at) values (5, 43000, now());
+insert into sale_tb(user_id, price, created_at) values (6, 200000, now());
 
 insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (1, 1, 1, 2, now());
 insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (4, 2, 2, 2, now());
@@ -590,6 +596,8 @@ insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at
 insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (5, 5, 5, 2, now());
 insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (6, 6, 6, 2, now());
 insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (7, 7, 7, 2, now());
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (8, 8, 8, 4, now());
+insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at) values (9, 9, 9, 1, now());
 
 
 
