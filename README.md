@@ -33,29 +33,14 @@
 <details>
   <summary>송재익(<a href="https://github.com/sji8562">@sji8562</a>) [팀장]</summary>
     <ul>
-        <li>노션 일정 관리 적용 및 역할 분배</li>
-        <li>[관리자] 로그인/로그아웃 및 로그인 interceptor 처리</li>
-        <li>[관리자] 결제 관리 페이지 HTML, CSS 작업, 데이터 바인딩, 페이징 기능 구현</li>
-        <li>[관리자] 물품 관리 페이지 HTML, CRUD 기능, 검색 및 페이징 기능 구현</li>
-        <li>[관리자] 1, 2차 카테고리 관리 HTML, CRD 기능 구현</li>
-        <li>[관리자] 후기 관리 HTML, 조회 및 삭제, 검색 및 페이징 기능 구현</li>
-        <li>[관리자] 1:1 문의 HTML, RUD 기능, 조회 및 삭제, 검색 및 페이징 기능 구현</li>
-        <li>[관리자] FAQ HTML, CRUD 기능, 검색 및 페이징 기능 구현</li>
-        <li>[관리자] 이용 수칙, 소독 과정, 회사 소개 CUD 기능 구현</li>
-        <li>[사용자] 이용 수칙 페이지, 소독 과정 페이지, 회사 소개 페이지 HTML 및 데이터 바인딩</li>
-        <li>[사용자] 메인 페이지</li>
-        <li>[사용자] 오시는 길 페이지 일부</li>
-        <li>[사용자] footer 작업</li>
-        <li>[관리자/사용자단] 페이지 텍스트 에디터(summernote) 적용</li>
-        <li>사이트맵, 기능명세서 작성, 간트 차트, 관리자 페이지 프로토타입, 시연영상 제작</li>
-        <li>전체 QA</li>
+
     </ul>
 </details>
 <details>
   <summary>권보미(<a href="https://github.com/aSpring712">@aSpring712</a>) [팀원]</summary>
   <ul>
     <strong>FE(Flutter UI) 및 통신 담당</strong>
-    <li> 캘린더, 서비스 약관 페이지, 햄버거 메뉴, 주소 관리 페이지 일부, 예약 완료 페이지, 예약하기 페이지, 기타 요청사항 및 출입 방법 입력 페이지, 주의사항 페이지, 서비스 상세정보 페이지 UI 담당</li>
+    <li>캘린더, 서비스 약관 페이지, 햄버거 메뉴, 주소 관리 페이지 일부, 예약 완료 페이지, 예약하기 페이지, 기타 요청사항 및 출입 방법 입력 페이지, 주의사항 페이지, 서비스 상세정보 페이지 UI 담당</li>
     <li>완료된 서비스 내역, 예약 내역 및 상세, 완료된 서비스 페이지, 회원 탈퇴 페이지 UI 및 통신 담당</li>
     <li>공지사항 리스트 및 상세 페이지, 자주 묻는 질문 페이지 UI 및 통신 담당</li>
     <li>노션 일정 관리 및 간트 차트 담당</li>
@@ -63,47 +48,25 @@
   </ul>
 </details>
 <details>
-  <summary>김하율(<a href="https://github.com/m40ro">@m40ro</a>) [팀원]</summary>
+  <summary>김하율(<a href="https://github.com/KimHaYu">@KimHaYu</a>) [팀원]</summary>
   <ul>
-    <li>[관리자] 상품 질문 페이지 HTML 및 CRUD 기능, 검색 및 페이징 기능 구현</li>
-    <li>사용자단 사이트 맵 작성</li>
-    <li>PPT 작성 및 발표</li>
+    <li>로그인 및 회원가입</li> 
+    <li>회원탈퇴</li> 
+    <li>결제정보 저장</li> 
+    <li>카테고리</li>
+    <li>예약정보 저장</li>
   </ul>
 </details>
 <details>
   <summary>오다정(<a href="https://github.com/DJ0H)">@DJ0H</a>) [팀원]</summary>
   <ul>
-    <li>회사 소개 프로토타입, 플로우 차트 작성</li>
-    <li>[사용자] 판매 상품 상세페이지 화면 및 기능 구현</li>
-    <li>[사용자] 대여 상품 상세페이지 화면 및 기능 구현</li>
-    <li>[사용자] 장바구니 화면 및 기능 구현</li>
-    <li>[사용자] 위시리스트 화면 및 기능 구현</li>
-    <li>[사용자] 결제 화면 및 기능 구현 (카카오페이 api, daum 주소 api, coolsms 문자 전송 api 활용)</li>
-    <li>[사용자] 주문 내역 화면 및 기능 구현</li>
-    <li>[사용자] 주문 상세 보기 화면 및 기능 구현</li>
-    <li>[사용자] 취소(환불) 내역 화면 및 기능 구현</li>
-    <li>[사용자] 대여 내역 화면 및 기능 구현</li>
-    <li>[사용자] 로그인 화면 구현</li>
-    <li>[사용자] review 화면 및 기능 구현</li>
-    <li>git README 작성</li>
-    <li>API 명세서 작성</li>
+
   </ul>
 </details>
 <details>
-  <summary>정유수(<a href="https://github.com/wjs1kk">@wjs1kk</a>) [팀원]</summary>
+  <summary>정유수(<a href="https://github.com/Jeongyusu">@Jeongyusu</a>) [팀원]</summary>
   <ul>
-    <li>[사용자] 로그인, 회원가입 기능 구현</li>
-    <li>[사용자] 아이디찾기, 비밀번호 찾기 구현, 이메일인증 api, 문자인증 api 활용</li>
-    <li>[사용자] 공지사항 HTML 및  CRUD, 페이징 구현</li>
-    <li>[사용자] 1:1문의 HTML 및  CRU, 페이징 구현</li>
-    <li>[사용자] FAQ HTML 및  CRU, 페이징 구현</li>
-    <li>[사용자] 상품문의 HTML 및  CRU, 페이징 구현</li>
-    <li>[사용자] 상품 검색 기능 구현</li>
-    <li>[사용자] 검색페이지 무한 스크롤 구현</li>
-    <li>[사용자] 오시는 길 페이지 일부, 카카오 map api 활용</li>
-    <li>[사용자] 마이페이지 일부 HTML</li>
-    <li>[사용자] 오시는 길 페이지 일부</li>
-    <li>[사용자] 헤더 HTML, CSS</li>
+
   </ul>
 </details>  
 </div>
@@ -114,10 +77,7 @@
 
 ## 프로젝트 소개
 - **이름** : TidyHome
-- **목적** : 국내 No.1 라이프스타일 서비스 O2O 플랫폼인 <img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/fa3c2606-bdd8-499e-b6bb-cef2668d13dc" width=80> 를 클론 코딩 하였습니다.
-
-
-- **수익모델** :
+- **목적** : 국내 No.1 라이프스타일 서비스 O2O 플랫폼인 <img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/1c4941a3-c8de-461a-8546-20c6b54211d2" width=80> 를 클론 코딩 하였습니다.
 - **주요 기능** ✏
 
   `* 사용자 *`
@@ -136,51 +96,32 @@
   + 결제 관리
   + 카테고리 관리
   + 게시판 관리(공지사항, 자주묻는 질문)
-
-- **사이트맵** 🗺
-
-  `* 사용자 *`
-<div align="center">
-    <img src="https://github.com/sji8562/KinderLend/assets/94952331/f447c9fb-d1c4-47c6-b32b-77245d1ddaa3" width=850>
-</div>
-
-  `* 관리자 *`
-<div align="center">
-    <img src="https://github.com/sji8562/KinderLend/assets/94952331/85dc7cd3-21ff-49a1-92ac-ee20b547630f" width=850>
-</div>
     
 - **화면 구성** 💻
+
+  Figma <a href="https://www.figma.com/file/on9PSXoVjbwfiLq29qyyKg/TidyHome?type=design&node-id=0%3A1&mode=design&t=nTSgaRs2h5nutL7g-1">TidyHome - Figma</a>  
+
+  `* 사용자 *`  
   
-  `* 사용자 *`
-  
-<div align="center"> 
-  
-|<img src="https://github.com/sji8562/KenderRent/assets/94952331/46368217-01ad-45a7-ae12-36298a394854/" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/e279dd9d-3593-40d5-b7cd-2b077873607d" width=400>|
+<div align="center">  
+ 
+|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/92231103-61b8-4441-a0cb-344d42bb3807" width=400>|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/fdc51b0d-9032-4617-a73a-282c451ce3e6" width=400>|
 |:---:|:---:|
-|메인 화면|로그인|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/0c0e99ba-caa6-4d81-9abf-1560c922e9bd" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/f98ecd43-b8e6-471a-a79c-7bbfdaf2391b" width=400>|
-|아이디 찾기|비밀번호 찾기|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/ff6d344a-5257-4134-8e5b-183d26e52b08" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/ff311784-b759-431f-92ef-b99ce68bce36" width=400>|
-|대여하기|구매하기|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/bfc5da9a-8e49-4819-b00f-1bcf8291549b" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/8cb2910a-b7fc-4215-b686-0bb500870674" width=400>|
-|결제 화면|장바구니|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/4d0889db-9e52-4d68-9524-57b306de8f1a" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/e246be60-23ae-4770-b9b8-d6beae166ece" width=400>|
-|주문 내역|주문 상세|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/1f8a7141-f190-450e-904b-f65b9619643c" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/5474fc30-9d15-4aa7-a125-9cf0c4571a27" width=400>|
-|대여 내역|위시리스트|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/145d3cad-2da6-4ffc-8947-0773f14e5263" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/a9754af3-30b9-4bb4-a554-53476c50708c" width=400>|
-|취소(환불) 내역|마이페이지|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/0c5239b4-b94d-43c3-b02b-d088232a86f0" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/fa6e6c26-cafc-4b04-95e4-00ea81ebca49" width=400>|
-|공지사항|1:1문의|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/b5b25a0f-b671-4aef-b031-7be14fd4d759" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/ece2f29c-1c76-459c-acd1-9200ed9b0800" width=400>|
-|FAQ|상품문의|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/2104a69f-b009-4501-bca8-1942c7a5f9fe" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/447808b8-b103-4acb-b24b-9c424faea612" width=400>|
-|회사소개|이용안내|
-|<img src="https://github.com/sji8562/KinderLend/assets/94952331/a9e31511-77db-4b91-a8c4-cf8471e2ef8e" width=400>|<img src="https://github.com/sji8562/KinderLend/assets/94952331/b6538ab4-09ad-4ade-a1de-412249034812" width=400>|
-|소독과정|오시는길|
-
-
-
+|메인 화면|로그인/회원가입|
+|<img src="" width=300>|<img src="" width=300>|
+|예약하기1|예약하기2|
+|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/6f21f8d1-57af-46d2-ab46-90a13ba05bb0" width=300>|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/c92b7831-134b-4aaa-b9f8-b5e48e45c5a8" width=300>|
+|주소등록|대표주소|
+|<img src="" width=300>|<img src="" width=300>|
+|예약내역|출입방법|
+|<img src="" width=300>|<img src="" width=300>|
+|기타요청사항|예약완료|
+|<img src="" width=300>|<img src="" width=300>|
+|예약변경|공지사항|
+|<img src="" width=300>|<img src="" width=300>|
+|서비스상세정보|자주묻는질문|
+|<img src="" width=300>|<img src="" width=300>|
+|서비스약관|계정탈퇴|
 </div>
 <br>
 
