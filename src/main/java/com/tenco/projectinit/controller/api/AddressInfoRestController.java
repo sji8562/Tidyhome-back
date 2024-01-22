@@ -7,6 +7,7 @@ import com.tenco.projectinit.dto.responsedto.AddressInfoResponseDTO;
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.User;
 import com.tenco.projectinit.service.AddressInfoService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +24,12 @@ public class AddressInfoRestController {
 
 
     private final AddressInfoService addressInfoService;
-
-
     private final HttpSession session;
+    private final HttpServletRequest servletRequest;
     // 주소 추가
     @PostMapping("/add")
     public ResponseEntity<?> addAddressInfo(@RequestBody AddressInfoResponseDTO request) {
-        if(session == null){
-            throw new Exception401("로그인 하고 오세요");
-        }
-//        User sessionUser = (User) session.getAttribute("sessionUser");
-//        System.out.println("세션유저------");
-//        System.out.println(sessionUser.getTel());
-      AddressInfo addressInfo = addressInfoService.addAddress(request, 1);
+      AddressInfo addressInfo = addressInfoService.addAddress(request, request.getUserId());
        return ResponseEntity.status(HttpStatus.CREATED).body(ApiUtils.success(addressInfo));
     }
 

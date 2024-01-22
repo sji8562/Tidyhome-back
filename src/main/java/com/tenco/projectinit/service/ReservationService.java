@@ -47,7 +47,6 @@ public class ReservationService {
     }
 
     // 예약 상세 내역을 조회하는 메서드
-    // 예약 상세 내역을 조회하는 메서드
     public Optional<ReservationDetailResponseDTO.ReservationDetail> getReservationDetail(Integer reservationId) {
         Optional<Reservation> reservation = reservationJPARepository.findById(reservationId);
         return reservation.map(ReservationDetailResponseDTO.ReservationDetail::new);
@@ -138,6 +137,7 @@ public class ReservationService {
         // 어드레스랑 인포로 레저베이션 만들기
         System.out.println("5까지");
         Reservation reservation = Reservation.builder()
+                .status(2)
                 .addressInfo(addressInfo)
                 .info(info)
                 .build();

@@ -601,10 +601,14 @@ insert into reservation_tb(address_info_id, info_id, sale_id, status, created_at
 
 
 
-insert into notice_tb(title, content, created_at) values ('공지1', '공지1 내용', now());
-
-insert into notice_tb(title, content, created_at) values ('공지2', '공지2 내용', now());
-insert into notice_tb(title, content, created_at) values ('공지3', '공지3 내용', now());
+insert into notice_tb(title, content, created_at) values ('생활청소 등 일부 서비스 선불결제 도입안내', '안녕하세요, 고객님
+항상 미소를 믿고 이용해 주셔서 감사의 말씀드립니다.
+원할한 서비스 제공을 위해 일부 서비스가 선불 결제 방식으로 변경되어 사전 안내드립니다.', now());
+insert into notice_tb(title, content, created_at) values ('개인정보처리방침 개정 안내', '안녕하세요. 미소입니다.
+미소의 개인정보처리방침의 일부가 다음과 같이 개정될 예정임을 안내드립니다.
+렌탈 서비스 가입 중개 위한 주민등록번호, 결제 수단 정보, 계좌 정보를 수집/제공합니다.', now());
+insert into notice_tb(title, content, created_at) values ('미소 새로운 서비스 출시 안내', '이사 갈 집부터 이사, 이사청소까지 업체를 직접 알아보고 검증해야했어요.
+이제 번거로움 없이 한 번에 요청하고 준비 시간을 단축해 보세요.', now());
 
 
 

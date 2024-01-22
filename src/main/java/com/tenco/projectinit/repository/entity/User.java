@@ -14,8 +14,6 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "user_tb")
 public class User {
@@ -24,13 +22,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String tel;
-    @Column(length = 256)
     @CreationTimestamp
     private Timestamp createdAt;
 
-    @JsonIgnoreProperties({ "user" })
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private final List<AddressInfo> addressInfos = new ArrayList<>();
-
-
+    @Builder
+    public User(Integer id, String tel, Timestamp createdAt) {
+        this.id = id;
+        this.tel = tel;
+        this.createdAt = createdAt;
+    }
 }

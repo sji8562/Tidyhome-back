@@ -118,10 +118,11 @@ public class UserService {
 
         if (user.getId() == null) {
             userJPARepository.save(user);
-            userJPARepository.flush();
+//            userJPARepository.flush();
         }
 
         smsCodeJPARepository.delete(smsCode);
+//        User MakedUser = userJPARepository.findByTel(user.getTel()).orElseThrow(() -> new Exception404("옵션이 없습니다"));;
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
 
     }
@@ -202,6 +203,10 @@ public class UserService {
         partner.setBusinessNumber(request.getBusinessNumber());
         partner.setPicUrl(PicToStringUtil.picToString(request.getPicUrl()));
         partnerJPARepository.save(partner);
+    }
+
+    public User findById(Integer id){
+        return userJPARepository.findById(id).orElseThrow(() -> new Exception404("유저가 없습니다"));
     }
 
 }
