@@ -173,37 +173,6 @@
 								class="mdi mdi-cash-multiple"></i> <span class="hide-menu">결제
 									관리</span>
 						</a></li>
-						<%-- 물품관리 --%>
-						<li class="sidebar-item" id="productManagement"><a
-							class="sidebar-link waves-effect waves-dark sidebar-link"
-							href="#" aria-expanded="false" disabled=""> <i
-								class="mdi mdi-dropbox"></i> <span class="hide-menu">물품
-									관리</span>
-						</a>
-							<ul aria-expanded="false" class="collapse first-level">
-								<!-- 물품관리 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/product/list?code=1&keyword="> <i
-										class="mdi mdi-archive"></i> <span class="hide-menu">대여용
-											물품 관리</span>
-								</a></li>
-								<!-- 물품관리 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/product/listForSale?code=2&keyword="> <i
-										class="mdi mdi-archive"></i> <span class="hide-menu">판매용
-											물품 관리</span>
-								</a></li>
-								<!-- 구매신청 -->
-								<li class="sidebar-item"><a
-									class="sidebar-link waves-effect waves-dark sidebar-link"
-									href="/mng/product/review?keyword="> <i
-										class="mdi mdi-thumb-up"></i> <span class="hide-menu">대여
-											후기 관리</span>
-
-								</a></li>
-							</ul></li>
 						<li class="sidebar-item" id="categoryManagement"><a
 							class="sidebar-link waves-effect waves-dark sidebar-link"
 							href="/mng/category/categories" aria-expanded="false" style="cursor: default"> <i
