@@ -96,14 +96,14 @@ public class UserService {
             return new UserResponseDTO.TokenDTO(JwtTokenUtils.createMockUser(),user.get());
         }
 
-        if (getTel == null || getTel.length() != 13) {
-            throw new Exception400("전화번호는 11자리여야 합니다.");
-        }
+//        if (getTel == null || getTel.length() != 13) {
+//            throw new Exception400("전화번호는 11자리여야 합니다.");
+//        }
 
-        SmsCode smsCode = smsCodeJPARepository.findByTel(getTel).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
-        if (!smsCode.isChecked()) {
-            throw new Exception400("인증되지 않았습니다");
-        }
+//        SmsCode smsCode = smsCodeJPARepository.findByTel(getTel).orElseThrow(() -> new Exception400("휴대폰번호 인증을해주세요"));
+//        if (!smsCode.isChecked()) {
+//            throw new Exception400("인증되지 않았습니다");
+//        }
         String[] tel = getTel.split("-");
         String nohipen = "";
         for (int i = 0; i < tel.length; i++) {
@@ -121,7 +121,7 @@ public class UserService {
             userJPARepository.flush();
         }
 
-        smsCodeJPARepository.delete(smsCode);
+//        smsCodeJPARepository.delete(smsCode);
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
 
     }

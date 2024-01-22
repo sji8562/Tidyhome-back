@@ -17,7 +17,7 @@ public class OptionRestControllerTest extends MyWithRestDoc {
         //when
         ResultActions resultActions =
                 mockMvc.perform(
-                        MockMvcRequestBuilders.get("/api/option/")
+                        MockMvcRequestBuilders.get("/api/option/detail")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .param("secondCategoryId","1")
                 );

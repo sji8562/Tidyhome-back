@@ -14,12 +14,12 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.util.AntPathMatcher;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 public class JwtAuthorizationFilter implements Filter {
 
     @Override
@@ -73,6 +73,8 @@ public class JwtAuthorizationFilter implements Filter {
                 if(picUrl == null|| picUrl.isEmpty()){
                     User sessionUser = User.builder().id(id).tel(userId).build();
                     session.setAttribute("sessionUser", sessionUser);
+                    System.out.println("SessionUser: " + sessionUser);
+                    System.out.println(sessionUser + "담기냐??");
                     Partner partner = Partner.builder().id(id).tel(userId).picUrl(picUrl).build();
                     session.setAttribute("partner", partner);
                 }else{
