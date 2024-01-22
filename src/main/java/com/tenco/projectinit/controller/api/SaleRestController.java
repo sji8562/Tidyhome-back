@@ -29,6 +29,7 @@ public class SaleRestController {
         HttpSession session = httpServletRequest.getSession();
         User sessionUser = (User) session.getAttribute("sessionUser");
         Integer saleId = saleService.savePayment(successDTO, sessionUser.getId());
+        System.out.println("세선유저 :" +sessionUser);
         return ResponseEntity.ok().body(ApiUtils.success(new ReservationResponseDTO.ReservationSuccessDTO(saleId)));
     }
 }
