@@ -118,12 +118,13 @@ public class UserService {
 
         if (user.getId() == null) {
             userJPARepository.save(user);
-            userJPARepository.flush();
+//            userJPARepository.flush();
         }
 
 
         smsCodeJPARepository.delete(smsCode);
         User MakedUser = userJPARepository.findByTel(user.getTel()).orElseThrow(() -> new Exception404("옵션이 없습니다"));
+
 
         return new UserResponseDTO.TokenDTO(JwtTokenUtils.create(user), user);
 
