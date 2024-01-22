@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tenco.projectinit.repository.entity.AddressInfo;
 import com.tenco.projectinit.repository.entity.Info;
 import com.tenco.projectinit.repository.entity.Sale;
+import com.tenco.projectinit.repository.entity.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,9 +27,9 @@ public class Reservation{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)  // FetchType.LAZY로 변경
     private AddressInfo addressInfo;
+
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,7 +38,6 @@ public class Reservation{
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Sale sale;
-
 
     private Integer status;
 

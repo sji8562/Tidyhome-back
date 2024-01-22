@@ -65,6 +65,7 @@ public interface ReservationJPARepository extends JpaRepository<Reservation, Int
 
     List<Reservation> findByAddressInfo_User_IdAndStatusIn(Integer userId, List<Integer> statusList);
 
+
     Reservation findBySaleId(int saleId);
 
 }

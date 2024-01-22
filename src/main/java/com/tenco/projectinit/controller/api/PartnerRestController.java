@@ -54,8 +54,6 @@ public class PartnerRestController {
     @PostMapping("/login")
     public ResponseEntity<?> join(@Valid @RequestBody PartnerRequestDTO.JoinDTO joinDTO) {
         PartnerResponseDTO.TokenDTO tokenDTO = partnerService.join(joinDTO);
-        System.out.println("-s-df-s-dfs-df");
-        System.out.println(tokenDTO.getPartner().getTel());
         return ResponseEntity.status(HttpStatus.CREATED).header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success(tokenDTO.getPartner()));
     }
@@ -63,9 +61,7 @@ public class PartnerRestController {
     // 파트너 업데이트
     @PostMapping("/update")
     public ResponseEntity<?> partnerInfo(@RequestBody UserRequestDTO.partnerDTO partnerDTO) {
-//        User sessionUser = (User) session.getAttribute("sessionUser");
-//        System.out.println();
-        userService.updatePartner(1, partnerDTO);
+        userService.updatePartner(partnerDTO.getId(), partnerDTO);
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 }

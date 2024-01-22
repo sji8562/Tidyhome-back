@@ -51,9 +51,9 @@ public class MngNoticeController {
         return "/mng/board/notice/update";
     }
     @PostMapping("update-proc")
-    public String noticeUpdate(NoticeRequestDTO.NoticeUpdateDTO dto){
+    public String noticeUpdateProc(NoticeRequestDTO.NoticeUpdateDTO dto){
         mngNoticeService.udpate(dto);
-        return "/mng/board/notice/update";
+        return "redirect:/mng/notice/list";
     }
     @GetMapping("{id}/delete")
     public String noticeDelete(@PathVariable Integer id){

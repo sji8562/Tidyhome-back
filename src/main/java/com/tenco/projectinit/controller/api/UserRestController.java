@@ -30,6 +30,7 @@ public class UserRestController {
 
 
     private final HttpSession session;
+
     // 인증번호 발송
     @PostMapping("/sms-send")
     public ResponseEntity<?> sms(@RequestBody UserRequestDTO.SmsSendDTO smsSendDTO){
@@ -47,16 +48,14 @@ public class UserRestController {
     @PostMapping("/login")
     public ResponseEntity<?> joinAndLogin(@Valid @RequestBody UserRequestDTO.JoinDTO joinDTO){
         UserResponseDTO.TokenDTO tokenDTO = userService.join(joinDTO);
-        System.out.println("로그인 성공");
         return ResponseEntity.status(HttpStatus.CREATED).header("Authorization", "Bearer " + tokenDTO.getJwt())
                 .body(ApiUtils.success((tokenDTO.getUser())));
     }
 
     // 회원탈퇴
-    @PostMapping("/delete")
-    public ResponseEntity<?> delete(){
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        userService.delete(sessionUser.getId());
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Integer id){
+        userService.delete(id);
         return ResponseEntity.ok().body(ApiUtils.success(null));
     }
 

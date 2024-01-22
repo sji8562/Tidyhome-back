@@ -14,6 +14,7 @@ import com.tenco.projectinit.service.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,11 +42,10 @@ public class ReservationRestController {
 
 
     // 예약 내역 목록
-    @GetMapping("/list")
-    public ResponseEntity<?> getUserReservationInfo(HttpServletRequest httpServletRequest) {
-        HttpSession session = httpServletRequest.getSession();
-        User user = (User) session.getAttribute("sessionUser");
-        List<Reservation> reservations = reservationService.getReservationList(1);
+    @GetMapping("/list/all/{userId}")
+    public ResponseEntity<?> getUserReservationInfo(@PathVariable Integer userId) {
+        List<Reservation> reservations = reservationService.getReservationList(userId);
+        System.out.println("예약리스트 조회중");
         List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
                 .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
                 .collect(Collectors.toList());
@@ -53,11 +53,9 @@ public class ReservationRestController {
     }
 
     // 예약 내역 목록 (완료된 목록)
-    @GetMapping("/list/completed")
-    public ResponseEntity<?> getUserCompletedReservationInfo(HttpServletRequest httpServletRequest) {
-        HttpSession session = httpServletRequest.getSession();
-        User user = (User) session.getAttribute("sessionUser");
-        List<Reservation> reservations = reservationService.getCompletedReservationList(1);
+    @GetMapping("/list/completed/{id}")
+    public ResponseEntity<?> getUserCompletedReservationInfo(@PathVariable Integer id) {
+        List<Reservation> reservations = reservationService.getCompletedReservationList(id);
         List<ReservationDetailResponseDTO.JReservationList> reservationList = reservations.stream()
                 .map(reservation -> new ReservationDetailResponseDTO.JReservationList(reservation))
                 .collect(Collectors.toList());
@@ -92,8 +90,7 @@ public class ReservationRestController {
     // 일정 취소 -> 카카오페이 환불
 
     // 출입방법 입력
-    @PostMapping("/list/{reservationId}/" +
-            "enter")
+    @PostMapping("/list/{reservationId}/enter")
     public ResponseEntity<?> updateEnter(@PathVariable Integer reservationId, @RequestBody EnterResponseDTO.EnterDTO request) {
         try {
             reservationService.updateEnter(reservationId, request);
