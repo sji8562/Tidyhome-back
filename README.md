@@ -105,17 +105,17 @@
   
 <div align="center">  
  
-|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/92231103-61b8-4441-a0cb-344d42bb3807" width=400>|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/fdc51b0d-9032-4617-a73a-282c451ce3e6" width=400>|
+|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/92231103-61b8-4441-a0cb-344d42bb3807" width=300>|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/fdc51b0d-9032-4617-a73a-282c451ce3e6" width=300>|
 |:---:|:---:|
 |메인 화면|로그인/회원가입|
-|<img src="" width=300>|<img src="" width=300>|
-|예약하기1|예약하기2|
-|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/6f21f8d1-57af-46d2-ab46-90a13ba05bb0" width=300>|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/c92b7831-134b-4aaa-b9f8-b5e48e45c5a8" width=300>|
+|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/dfe3a44d-fa0e-4631-a575-8ce6b436ad5f" width=300>|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/4f696df5-ddc5-447e-9547-cc8ffecb096e" width=300>|
+|예약하기|결제하기|
+|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/c7cf6bf8-938e-43bb-867c-a18872dd0710" width=300>|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/c92b7831-134b-4aaa-b9f8-b5e48e45c5a8" width=300>|
 |주소등록|대표주소|
-|<img src="" width=300>|<img src="" width=300>|
+|<img src="https://github.com/sji8562/Tidyhome-back/assets/94952331/4899b01b-a191-4225-9bbf-c24efc5ac870" width=300>|<img src="" width=300>|
 |예약내역|출입방법|
 |<img src="" width=300>|<img src="" width=300>|
-|기타요청사항|예약완료|
+|기타요청사항|예약변경|
 |<img src="" width=300>|<img src="" width=300>|
 |예약변경|공지사항|
 |<img src="" width=300>|<img src="" width=300>|
@@ -129,14 +129,14 @@
 
 <div align="center"> 
   
-|<img src="https://github.com/sji8562/KenderRent/assets/94952331/83914283-2415-425b-bb70-4f2e9b61c27b" width=400> |<img src="https://github.com/sji8562/KenderRent/assets/94952331/b1d8df02-cc90-40a3-acb5-64e15c41b35d" width=400>| 
+|<img src="https://github.com/sji8562/KenderRent/assets/94952331/83914283-2415-425b-bb70-4f2e9b61c27b" width=326> |<img src="https://github.com/sji8562/KenderRent/assets/94952331/b1d8df02-cc90-40a3-acb5-64e15c41b35d" width=326>| 
 |:---:|:---:|
 |메인 화면(대시보드)|회원 관리|
-| <img src="https://github.com/sji8562/KenderRent/assets/94952331/35695195-8d69-4fdc-89ba-e37a1ed4a970" width=400> | <img src="https://github.com/sji8562/KinderLend/assets/94952331/8d896d0e-7b2c-4550-b42d-c9955eda60e4" width=400> |
+| <img src="https://github.com/sji8562/KenderRent/assets/94952331/35695195-8d69-4fdc-89ba-e37a1ed4a970" width=326> | <img src="https://github.com/sji8562/KinderLend/assets/94952331/8d896d0e-7b2c-4550-b42d-c9955eda60e4" width=326> |
 |물품 관리|결제 관리|
-| <img src="https://github.com/sji8562/KinderLend/assets/94952331/bfa97cf4-38c0-4d44-b13b-7c5a423d6b99" width=400> | <img src="https://github.com/sji8562/KinderLend/assets/94952331/ccfc8cf6-c04a-4838-ae6f-6449dfcf7da7" width=400> |
+| <img src="https://github.com/sji8562/KinderLend/assets/94952331/bfa97cf4-38c0-4d44-b13b-7c5a423d6b99" width=326> | <img src="https://github.com/sji8562/KinderLend/assets/94952331/ccfc8cf6-c04a-4838-ae6f-6449dfcf7da7" width=326> |
 |회사소개 관리|카테고리 관리|
-| <img src="https://github.com/sji8562/KinderLend/assets/94952331/4d8d4ff3-af5e-4ead-823d-0e075ae852b7" width=400> | <img src="https://github.com/sji8562/KinderLend/assets/94952331/faebfe50-b004-4455-a6da-fa2d93e9004b" width=400> |
+| <img src="https://github.com/sji8562/KinderLend/assets/94952331/4d8d4ff3-af5e-4ead-823d-0e075ae852b7" width=326> | <img src="https://github.com/sji8562/KinderLend/assets/94952331/faebfe50-b004-4455-a6da-fa2d93e9004b" width=326> |
 |대여신청 관리|게시판 관리|
 
 </div>
