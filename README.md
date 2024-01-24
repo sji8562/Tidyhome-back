@@ -480,7 +480,7 @@ implementation group: 'net.nurigo', name: 'sdk', version: '4.3.0'
                 └─📁projectinit
 ```
 ```
-📦Tidyhome-back\lib
+📦Tidyhome-flutter\lib
 ├─📁data
 │  ├─📁dto                                  // 데이터 교환을 위한 클래스들
 │  │  ├─📁request_dto                       // 클라이언트에서 서버로 요청할 때 사용하는 DTO 클래스들
