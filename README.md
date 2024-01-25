@@ -1,6 +1,6 @@
 <h1>TidyHome 🧼</h1>
 
-<h4>이 프로젝트는 FLUTTER MVVM과 SPRING MVC 패턴으로 APP을 구현하였습니다.</h4>
+<h4>이 프로젝트는 FLUTTER MVVM 패턴으로 어플을 SPRING MVC 패턴으로 관리자 페이지를 구현하였습니다.</h4>
 <br>
 
 <div align="center"> 
