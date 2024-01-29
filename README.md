@@ -146,7 +146,7 @@
 
 <div align="center">
   
-[![Video Label](http://img.youtube.com/vi/VUfh422nqlQ/0.jpg)](https://youtu.be/VUfh422nqlQ)
+[![Video Label](http://img.youtube.com/vi/jUxw8T9TaSo/0.jpg)](https://youtu.be/jUxw8T9TaSo)
 
 </div>
 
